@@ -1,0 +1,173 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{1}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+%%%%%%%%%%
+% Title  %
+%%%%%%%%%%
+\title{
+אלגברה ב' - גיליון תרגילי בית 3 \\
+מרחבים שמורים וסכומים ישרים
+\\
+\vspace{1cm}
+\large{20.11.2025}
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{exercise}
+יהיו
+$V$
+מרחב וקטורי
+מעל
+$\mbb{F}$,
+יהיו
+$P,T \in \End_{\mbb{F}}\prs{V}$
+כאשר
+$P$
+איזומורפיזם.
+יהי
+$W \leq V$.
+
+הראו כי
+$W$
+הינו
+$T$%
+־שמור אם ורק אם
+$P^{-1}\prs{W}$
+הינו
+$P^{-1} \circ T \circ P$%
+־שמור.
+\end{exercise}
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי סוף־מימדי, יהי
+$T \in \End_{\mbb{F}}\prs{V}$
+ויהיו
+$V_1, \ldots, V_k \leq V$
+כולם
+$T$%
+־שמורים וכך שמתקיים
+$V = \bigoplus_{i \in [k]} V_i$.
+
+\begin{enumerate}
+\item 
+הראו כי
+\begin{align*}
+\ker\prs{T} &= \bigoplus_{i \in [k]} \ker\prs{\left. T \right|_{V_i}} \\
+\text{.} \im\prs{T} &= \bigoplus_{i \in [k]} \im\prs{\left. T \right|_{V_i}}
+\end{align*}
+
+\item
+הראו כי
+\begin{align*}
+\ker\prs{T - \lambda \id_V} &= \bigoplus_{i \in [k]} \ker\prs{\left. T \right|_{V_i} - \lambda \id_{V_i}}
+\end{align*}
+לכל
+$\lambda \in \mbb{F}$.
+הסיקו שהערכים העצמיים של
+$T$
+הם אלו של כל ה־%
+$\left. T \right|_{V_i}$
+והראו כי
+\begin{align*}
+r_{T,a}\prs{\lambda} &= \sum_{i \in \brs{k}} r_{\left. T \right|_{V_i}, a}\prs{\lambda} \\
+r_{T,g}\prs{\lambda} &= \sum_{i \in \brs{k}} r_{\left. T \right|_{V_i}, g}\prs{\lambda}
+\end{align*}
+לכל
+$\lambda \in \mbb{F}$
+וכאשר
+$r_{S,a}\prs{\lambda}, r_{S,g}\prs{\lambda}$
+הריבויים האלגברי והגיאומטרי של
+$\lambda$
+כערך עצמי של
+$S \in \End_{\mbb{F}}\prs{V}$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל שדה
+$\mbb{F}$
+ויהי
+$T \in \End_\FF\prs{V}$.
+יהיו
+\begin{align*}
+\set{0} \neq W_1 < \ldots < W_m \leq V
+\end{align*}
+תת־מרחבים
+$T$%
+־שמורים
+של
+$V$
+כך ש־%
+$W_i$
+תת־מרחב ממש של
+$W_{i+1}$
+לכל
+$i \in \brs{m-1}$,
+וגם
+$W_1 \neq 0$.
+נסמן
+$k_i \coloneqq \dim_\FF\prs{W_i}$,
+ויהי
+$B$
+בסיס של
+$V$
+כך ש־%
+$k_i$
+הוקטורים הראשונים של
+$V$
+מהווים בסיס ל־%
+$W_i$,
+לכל
+$i \in \brs{m}$.
+
+הראו כי
+$\brs{T}_B$
+מטריצה מהצורה
+\begin{align*}
+\pmat{A_1 & * & \cdots & * \\ 0 & A_2 & \ddots & \vdots \\ \vdots & \ddots & \ddots & * \\ 0 & \cdots & 0 & A_m}
+\end{align*}
+עבור מטריצות
+$A_i \in \Mat_{k_i}\prs{\FF}$.
+
+\textbf{רמז:}
+היזכרו במסקנה מהכיתה לגבי מציאת בסיס
+$B$
+עבורו
+$\brs{T}_B$
+מטריצה משולשת עליונה.
+\end{exercise}
+
+\end{document}

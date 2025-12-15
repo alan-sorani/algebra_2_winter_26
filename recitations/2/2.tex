@@ -1,0 +1,637 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{polynom}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{0}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+\title{
+אלגברה ב' (01040168) - חורף 2026
+\\
+תרגול 2 - סכומים ישרים והטלות
+\\
+אלן סורני
+\\
+הרשימות עודכנו לאחרונה בתאריך ה־%
+\today
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{סכומים ישרים פנימיים}
+
+\begin{definition}[סכום ישר פנימי]
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל
+$\mbb{F}$
+ויהיו
+$V_1, \ldots, V_k \leq V$
+תת־מרחבים.
+נזכיר כי
+\begin{align*}
+\text{.} V_1 + \ldots + V_k \coloneqq \set{v_1 + \ldots + v_k}{\forall i \in [k] \colon v_i \in V_i}
+\end{align*}
+נגיד שהסכום הזה הוא
+\emph{סכום ישר}
+אם כל
+$v \in V_1 + \ldots + V_k$
+ניתן לכתיבה
+$v = v_1 + \ldots + v_k$
+\emph{בצורה יחידה}
+עבור
+$v_i \in V_i$.
+במקרה זה נסמן את הסכום
+$\bigoplus_{i \in [k]} V_i = V_1 \oplus \ldots \oplus V_k$.
+\end{definition}
+
+\begin{remark}
+באופן שקול, הסכום
+$V_1 + \ldots + V_k$
+ישר אם ורק אם
+$v_1 + \ldots + v_k = 0$
+עבור
+$v_i \in V_i$
+גורר
+$v_i = 0$
+לכל
+$i \in [k]$.
+\end{remark}
+
+\begin{proposition} \label{proposition:direct-sum}
+הסכום
+$\sum_{i \in [k]} V_i \coloneqq V_1 + \ldots + V_k$
+ישר אם ורק אם
+\[V_i \cap \prs{\sum_{j \in \brs{k} \setminus i} V_j} = \set{0}\]
+לכל
+$i \in [k]$.
+\end{proposition}
+
+\begin{definition}[שרשור קבוצות סדורות]
+תהיינה
+\begin{align*}
+A_1 &= \prs{v_{1,1}, \ldots, v_{1, \ell_1}} \\
+A_2 &= \prs{v_{2,1}, \ldots, v_{2, \ell_2}} \\
+&\vdots \\
+A_k &= \prs{v_{k,1}, \ldots, v_{k, \ell_k}}
+\end{align*}
+קבוצות סדורות.
+נגדיר את
+\emph{השרשור שלהן}
+\begin{align*}
+\text{.} A_1 * \ldots * A_k \coloneqq \prs{v_{1,1}, \ldots, v_{1,\ell_1}, v_{2,1}, \ldots, v_{2,\ell_2}, \ldots, v_{k,1}, \ldots, v_{k,\ell_k}}
+\end{align*}
+זאת הקבוצה הסדורה שהיא שרשור איברי הקבוצות הסדורות
+$A_1, \ldots, A_k$
+לפי הסדר.
+\end{definition}
+
+\newpage
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל שדה
+$\FF$,
+ויהיו
+$V_1, V_2 \leq V$
+עבורם
+$V = V_1 \oplus V_2$.
+הראו כי
+$\dim_\FF \prs{V} = \dim_\FF\prs{V_1} + \dim_\FF\prs{V_2}$.
+
+הסיקו כי אם
+$V_1, \ldots, V_k \leq V$
+מקיימים כי
+$V = V_1 \oplus \ldots \oplus V_k$
+אז
+$\dim_\FF\prs{V} = \sum_{i \in \brs{k}} \dim_\FF\prs{V_i}$.
+\end{exercise}
+
+\begin{solution}
+לפי ההגדרה, אם
+$V = V_1 \oplus V_2$
+אז
+$V_1 \cap V_2 = \set{0}$.
+
+לכן, לפי משפט המימדים,
+\begin{align*}
+\text{.} \dim_\FF \prs{V} = \dim_\FF\prs{V_1} + \dim_\FF\prs{V_2} - \dim_\FF\prs{V_1 \cap V_2} = \dim_\FF\prs{V_1} + \dim_\FF\prs{V_2}
+\end{align*}
+
+נוכיח את המקרה בו
+$V = V_1 \oplus \ldots \oplus V_k$
+באינדוקציה.
+הראנו את מקרה הבסיס
+$k=2$.
+נניח כי הטענה מתקיימת עבור
+$k = m$
+ונראה כי היא מתקיימת עבור
+$k = m+1$.
+יהיו
+$V_1, \ldots, V_{m+1} \leq V$
+עבורם
+$V = V_1 \oplus \ldots \oplus V_{m+1}$.
+אז
+\begin{align*}
+\text{.} V = \prs{V_1 \oplus \ldots \oplus V_m} \oplus V_{m+1}
+\end{align*}
+מהנחת האינדוקציה נקבל כי
+\begin{align*}
+\text{,} \dim_\FF\prs{V_1 \oplus \ldots \oplus V_m} = \sum_{i \in \brs{m}} \dim_\FF \prs{V_i}
+\end{align*}
+וממקרה הבסיס נקבל כי
+\begin{align*}
+\text{.} \dim_\FF \prs{V} = \dim_\FF\prs{V_1 \oplus \ldots \oplus V_m} + \dim_\FF \prs{V_{m+1}}
+\end{align*}
+נציב את השוויון הנ"ל עבור הגורם הראשון, ונקבל את הנדרש.
+\end{solution}
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי סוף־מימדי ויהיו
+$V_1, \ldots, V_k$
+תת־מרחבים של
+$V$.
+התנאים הבאים שקולים.
+\begin{enumerate}
+\item $V = V_1 \oplus \ldots \oplus V_k$.
+\item לכל בחירת בסיסים
+$B_i$
+של
+$V_i$
+הקבוצה הסדורה
+$B_1 * \ldots * B_k$
+היא בסיס של
+$V$.
+\item קיימים בסיסים
+$B_i$
+של
+$V_i$
+כך שהקבוצה הסדורה
+$B_1 * \ldots * B_k$
+היא בסיס של
+$V$.
+\item $V = \sum_{i \in [k]} V_i$
+וגם
+\[\text{.} \dim V = \sum_{i \in [k]} \dim\prs{V_i}\]
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+נראה גרירות בין התנאים השונים כדי להראות שהם שקולים זה לזה.
+
+\begin{description}
+\item[$1 \implies 2$:]
+
+נניח כי
+$V = V_1 \oplus \ldots \oplus V_k$,
+ויהיו
+$B_1, \ldots, B_k$
+בסיסים של
+$V_1, \ldots, V_k$
+בהתאמה. נרצה להראות כי
+$B \coloneqq B_1 * \ldots * B_k$
+הינו בסיס של
+$V$.
+
+יהי
+$v \in V$.
+מההנחה, ניתן לכתוב
+\begin{align*}
+v = v_1 + \ldots + v_k
+\end{align*}
+עבור
+$v_i \in V_i$
+לכל
+$i \in \brs{k}$.
+כיוון ש־%
+$B_i$
+בסיס של
+$V_i$
+לכל
+$i \in \brs{k}$,
+מתקיים
+$v_i \in \Span_{\FF}\prs{B_i}$.
+לכן
+\begin{align*}
+v &= v_1 + \ldots + v_k
+\\&\in
+\Span\prs{B_1} + \ldots + \Span\prs{B_k}
+\\&\subseteq
+\Span\prs{B}
+\end{align*}
+כלומר
+$B$
+פורש את
+$V$.
+
+כעת,
+\begin{align*}
+\text{,} \dim_\FF \prs{V} = \sum_{i \in \brs{k}} \dim_\FF\prs{V_i}
+\end{align*}
+וגם
+\begin{align*}
+\text{,} |B| = \sum_{i \in \brs{k}} |B_i| = \sum_{i \in \brs{k}} \dim_\FF\prs{V_i}
+\end{align*}
+לכן
+$B$
+קבוצה פורשת של
+$V$
+מגודל
+$\dim_\FF V$,
+ולכן בסיס של
+$V$.
+
+\item[$2 \implies 3$:]
+מיידי.
+
+\item[$3 \implies 4$:]
+המימד של
+$V$
+שווה לגודל של בסיס של
+$V$,
+והגודל של
+$B$
+הוא בדיוק הסכום באגף ימין של 4.
+
+נסמן
+\begin{align*}
+B_i \coloneqq \prs{v_1^{\prs{i}}, \ldots, v_{m_i}^{\prs{i}}}
+\end{align*}
+לכל
+$i \in \brs{k}$,
+ויהי
+$v \in V$.
+אז קיימים
+$\alpha^{\prs{i}}_j \in \FF$
+עבורם ניתן לכתוב
+\begin{align*}
+\text{.} v = \sum_{i \in \brs{k}} \sum_{j \in \brs{m_i}} \alpha^{\prs{i}}_j v^{\prs{i}}_j
+\end{align*}
+אבל,
+$B_i$
+בסיס של
+$V_i$
+ולכן
+\begin{align*}
+v_i \coloneqq \sum_{j \in \brs{m_i}} \alpha^{\prs{i}}_j v^{\prs{i}}_j \in V_i
+\end{align*}
+וקטור ב־%
+$V_i$.
+קיבלנו כי
+$v$
+סכום של וקטורים
+$v_i \in V_i$,
+לכל
+$v \in V$,
+ולכן
+$V = \sum_{i \in \brs{k}} V_i$.
+
+\item[$4 \implies 1$:]
+נראה כי
+\[V_i \cap \prs{\sum_{j \in \brs{k} \setminus i} V_j} = \set{0}\]
+לכל
+$i \in [k]$,
+ונקבל את הנדרש לפי טענה
+\ref{proposition:direct-sum}.
+
+יהי
+$i \in \brs{k}$.
+לפי משפט המימדים, מתקיים
+\begin{align*}
+\dim_\FF \prs{V} &=
+\dim_\FF \prs{\sum_{j \in \brs{k}} V_j} \\&=
+\dim_\FF \prs{V_i + \sum_{j \in \brs{k} \setminus \set{i}} V_j}
+\\ \text{.} \hphantom{\dim_\FF \prs{V}} &=
+\dim_\FF \prs{V_i} + \dim_\FF \prs{\sum_{j \in \brs{k} \setminus \set{i}} V_j} - \dim_\FF \prs{V_i \cap \prs{\sum_{j \in \brs{k} \setminus i} V_j}}
+\end{align*}
+אבל, לפי ההנחה
+\begin{align*}
+\text{.} \dim_\FF\prs{V} = \sum_{j \in \brs{k}} \dim_\FF \prs{V_j}
+\end{align*}
+לכן, אם נראה שמתקיים
+\[\dim_\FF \prs{\sum_{j \in \brs{k} \setminus i} V_j} = \sum_{j \in \brs{k} \setminus \set{i}} \dim_\FF \prs{V_j}\]
+נקבל את הנדרש.
+
+ממשפט המימדים נקבל כי
+\[\text{,} \dim_\FF \prs{\sum_{j \in \brs{k} \setminus i} V_j} \leq \sum_{j \in \brs{k} \setminus \set{i}} \dim_\FF \prs{V_j}\]
+לכן נותר להראות שאגף שמאל אינו קטן ממש מאגף ימין.
+נניח בדרך השלילה שהוא כן. אז
+\begin{align*}
+\dim_\FF \prs{V} &< \dim_\FF \prs{V_i} + \sum_{j \in \brs{k} \setminus \set{i}} \dim_\FF \prs{V_j} - \dim_\FF \prs{V_i \cap \prs{\sum_{j \in \brs{k} \setminus i} V_j}}
+\\&\leq
+\sum_{j \in \brs{k}} \dim_\FF V_j
+\\\text{,} \hphantom{\dim_\FF \prs{V}} &= \dim_\FF \prs{V}
+\end{align*}
+בסתירה.
+\end{description}
+\end{solution}
+
+\begin{definition}[משלים ישר]
+יהי
+$V$
+מרחב וקטורי ויהי
+$U \leq V$
+תת־מרחב.
+\emph{משלים ישר}
+$W$
+של
+$U$
+הוא תת־מרחב של
+$V$
+עבורו
+$V = U \oplus W$.
+\end{definition}
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל שדה
+$\mbb{F}$
+ויהי
+$U \leq V$
+תת־מרחב עם בסיס
+$B$.
+יהי
+$C$
+בסיס של
+$V$.
+\begin{enumerate}
+\item הראו שניתן להשלים את
+$B$
+לבסיס של
+$V$
+על ידי הוספת וקטורים מ־%
+$C$.
+
+\item הסיקו שקיים משלים ישר
+$W$
+של
+$U$
+עם בסיס של וקטורים מ־%
+$C$.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+\item נסמן
+$n \coloneqq \dim_{\mbb{F}}\prs{V}$
+ונוכיח את הטענה באינדוקציה על
+$m = n - \abs{B}$.
+
+עבור
+$m = 0$
+מתקיים
+$\abs{B} = n$
+ולכן
+$U = V$.
+נניח שהטענה נכונה לכל
+$k < m$
+ונוכיח אותה עבור
+$m$.
+
+אם
+$C \subseteq U$,
+מתקיים
+\[V = \Span_{\mbb{F}}\prs{C} \subseteq \Span_{\mbb{F}}\prs{U} = U\]
+ולכן
+$V = U$
+בסתירה לכך שהמימדים שונים.
+לכן, קיים
+$c \in C \setminus U$.
+אז
+$B * \prs{c}$
+קבוצה בלתי־תלויה לינארית, כי
+$c$
+אינו צירוף לינארי של הוקטורים הקודמים. נגדיר
+$U' = \Span_{\mbb{F}}\prs{B * \prs{c}}$.
+אז
+\[n - \dim\prs{U'} = n - \abs{B} - 1 = m-1 < m\]
+ולכן ניתן להשתמש בהנחת האינדוקציה ולקבל שניתן להשלים את
+$B * \prs{c}$
+לבסיס
+$\prs{B * \prs{c}} * \prs{c_2, \ldots, c_m}$
+של
+$V$,
+כאשר
+$c_i \in C$.
+אז
+$c, c_2, \ldots, c_m \in C$
+משלימים את
+$B$
+לבסיס של
+$V$.
+
+\item בסימונים של הסעיף הקודם,
+$B * \prs{c, \ldots, c_m}$
+בסיס של
+$V$.
+נסמן
+$D = \prs{c, c_2, \ldots, c_m}$
+וגם
+$W = \Span_{\mbb{F}}\prs{D}$.
+אז
+$B * D$
+בסיס של
+$V$
+ולכן
+\[\text{,} V = \Span_{\mbb{F}}\prs{B} \oplus \Span_{\mbb{F}}\prs{D} = U \oplus W\]
+כנדרש.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+יהי
+$V = \mbb{R}_3\brs{x}$
+ותהיינה
+\begin{align*}
+B &= \prs{1+x, x+x^2} \\
+C &= \prs{1, x, x^2, x^3}
+\end{align*}
+קבוצות סדורות של וקטורים מ־%
+$V$.
+יהי
+$U = \Span\prs{B}$.
+
+\begin{enumerate}
+\item מיצאו משלים ישר
+$W$
+של
+$U$
+ובסיס עבור
+$W$
+שמורכב מוקטורים ב־%
+$C$.
+\item
+האם
+$W$
+שמצאתם יחיד? הוכיחו או הפריכו.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+\item נשלים את
+$B$
+לבסיס של
+$V$
+על ידי הוספת וקטורים מ־%
+$C$.
+נוסיף את
+$1 \notin U$
+כדי לקבל
+$B' = \pmat{1 + x, x + x^2, 1}$
+ואז את
+$x^3 \notin \Span\prs{B'}$
+כדי לקבל בסיס
+$B'' = \pmat{1 + x, x + x^2, 1, x^3}$
+של
+$V$.
+
+נסמן
+$D = \prs{1, x^3}$
+וניקח
+$W = \Span\prs{D}$.
+אז
+$B'' = B * D$
+בסיס,
+ולכן
+$V = U \oplus W$,
+כנדרש.
+
+\item לא.
+למשל, יכולנו לקחת
+$B' = \pmat{1 + x, x + x^2, x^2}$
+ואז
+$B'' = \pmat{1 + x, x + x^2, x^2, x^3}$.
+במקרה זה היינו מקבלות משלים ישר
+$\Span\prs{x^2, x^3}$,
+ששונה מ־%
+$W$.
+\end{enumerate}
+\end{solution}
+
+\section{סכומים ישרים חיצוניים}
+
+לפעמים נרצה לדבר על סכומים ישרים של מרחבים וקטורים שאינם תת־מרחבים של אותו מרחב וקטורי. לכן נגדיר
+\emph{סכום ישר חיצוני}.
+נסמן אותו באותו אופן, אך הסכום הישר החיצוני של תת־מרחבים
+$V_1, \ldots, V_k \leq V$
+איזומורפי לסכום הישר הפנימי שלהם.
+
+\begin{definition}[סכום ישר חיצוני]
+יהיו
+$V_1, \ldots, V_k$
+מרחבים וקטוריים מעל שדה
+$\FF$.
+נגדיר את
+\emph{הסכום הישר החיצוני של
+$V_1, \ldots, V_k$}
+בתור המרחב הוקטורי
+\begin{align*}
+V_1 \oplus \ldots \oplus V_k \coloneqq \set{\prs{v_1, \ldots, v_k}}{v_i \in V_i}
+\end{align*}
+עם חיבור וכפל בסקלר איבר-איבר.
+\end{definition}
+
+\begin{remark}
+ניתן לחשוב על סכום ישר חיצוני בתור סכום ישר פנימי.
+אם
+$V = V_1 \oplus \ldots \oplus V_k$
+סכום ישר חיצוני,
+נחשוב על התת־מרחב
+\begin{align*}
+\tilde{V}_i \coloneqq \set{\prs{v_1, \ldots, v_k}}{\substack{v_j \in V_j \\ \forall j \neq i: v_j = 0}}
+\end{align*}
+בתור עותק של
+$V_i$
+בתוך
+$V$,
+וניתן לכתוב את
+$V$
+בתור הסכום הישר הפנימי
+\begin{align*}
+\text{.} V = \tilde{V}_1 \oplus \ldots \oplus \tilde{V}_k
+\end{align*}
+
+ההעתקה
+$i_j \colon V_j \to \tilde{V}_j$
+ששולחת וקטור
+$v$
+לוקטור
+$\prs{0, \ldots, 0, v, 0, \ldots, 0}$
+נקראת
+\emph{השיכון של
+$V_j$
+בסכום הישר
+$V$}
+והיא איזומורפיזם לינארי.
+\end{remark}
+
+\begin{definition}[שרשור בסיסים עבור סכום ישר חיצוני]
+יהיו
+$V_1, \ldots, V_k$
+מרחבים וקטוריים סוף־מימדיים מעל שדה
+$\FF$,
+עם בסיסים
+$B_1, \ldots, B_k$
+בהתאמה.
+
+כאשר נתייחס לשרשור הבסיסים
+$B_1 * \ldots * B_k$
+כבסיס של הסכום החיצוני
+$V_1 \oplus \ldots \oplus V_k$,
+נתכוון לביטוי
+\[B_1 * \ldots * B_k \coloneqq i_1\prs{B_1} * \ldots * i_k\prs{B_k}\]
+כאשר הביטוי בצד ימין הוא שרשור הבסיסים שהגדרנו בעבר.
+\end{definition}
+
+\begin{definition}[סכום ישר של העתקות לינאריות]
+יהיו
+$V_1, \ldots, V_k, W_1, \ldots, W_k$
+מרחבים וקטוריים מעל שדה
+$\FF$,
+ויהיו
+$T_i \in \hom\FF\prs{V_i, W_i}$
+לכל
+$i \in \brs{k}$.
+
+\emph{הסכום הישר של ההעתקות
+$T_i$}
+הוא
+\begin{align*}
+T_1 \oplus \ldots \oplus T_k \colon V_1 \oplus \ldots \oplus V_k &\to W_1 \oplus \ldots \oplus W_k \\
+\text{.} \hphantom{lalalalalalalalala} \prs{v_1, \ldots, v_k} &\mapsto \prs{T_1\prs{v_1}, \ldots, T_k\prs{v_k}}
+\end{align*}
+\end{definition}
+
+\printbibliography
+\end{document}

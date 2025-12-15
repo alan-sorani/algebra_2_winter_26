@@ -1,0 +1,360 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{1}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+%%%%%%%%%%
+% Title  %
+%%%%%%%%%%
+\title{
+אלגברה ב' - גיליון תרגילי בית 1 \\
+מטריצות מייצגות
+\\
+\vspace{1cm}
+\large{תאריך הגשה: 5.11.2025}
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{exercise}
+יהי
+$\mathrm{St} = \prs{e_1, \ldots, e_n}$
+הבסיס הסטנדרטי של
+$\mathbb{F}^n$,
+ונזכיר כי עבור בסיס
+$B$
+של מרחב וקטורי סוף־מימדי
+$V$
+מעל
+$\mbb{F}$
+קיים איזומורפיזם
+\begin{align*}
+\rho_B : V &\to \mbb{F}^n \\
+\text{.} \hphantom{lalala} v &\mapsto \brs{v}_B
+\end{align*}
+הראו כי
+$\rho_{\mrm{St}} : \mathbb{F}^n \to \mathbb{F}^n$
+הינה העתקת הזהות.
+\end{exercise}
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל שדה
+$\mbb{F}$,
+ויהיו
+$B,C$
+שני בסיסים של
+$V$.
+יהי
+$T \in \End_{\mbb{F}}\prs{V}$
+אופרטור לינארי על
+$V$.
+נסמן
+$B = \prs{v_1, \ldots, v_n}$.
+
+נראה בהרצאה כי
+\begin{align*}
+\text{.} \forall i \in \brs{n} : \brs{T}^B_C \brs{v_i}_B = \brs{T\prs{v_i}}_C
+\end{align*}
+הסיקו מכך כי
+\begin{align*}
+\text{.} \forall v \in V: \brs{T}^B_C \brs{v}_B = \brs{T\prs{v}}_C
+\end{align*}
+\end{exercise}
+
+\begin{exercise}
+יהי
+$B = \prs{v_i}_{i \in [n]}$
+בסיס למרחב וקטורי
+$V$.
+נתונה
+$T \colon V \to V$
+הפיכה המקיימת
+\[\text{.} T\prs{v_1 + 2 v_2} = \sum_{i \in [n]} v_i\]
+מצאו את סכום כל מקדמי המטריצה
+$\brs{T^{-1}}_B$.
+
+למשל, אם
+$\brs{T^{-1}}_B = \pmat{1 & 2 \\ 3 & 4}$,
+הסכום הוא
+$1+2+3+4 = 10$.
+\end{exercise}
+
+\textbf{שימו לב לתרגילים הנוספים שבעמוד הבא.}
+
+\newpage
+
+עבור שני התרגילים הבאים, נזכיר את ההגדרה עבור מטריצות מעבר בסיס, ושתי תכונות שלהן.
+
+\begin{definition}
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל שדה
+$\mbb{F}$,
+ויהיו
+$B, C$
+שני בסיסים של
+$V$.
+תהי
+\begin{align*}
+\id_V \colon V &\to V \\
+v &\mapsto v
+\end{align*}
+העתקת הזהות על
+$V$,
+כלומר ההעתקה המקיימת
+$\id_V\prs{v} = v$
+לכל
+$v \in V$.
+
+נגדיר את מטריצת המעבר
+$M^B_C$
+בתור
+\begin{align*}
+\text{.} M^B_C = \brs{\id_V}^B_C
+\end{align*}
+\end{definition}
+
+\textbf{שימו לב:}
+למטריצה
+$M^B_C$
+לא נקרא מטריצת מעבר מהבסיס
+$B$
+לבסיס
+$C$
+או להיפך. ראו הערה
+\ref{remark:change-of-basis}
+שבעמוד הבא עבור הסבר בנושא.
+
+\begin{proposition}
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל שדה
+$\mbb{F}$,
+ויהיו
+$B,C,D$
+שלושה בסיסים של
+$V$.
+
+אז:
+\begin{enumerate}
+\item $M^B_C$
+מטריצה הפיכה, ומתקיים
+$\prs{M^B_C}^{-1} = M^C_B$.
+\item $M^B_C = M^D_C M^B_D$.
+\end{enumerate}
+\end{proposition}
+
+\begin{exercise}
+יהיו
+$V,W$
+מרחבים וקטוריים סוף־מימדיים מעל שדה
+$\mbb{F}$
+ותהי
+$T \in \Hom_{\mbb{F}}\prs{V,W}$
+העתקה לינארית חד־חד ערכית.
+
+יהיו
+\begin{align*}
+B &= \prs{v_1, \ldots, v_n} \\
+C &= \prs{u_1, \ldots, u_n}
+\end{align*}
+בסיסים של
+$V$
+ויהיו
+\begin{align*}
+B' &= \prs{T\prs{v_1}, \ldots, T\prs{v_n}} \\
+\text{.} C' &= \prs{T\prs{u_1}, \ldots, T\prs{u_n}}
+\end{align*}
+
+\begin{enumerate}
+\item
+הראו כי
+$\dim V = \dim \im T$.
+
+\item הראו כי
+$B', C'$
+קבוצות בלתי תלויות לינאריות, והסיקו כי הן בסיסים של
+$\im\prs{T} = \set{T\prs{v}}{v \in V}$.
+
+\item
+הראו כי
+$M^B_C = M^{B'}_{C'}$.
+
+\textbf{רמז:}
+כיתבו את
+$M^B_C e_i$
+ואת
+$M^{B'}_{C'} e_i$
+כוקטורי קואורדינטות לפי הבסיסים
+$C$
+ו־%
+$C'$
+בהתאמה, והראו שמתקיים שוויון.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+תהי
+$A \in \Mat_{n}\prs{\mbb{F}}$
+הפיכה.
+\begin{enumerate}
+\item יהי
+$\mrm{St}$
+הבסיס הסטנדרטי של
+$\mbb{F}^n$.
+מיצאו בסיס
+$B$
+של
+$\mbb{F}^n$
+עבורו
+$A = M^B_{\mrm{St}}$.
+
+\item
+מיצאו בסיס
+$C$
+של
+$\mbb{F}^n$
+עבורו
+$A = M^{\mrm{St}}_C$.
+
+\item
+יהי
+$B$
+בסיס של
+$\mbb{F}^n$.
+מיצאו בסיס
+$C$
+של
+$\mbb{F}^n$
+עבורו
+$A = M^B_C$.
+
+\textbf{רמז:}
+היעזרו בבסיס הסטנדרטי של
+$\mbb{F}^n$
+ובאחת התכונות של מטריצות מעבר בסיס כדי לקבל שוויון הדומה לזה שבאחד הסעיפים הקודמים.
+
+\item
+יהי
+$V$
+מרחב וקטורי ממימד
+$n \in \mbb{N}_+$
+מעל
+$\mbb{F}$,
+יהי
+$T \in \End_{\mbb{F}}\prs{V}$
+איזומורפיזם
+ויהי
+$B = \prs{v_1, \ldots, v_n}$
+בסיס של
+$V$.
+מיצאו בסיס
+$C$
+של
+$V$
+עבורו
+$\brs{T}^B_C = A$.
+
+\textbf{רמז:}
+היעזרו בכך ש־%
+$\brs{T}^B_C = M^B_C \brs{T}_B$
+ובתרגיל הקודם יחד עם האופרטור
+\begin{align*}
+\rho_B \colon V &\to \mbb{F}^n \\
+v &\mapsto \brs{v}_B
+\end{align*}
+ששולח וקטור
+$v \in V$
+לוקטור
+$\brs{v}_B \in \mbb{F}^n$,
+כדי להפוך את הבעיה לזאת של מציאת בסיס
+$\hat{C}$
+של
+$\mbb{F}^n$
+עבורו
+$M^{\mrm{St}}_{\hat{C}} = A \prs{\brs{T}_B}^{-1}$.
+כיתבו את
+$C$
+בעזרת הבסיס
+$\hat{C}$.
+\end{enumerate}
+\end{exercise}
+
+\newpage
+
+\begin{remark} \label{remark:change-of-basis-matrices}
+למטריצה
+$M^B_C$
+\emph{לא נקרא}
+מטריצת מעבר מהבסיס
+$B$
+לבסיס
+$C$
+או להיפך.
+
+מצד אחד, היא מקיימת
+\[\text{,} \forall v \in V : M^B_C \brs{v}_B = \brs{v}_C\]
+ולכן יש הקוראים לה מטריצת מעבר מהבסיס
+$B$
+לבסיס
+$C$.
+
+מצד שני, אם
+$V = \mbb{F}^n$,
+\[{\mrm{St}} = \prs{e_1, \ldots, e_n}\]
+הבסיס הסטנדרטי של
+$V$,
+ונכתוב
+\begin{align*}
+B &= \St \\
+\text{,} C &= \prs{c_1, \ldots, c_n}
+\end{align*}
+נקבל כי
+\begin{align*}
+M^B_C c_i &= M^{\St}_C \brs{c_i}_{\St}
+\\&= \brs{c_i}_{C}
+\\&= e_i
+\end{align*}
+כלומר
+\begin{align*}
+\text{.} \prs{M^B_C c_1, \ldots, M^B_C c_n} = B
+\end{align*}
+לכן, יש הקוראים למטריצה
+$M^B_C$
+מטריצת מעבר מהבסיס
+$C$
+לבסיס
+$B$.
+
+כדי למנוע בלבול, במקום להתייחס למטריצה כזאת כמטריצת מעבר מבסיס זה או אחר, נכתוב מפורשות $M^B_C$.
+\end{remark}
+
+\end{document}

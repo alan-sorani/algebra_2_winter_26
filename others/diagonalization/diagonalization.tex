@@ -1,0 +1,419 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{polynom}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{0}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+\title{
+אלגברה ב' (01040168) - אביב 2026
+\\
+תרגילים על לכסון
+\\
+אלן סורני
+\\
+הרשימות עודכנו לאחרונה בתאריך ה־%
+\today
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{ערכים עצמיים ולכסון}
+
+\begin{definition}[ערך עצמי, ווקטור עצמי]
+יהי
+$T \in \End_{\FF}\prs{V}$.
+ערך
+$\lambda \in \mbb{F}$
+עבורו קיים
+$v \in V \setminus \set{0}$
+כך ש־%
+$T\prs{v} = \lambda v$
+נקרא
+\emph{ערך עצמי של
+$T$},
+ווקטור
+$v$
+המקיים שוויון זה נקרא
+\emph{וקטור עצמי של
+$T$
+עבור הערך העצמי
+$\lambda$}.
+\end{definition}
+
+\begin{definition}[גרעין של אופרטור לינארי]
+יהי
+$T \in \End_{\FF}\prs{V}$.
+נגדיר את
+\emph{הגרעין של
+$T$}
+בתור
+\[\text{.} \ker\prs{T} \coloneqq \set{v \in V}{T\prs{v} = 0}\]
+\end{definition}
+
+\begin{proposition} \label{proposition:eigenvalue-conditions}
+התנאים הבאים שקולים.
+
+\begin{enumerate}
+\item $\lambda \in \mbb{F}$
+ערך עצמי של
+$T$.
+\item האופרטור
+$T - \lambda \id_V$
+אינו הפיך.
+\item $\ker\prs{T - \lambda \id_V} \neq \set{0}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{definition}[מרחב עצמי]
+יהי
+$T \in \End_{\FF}\prs{V}$ עם ערך עצמי
+$\lambda \in \FF$.
+\emph{המרחב העצמי של
+$T$
+עם ערך עצמי
+$\lambda$}
+הוא
+$\ker\prs{T - \lambda \id_V}$.
+\end{definition}
+
+\begin{definition}[ריבוי גיאומטרי]
+יהי
+$T \in \End_{\FF}\prs{V}$ עם ערך עצמי
+$\lambda \in \FF$.
+נגדיר את
+\emph{הריבוי הגיאומטרי של
+$\lambda$
+כערך עצמי של
+$T$}
+בתור
+\begin{align*}
+\text{.} r^T_g\prs{\lambda} = \dim_{\FF}\prs{\ker\prs{T - \lambda \id_V}}
+\end{align*}
+כאשר האופרטור
+$T$
+ברור מההקשר, נסמן לעתים
+$r_g\prs{\lambda}$
+במקום
+$r^T_g\prs{\lambda}$.
+\end{definition}
+
+\begin{proposition} \label{proposition:sum-multiplicities}
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל שדה
+$\FF$,
+ויהי
+$T \in \End_{\FF}\prs{V}$
+עם ערכים עצמיים שונים
+$\lambda_1, \ldots, \lambda_k$.
+אז:
+\begin{enumerate}
+\item $r^T_g\prs{\lambda_i} \geq 1$
+לכל
+$i \in \brs{k}$.
+\item \begin{align*}
+\text{.} \sum_{i \in \brs{k}} r^T_g\prs{\lambda_i} \leq \dim_{\FF}\prs{V}
+\end{align*}
+\end{enumerate}
+\end{proposition}
+
+\begin{exercise}
+יהי
+$V = \Mat_2\prs{\RR}$.
+מיצאו את הערכים העצמיים של
+\begin{align*}
+T \colon V &\to V \\
+\text{.} \hphantom{lalala} A &\mapsto A^t
+\end{align*}
+לכל ערך עצמי, מיצאו את המרחב העצמי המתאים ואת הריבוי הגיאומטרי.
+\end{exercise}
+
+\begin{solution}
+מתקיים
+\[\text{.} T\pmat{a & b \\ c & d} = \pmat{a & c \\ b & d}\]
+אם
+$\lambda \in \FF$
+ערך עצמי של
+$T$,
+נקבל כי קיימים
+$a,b,c,d \in \FF$
+לא כולם
+$0$
+עבורם
+\begin{align} \label{eq:transpose-eigenvalues}
+\text{.} \pmat{a & c \\ b & d} = \lambda \pmat{a & b \\ c & d}
+\end{align}
+
+אם
+$\lambda = 1$
+זה שקול לכך ש־%
+$b = c$,
+ולכן
+$\lambda = 1$
+ערך עצמי של
+$T$
+עם מרחב עצמי
+\[\text{,} \set{\pmat{a & b \\ b & d}}{a,b,d \in \FF} = \Span\prs{E_{1,1}, E_{1,2} + E_{2,1}, E_{2,2}}\]
+וריבוי גיאומטרי
+$r_g\prs{1} = 3$.
+אם
+$\lambda \neq 1$,
+חייב להתקיים
+$a = d = 0$
+עבור השוויון
+\eqref{eq:transpose-eigenvalues},
+וכן חייב להתקיים
+$c = \lambda b$
+וגם
+$b = \lambda c$.
+הצבה של השוויון האחרון נותנת לנו כי
+$c = \lambda^2 c$,
+וכיוון ש־%
+$\lambda \neq 1$
+נקבל כי
+$\lambda = -1$.
+אז
+$-1$
+ערך עצמי של
+$T$
+עם מרחב עצמי
+\[\text{,} \set{\pmat{0 & b \\ -b & 0}}{b \in \FF} = \Span\prs{E_{1,2} - E_{2,1}}\]
+וריבוי גיאומטרי
+$r_g\prs{-1} = 1$.
+
+קיבלנו כי
+$r_g\prs{1} = 3$
+וכי
+$r_g\prs{-1} = 1$,
+כאשר
+$\dim_\RR\prs{V} = 4$,
+ולכן לפי טענה
+\ref{proposition:sum-multiplicities}
+אין ערכים עצמיים נוספים.
+\end{solution}
+
+\begin{definition}[אופרטור לכסין, מטריצה אלכסונית, ובסיס מלכסן]
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל שדה
+$\FF$,
+ויהי
+$T \in \End_{\FF}\prs{V}$.
+האופרטור
+$T$
+נקרא
+\emph{לכסין}
+אם קיים בסיס
+$B$
+של
+$V$
+וקיימות
+$\lambda_1, \ldots, \lambda_n \in \FF$
+עבורם
+\[\text{.} \brs{T}_B = \diag\prs{\lambda_1, \ldots, \lambda_n} \coloneqq
+\pmat{
+\lambda_1 & 0 & \cdots & 0 & 0 \\
+0 & \lambda_2 & \ddots & \ddots & 0 \\
+\vdots & \ddots & \ddots & \ddots & \vdots \\
+0 & \ddots & \ddots & \lambda_{n-1} & 0 \\
+0 & 0 & \cdots & 0 & \lambda_n
+}\]
+מטריצה מהצורה
+$\diag\prs{\lambda_1, \ldots, \lambda_n}$
+נקראת
+\emph{מטריצה אלכסונית},
+ובסיס
+$B$
+כנ"ל נקרא
+\emph{בסיס מלכסן עבור
+$T$}.
+\end{definition}
+
+\begin{exercise}
+מיצאו מרחב וקטורי
+$V$
+סוף־מימדי מעל
+$\CC$,
+ואופרטור
+$T \in \End_\FF\prs{V}$
+כך שסכום הריבויים הגיאומטריים של הערכים העצמיים של
+$T$
+קטן מ־%
+$\dim_\FF\prs{V}$.
+\end{exercise}
+
+\begin{solution}
+נרצה למשל אופרטור בעל ערך עצמי יחיד
+$0$
+אך שהריבוי הגיאומטרי שלו שווה
+$1$.
+
+ניקח את האופרטור
+$T\pmat{x \\ y} = \pmat{y \\ 0}$
+על
+$\RR^2$.
+
+כעת,
+$T\pmat{x \\ y} = \lambda \pmat{x \\ y}$
+אם ורק אם
+$\lambda x = y$
+וגם
+$\lambda y = 0$,
+וכאשר
+$\lambda \neq 0$
+זה גורר בהכרח
+$x = y = 0$.
+לכן לא יתכנו ערכים עצמיים שונים מאפס.
+
+מתקיים
+$T\pmat{x \\ y} = 0 \cdot \pmat{x \\ y}$
+ואם ורק אם
+$y = 0$,
+לכן המרחב העצמי של
+$0$
+כערך עצמי של
+$T$
+הוא
+$\Span\prs{\pmat{1 \\ 0}}$,
+ולכן הריבוי הגיאומטרי הוא
+$1$,
+ולא
+$\dim_\RR\prs{\RR^2} = 2$.
+
+\end{solution}
+
+\begin{definition}[מטריצה לכסינה]
+מטריצה
+$A \in \Mat_n\prs{\FF}$
+נקראת
+\emph{לכסינה}
+אם האופרטור
+\begin{align*}
+L_A \colon \FF^n &\to \FF^n \\
+v &\mapsto Av
+\end{align*}
+הינו לכסין.
+\end{definition}
+
+\begin{exercise}
+מיצאו מטריצה
+$A \in \Mat_n\prs{\RR}$
+שאינה לכסינה, אך כך שהמטריצה
+$A^{\CC} \in \Mat_n\prs{\CC}$
+המרוכבת בעלת אותם מקדמים כמו
+$A$
+הינה לכסינה.
+\end{exercise}
+
+\begin{solution}
+נחפש מטריצה מרוכבת עם מקדמים ממשיים כך שיש לה ערכים עצמיים שאינם ממשיים.
+ידוע כי מכפלת הערכים העצמיים של מטריצה
+$\pmat{a & b \\ c & d}$
+היא
+$ad - bc$.
+
+לכן ניקח למשל את המטריצה
+\[\text{,} A = \pmat{0 & 1 \\ -1 & 0} \in \Mat_2\prs{\RR}\]
+שמכפלת הערכים העצמיים שלה היא
+$1$
+אך סכומם
+$0$,
+מה שלא יתכן עבור שני מספרים ממשיים.
+
+מתקיים
+\[\text{.} A \pmat{x \\ y} = \pmat{y \\ -x}\]
+נחפש ערכים עצמיים
+$\lambda \in \CC$,
+כלומר ערכים עבורם
+\[\text{.} \lambda \pmat{x \\ y} = \pmat{y \\ -x} \]
+שוויון זה שקול למערכת המשוואות
+\begin{align*}
+\lambda x = y \\
+\lambda y = -x
+\end{align*}
+והצבה של השוויון הראשון בשני נותנת את השוויון
+$\lambda^2 x = -x$.
+אז
+$\lambda^2 = -1$,
+ולכן אם
+$\lambda$
+ערך עצמי של
+$A$
+מתקיים בהכרח כי
+$\lambda \in \set{\pm i}$.
+לכן למטריצה
+$A$
+אין ערכים עצמיים, ולכן היא אינה לכסינה.
+
+נראה כעת כי המטריצה
+\[A^\CC = \pmat{0 & 1 \\ -1 & 0} \in \Mat_2\prs{\CC}\]
+אכן לכסינה.
+
+מתקיים
+\begin{align*}
+A^\CC - i\id_V = \pmat{-i & 1 \\ -1 & -i}
+\end{align*}
+וכאן השורה השנייה שווה לשורה הראשונה כפול
+$-i$.
+לכן,
+\[\prs{A^\CC - \prs{-i}\id_V} \prs{e_1 + i e_2} = 0\]
+ואז
+$e_1 + i e_2$
+וקטור עצמי של $A$ עבור הערך העצמי
+$i$.
+
+כמו כן,
+\begin{align*}
+A^\CC - \prs{-i}\id_V = \pmat{i & 1 \\ -1 & i}
+\end{align*}
+וכעת השורה השנייה שווה לראשונה כפול
+$i$,
+ואז
+$e_1 - i e_2$
+וקטור עצמי של
+$A$
+עבור הערך העצמי
+$-i$.
+
+נקבל כי
+$B = \prs{e_1 + i e_2, e_1 - i e_2}$
+בסיס עבורו
+\begin{align*}
+L_{A^\CC}\prs{e_1 + i e_2} &= i \prs{e_1 + i e_2} \\
+\text{,} L_{A^\CC}\prs{e_1 - i e_2} &= -i \prs{e_1 - i e_2}
+\end{align*}
+ולכן
+\begin{align*}
+\brs{L_A}_B = \pmat{i & 0 \\ 0 & -i}
+\end{align*}
+מטריצה אלכסונית.
+\end{solution}
+
+\printbibliography
+\end{document}

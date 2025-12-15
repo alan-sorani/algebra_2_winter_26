@@ -1,0 +1,624 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{polynom}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+\newcommand{\Std}{\mrm{Std}}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{0}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+\title{
+אלגברה ב' (01040168) - חורף 2026
+\\
+תרגול 5 - עוד הטלות, גרם שמידט, וההעתקה הצמודה
+\\
+אלן סורני
+\\
+הרשימות עודכנו לאחרונה בתאריך ה־%
+\today
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{הטלות אורתוגונליות וגרם שמידט}
+
+\begin{definition}[הטלה אורתוגונלית]
+יהי
+$V$
+מרחב מכפלה פנימית ויהי
+$W \leq V$.
+\emph{ההטלה האורתוגונלית על
+$W$}
+היא ההטלה על
+$W$
+ביחס לסכום הישר
+$V = W \oplus W^\perp$.
+\end{definition}
+
+\begin{proposition}
+יהי
+$V$
+מרחב מכפלה פנימית ויהי
+$W \leq V$.
+יהי
+$B = \prs{w_1, \ldots, w_m}$
+בסיס
+\textbf{אורתונורמלי}
+של
+$W$
+ויהי
+$v \in V$.
+תהי
+$P_W$
+ההטלה האורתוגונלית על
+$W$.
+אז
+\[\text{.} P_W\prs{w} = \sum_{i \in [m]} \trs{v, w_i} w_i\]
+\end{proposition}
+
+\begin{exercise}
+יהי
+$V$
+מרחב מכפלה פנימית ויהיו
+$u,v \in V$.
+הראו כי
+$u \perp v$
+אם ורק אם
+\[\norm{u} \leq \norm{u+av}\]
+לכל
+$a \in \mbb{F}$.
+\end{exercise}
+
+\begin{solution}
+אם
+$u \perp v$
+ו־%
+$a \in \mbb{F}$,
+נקבל מפיתגורס
+\begin{align*}
+\norm{u+av}^2 &= \norm{u}^2 + \abs{a}^2 \norm{v}^2 \geq \norm{u}^2
+\end{align*}
+ולכן
+$\norm{u} \leq \norm{u+av}$.
+
+נניח כי
+$\trs{u,v} \neq 0$
+ונניח תחילה כי
+$\norm{v} = 1$.
+אז
+\[\trs{\trs{u,v}v, v} = \trs{u,v} \trs{v,v} = \trs{u,v} \norm{v}^2 = \trs{u,v} \neq 0\]
+וגם
+\[\text{.} \trs{u - \trs{u,v}v, v} = \trs{u,v} - \trs{\trs{u,v}v,v} = 0\]
+אז, ממשפט פיתגורס
+\begin{align*}
+\norm{u}^2 &= \norm{u - \trs{u,v}v + \trs{u,v}v}^2
+\\&=
+\norm{u - \trs{u,v}v}^2 + \norm{\trs{u,v}v}^2
+\\&>
+\norm{u-\trs{u,v}v}^2
+\end{align*}
+כאשר האי־שוויון חזק כי
+$\trs{u,v}v \neq 0$
+מההנחה
+$\trs{u,v} \neq 0$.
+לכן, עבור
+$a = \trs{u,v}$
+לא מתקיים
+$\norm{u} \leq \norm{u+av}$.
+
+כעת, אם
+$v$
+כללי, הוקטור
+$\frac{v}{\norm{v}}$
+הינו מאורך
+$1$
+ולכן יש
+$a' \in \mbb{F}$
+עבורו
+$\norm{u} > \norm{u+a' \frac{v}{\norm{v}}}$.
+אז ניקח
+$a = \frac{a'}{\norm{v}}$
+ונקבל כי
+$\norm{u} > \norm{u + av}$.
+\end{solution}
+
+כדי למצוא בסיסים אורתונורמליים ומשלימים ישרים, ניעזר בתהליך שלוקח בסיס כלשהו ומחזיר בסיס אורתונורמלי.
+
+\begin{theorem}[גרם־שמידט]
+יהי
+$V$
+מרחב מכפלה פנימית ויהי
+$B = \prs{u_1, \ldots, u_n}$
+בסיס של
+$V$.
+קיים בסיס אורתונורמלי
+$C = \prs{v_1, \ldots, v_n}$
+של
+$V$
+עבורו
+\[\Span\prs{u_1, \ldots, u_i} = \Span\prs{v_1, \ldots, v_i}\]
+לכל
+$i \in \brs{n}$.
+\end{theorem}
+
+ניסוח זה של המשפט לא מתאר לנו איך למצוא את
+$C$,
+אבל ההוכחה שלו קונסטרוקטיבית ומתארת את האלגוריתם הבא.
+
+\begin{enumerate}
+\item
+עבור
+$i = 1$
+ניקח
+$v_i = \frac{u_i}{\norm{u_i}}$.
+
+\item
+עבור כל
+$i$
+לאחר מכן, לפי הסדר, ניקח
+\[w_i = u_i - \sum_{j \in \brs{i-1}} \trs{u_i, v_j}\]
+ואז
+$v_i = \frac{w_i}{\norm{w_i}}$.
+\end{enumerate}
+
+\begin{corollary}
+יהי
+$W \leq V$
+תת־מרחב במרחב מכפלה פנימית.
+כדי למצוא אורתונורמלי של
+$W$
+ושל
+$W^\perp$
+ניקח בסיס
+$B_W$
+של
+$W$
+ונשלים אותו לבסיס
+$B = B_W \cup B'_W$
+של
+$V$.
+נבצע את תהליך גרם־שמידט על
+$B$
+ונקבל בסיס
+$C = C_W \cup C_W^\perp$
+כך ש־%
+$\Span\prs{C_W} = \Span\prs{B_W} = W$.
+כל הוקטורים ב־%
+$C_W^\perp$
+ניצבים ל־%
+$W$
+כי
+$C$
+אורתונורמלי, ולכן
+$W' \coloneqq \Span\prs{C_W^\perp} \subseteq W^\perp$.
+כמו כן,
+\[\dim\prs{W'} = \dim\prs{V} - \dim\prs{W} = \dim\prs{W^\perp}\]
+כי
+$V = W \oplus W' = W \oplus W^\perp$,
+ולכן יש שוויון
+$W' = W^\perp$.
+\end{corollary}
+
+\begin{theorem}[מרחק של וקטור מתת־מרחב]
+יהי
+$V$
+מרחב מכפלה פנימית, יהי
+$W \leq V$,
+תהי
+$P_W$
+ההטלה האורתוגונלית על
+$W$
+ויהי
+$v \in V$.
+מתקיים
+\[\text{.} d\prs{v,W} = d\prs{v, p_W\prs{v}}\]
+\end{theorem}
+
+\begin{exercise}
+יהי
+$V = \Mat_2\prs{\mbb{R}}$
+עם המכפלה הפנימית הסטנדרטית
+\[\trs{A,B} = \tr\prs{B^t A}\]
+ויהי
+$W \leq V$
+התת־מרחב של המטריצות הסימטריות.
+
+\begin{enumerate}
+\item מיצאו בסיס אורתונורמלי עבור
+$W$
+ועבור
+$W^\perp$.
+
+\item
+הראו כי
+$P_W\prs{A} = \frac{A + A^t}{2}$
+בשתי דרכים שונות.
+
+\item
+חשבו את המרחק של
+$A = \pmat{1 & 2 \\ 3 & 4}$
+מ־%
+$W$.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+\item
+ניקח בסיס
+$B_W = \prs{E_{1,1}, E_{1,2} + E_{2,1}, E_{2,2}}$
+של
+$W$
+ונשלים אותו לבסיס
+\[B = \prs{u_1, u_2, u_3, u_4} = \prs{E_{1,1}, E_{1,2} + E_{2,1}, E_{2,2}, E_{1,2}}\]
+של
+$V$.
+נבצע את תהליך גרם־שמידט כדי לקבל בסיס אורתונורמלי
+$\prs{v_1, v_2, v_3, v_4}$
+עבורו
+$W = \Span\prs{v_1, v_2, v_3}$
+וגם
+$W^\perp = \Span\prs{v_4}$.
+
+נחשב
+\begin{align*}
+v_1 &= \frac{1}{\norm{E_{1,1}}} E_{1,1} = E_{1,1} \\
+w_2 &= u_2 - \trs{u_2,v_1} v_1 = E_{1,2} + E_{2,1} - 0 = E_{1,2} + E_{2,1} \\
+v_2 &= \frac{1}{\norm{w_2}} w_2 = \frac{1}{\sqrt{2}} \prs{E_{1,2} + E_{2,1}} \\
+w_3 &= u_3 - \trs{u_3, v_2} v_2 - \trs{u_3, v_1} v_1 = u_3 = E_{2,2} \\
+v_3 &= \frac{1}{\norm{w_3}} w_3 = E_{2,2} \\
+w_4 &= u_4 - \trs{u_4, v_3}v_3 - \trs{u_4, v_2}v_2 - \trs{u_4, v_1}v_1 \\&= E_{1,2} - \trs{E_{1,2}, \frac{1}{\sqrt{2}} \prs{E_{1,2} + E_{2,1}}} \prs{\frac{1}{\sqrt{2}} \prs{E_{1,2} + E_{2,1}}}
+\\&= E_{1,2} - \frac{1}{2} \prs{E_{1,2} + E_{2,1}}
+\\&= \frac{1}{2} \prs{E_{1,2} - E_{2,1}} \\
+v_4 &= \frac{w_4}{\norm{w_4}} = \frac{1}{\norm{E_{1,2} - E_{2,1}}} \prs{E_{1,2} - E_{2,1}} = \frac{1}{\sqrt{2}} \prs{E_{1,2} - E_{2,1}}
+\end{align*}
+ונקבל כי
+\[\prs{v_1, v_2, v_3} = \prs{E_{1,1}, \frac{1}{\sqrt{2}} \prs{E_{1,2} + E_{2,1}}, E_{2,2}}\]
+בסיס אורתונורמלי של
+$W$
+וכי
+$\frac{1}{\sqrt{2}} \prs{E_{1,2} - E_{2,1}}$
+בסיס אורתונורמלי של
+$W^\perp$.
+אז,
+$W^\perp$
+מרחב המטריצות האנטיסימטריות.
+
+\item
+בדרך אחת, זכור לנו מאלגברה א' כי
+\[A = \frac{A + A^t}{2} + \frac{A - A^t}{2}\]
+כאשר
+$\frac{A + A^t}{2}$
+סימטרית ו־%
+$\frac{A - A^t}{2}$
+אנטי־סימטרית.
+אז
+$\frac{A + A^t}{2} \in W$
+וכיוון ש־%
+$W^\perp$
+מרחב המטריצות האנטיסימטריות, נקבל גם
+$\frac{A - A^t}{2} \in W^\perp$.
+לכן
+$P_W\prs{A} = \frac{A + A^t}{2}$.
+
+אבל, במקרה הכללי, לא נדע מראש איך לכתוב וקטור
+$v \in V$
+בתור סכום של וקטור ב־%
+$W \leq V$
+ווקטור ב־%
+$W^\perp$.
+כדי לחשב את ההטלה
+$P_W\prs{A}$
+נוכל לקחת בסיס אורתונורמלי של
+$W$
+ולהשתמש בנוסחא עבור ההטלה האורתוגונלית לפי בסיס כזה.
+
+אכן,
+\begin{align*}
+P_W\prs{A} &= \sum_{i \in [3]} \trs{A, v_i} v_i \\&= \trs{A, E_{1,1}} E_{1,1} + \trs{A, \frac{1}{\sqrt{2}} \prs{E_{1,2} + E_{2,1}}} \cdot \frac{1}{\sqrt{2}} \prs{E_{1,2} + E_{2,1}} + \trs{A, E_{2,2}}, E_{2,2}
+\\&=
+a_{1,1} E_{1,1} + \frac{1}{2} \prs{a_{1,2} + a_{2,1}} \prs{E_{1,2} + E_{2,1}} + a_{2,2} E_{2,2}
+\\&=
+\pmat{a_{1,1} & \frac{a_{1,2} + a_{2,1}}{2} \\ \frac{a_{1,2} + a_{2,1}}{2} & a_{2,2}}
+\\ \text{.} \hphantom{P_W\prs{A}} &=
+\frac{A + A^t}{2}
+\end{align*}
+
+\item
+נכתוב את
+$A$
+בתור סכום של מטריצה סימטרית ואנטי־סימטרית. ראינו כי
+\[A = \frac{A + A^t}{2} + \frac{A - A^t}{2}\]
+כאשר
+$\frac{A + A^t}{2}$
+סימטרית ו־%
+$\frac{A - A^t}{2}$
+אנטי־סימטרית.
+אז
+$d_W\prs{A} = \frac{A+A^t}{2}$
+ונקבל כי
+המרחק של
+$A$
+מ־%
+$W$
+הוא
+\[\text{.} d\prs{A, \frac{A + A^t}{2}} = \norm{A - \frac{A + A^t}{2}}\]
+מתקיים
+\begin{align*}
+\norm{A - \frac{A + A^t}{2}} &= \norm{\frac{A - A^t}{2}}
+\\&= \frac{1}{2} \norm{\pmat{0 & -1 \\ & 1 & 0}}
+\\&= \frac{1}{2} \cdot \sqrt{2}
+\\&= \frac{1}{\sqrt{2}}
+\end{align*}
+ולכן
+$d\prs{A, W} = \frac{1}{\sqrt{2}}$.
+\end{enumerate}
+\end{solution}
+
+\section{עוד מכפלות פנימיות}
+
+\begin{definition}[מכפלה פנימית לפי בסיס]
+יהי
+$V$
+מרחב וקטורי ממימד
+$n \in \NN_+$
+מעל
+$\FF \in \set{\RR, \CC}$
+ויהי
+$B$
+בסיס של
+$V$.
+
+נגדיר מכפלה פנימית
+$\trs{\cdot, \cdot}_B$
+לפי
+\begin{align*}
+\text{.} \brs{u,v}_B \coloneqq \trs{\brs{u}_B, \brs{v}_B}_{\Std}
+\end{align*}
+כאשר
+$\trs{\cdot, \cdot}_{\Std}$
+המכפלה הפנימית הסטנדרטית על
+$\FF^n$.
+\end{definition}
+
+\begin{exercise}
+יהי
+$V = M_2\prs{\mbb{R}}$
+עם הבסיס
+\[\text{.} B = \prs{\pmat{1 & 1 \\ 0 & 0}, \pmat{1 & 2 \\ 0 & 0}, \pmat{1 & 0 \\ 1 & 0}, \pmat{0 & 1 \\ 0 & 1}}\]
+מיצאו מכפלה פנימית על
+$V$
+לפיה
+$B$
+בסיס אורתונורמלי.
+\end{exercise}
+
+\begin{solution}
+ניזכר כי כל מכפלה פנימית על
+$V$
+היא מהצורה
+$\trs{\cdot, \cdot}_C$
+עבור בסיס
+$C$
+של
+$V$.
+לפי ההגדרה, נקבל כי אם
+\begin{align*}
+B = \prs{v_1, v_2, v_3, v_4}
+\end{align*}
+אז
+\begin{align*}
+\text{,} \trs{v_i, v_j}_B = \brs{\brs{v_i}_B, \brs{v_j}_B}_{\Std} = \trs{e_i, e_j}_{\Std} = \delta_{i,j}
+\end{align*}
+ולכן
+$B$
+אורתונורמלי לפי המכפלה הפנימית
+$\trs{\cdot, \cdot}_B$.
+נרצה אם כן לחשב את
+$\trs{\cdot, \cdot}_B$.
+
+יהי
+$v = \pmat{a & b \\ c & d} \in V$.
+נחפש
+$\alpha_i \in \RR$
+עבורם
+$v = \sum_{i \in \brs{4}} \alpha_i$,
+כלומר כאלו עבורם
+\begin{align*}
+\text{.} \pmat{a & b \\ c & d} &= \pmat{\alpha_1 + \alpha_2 + \alpha_3 & \alpha_1 + 2 \alpha_2 + \alpha_4 \\ \alpha_3 & \alpha_4}
+\end{align*}
+נקבל מערכת משוואות בה
+$\alpha_3 = c, \alpha_4 = d$
+וכן
+\begin{align*}
+a &= \alpha_1 + \alpha_2 + c \\
+\text{.} b &= \alpha_1 + 2 \alpha_2 + d
+\end{align*}
+נקבל מהשורה הראשונה כי
+\begin{align*}
+\alpha_2 = a - \alpha_1 - c
+\end{align*}
+ואז מהשורה השנייה כי
+\begin{align*}
+b = 2a - 2c - \alpha_1 + d 
+\end{align*}
+ולכן
+\begin{align*}
+\text{.} \alpha_1 = 2a - b -2c + d
+\end{align*}
+נציב זאת במשוואה עבור
+$\alpha_2$
+ונקבל כי
+\begin{align*}
+\text{.} \alpha_2 = -a + b + c - d
+\end{align*}
+בסך הכל, נקבל כי
+\begin{align*}
+\text{,} \pmat{a & b \\ c & d} = \prs{2a - b -2c + d} v_1 + \prs{-a + b + c - d} v_2 + c v_3 + d v_4
+\end{align*}
+ובאותו האופן נקבל כי
+\begin{align*}
+\text{.} \pmat{\alpha & \beta \\ \gamma & \delta} &= \prs{2 \alpha - \beta - 2 \gamma + \delta} v_1 + \prs{- \alpha + \beta + \gamma - \delta} v_2 + \gamma v_3 + \delta v_4
+\end{align*}
+לכן
+\begin{align*}
+\trs{\pmat{a & b \\ c & d}, \pmat{\alpha & \beta \\ \gamma & \delta}}_B &=
+\trs{\pmat{2a - b -2c + d \\ -a + b + c - d \\ c \\ d}, \pmat{2 \alpha - \beta - 2 \gamma + \delta \\ - \alpha + \beta + \gamma - \delta \\ \gamma \\ \delta}}_{\Std}
+\\&=
+\prs{2a - b -2c + d}\prs{2 \alpha - \beta -2 \gamma + \delta} + \prs{-a + b + c - d}\prs{-\alpha + \beta + \gamma - \delta} + c \gamma + d \delta
+\end{align*}
+כנדרש.
+\end{solution}
+
+\section{ההעתקה הצמודה}
+
+\begin{theorem}[ההעתקה הצמודה]
+יהיו
+$V,W$
+מרחבי מכפלה פנימית סוף־מימדיים ותהי
+$T \in \Hom_{\mbb{F}}\prs{V,W}$.
+קיימת העתקה יחידה
+$T^* \in \Hom_{\mbb{F}}\prs{W,V}$
+עבורה
+\begin{align*}
+\trs{T\prs{v}, w}_W = \trs{v, T^*\prs{w}}_V
+\end{align*}
+לכל
+$v \in V$
+ולכל
+$w \in W$.
+
+היא נקראת
+\emph{ההעתקה הצמודה}
+של
+$T$.
+\end{theorem}
+
+\begin{theorem}
+יהיו
+$\prs{V, \trs{\cdot, \cdot}_V}, \prs{W, \trs{\cdot, \cdot}_W}$
+מרחבי מכפלה פנימית סוף מימדיים עם בסיסים אורתונורמליים
+$B,C$
+בהתאמה, ותהי
+$T \in \Hom_{\mbb{F}}\prs{V,W}$.
+אז
+$\brs{T^*}^C_B = \prs{\brs{T}^B_C}^*$.
+\end{theorem}
+
+כעת, אם
+$T \in \End_{\mbb{F}}\prs{V}$,
+יש לנו דרכים שונות לחשב את
+$T^*$.
+נוכל לנחש איזה אופרטור יקיים
+$\trs{Tv, w} = \trs{v, T^* w}$
+לכל
+$v,w \in V$,
+על ידי מניפולציות של הצגת המכפלה הפנימית.
+נוכל גם לכתוב את
+$T^*$
+בצורה כללית ולפתור מערכת משוואות.
+לבסוף, נוכל לקחת בסיס אורתונורמלי
+$B$,
+כדי שיתקיים
+$\brs{T^*}_B = \overline{\brs{T}_B}^t$,
+ואז לשחזר את
+$T^*$
+מהמטריצה המייצגת.
+נראה דוגמאות לחישוב בכל אחת מהדרכים.
+
+\begin{exercise}
+יהי
+$V = \mbb{R}_2\brs{x}$
+עם המכפלה הפנימית
+\[\text{.} \trs{f,g} = \int_{-1}^1 f\prs{x} \bar{g}\prs{x} \diff x\]
+יהי
+$D \in \End_{\mbb{R}}\prs{V}$
+אופרטור הגזירה.
+מיצאו את
+$D^*$.
+\end{exercise}
+
+\begin{solution}
+כדי להראות
+$D^* = S$
+די להראות כי
+$\trs{Df,g} = \trs{f,Dg}$
+עבור
+$f,g$
+בבסיס נתון, מלינאריות.
+נחשב מה צריך להיות
+$D^*$
+לפי הבסיס
+$\prs{1,x,x^2}$.
+יהי
+$g\prs{x} = ax^2 + bx + c$.
+נחשב את מכפלת
+$D\prs{g}$
+עם
+$1$
+\begin{align*}
+    0 &= \trs{0,g} \\&= \trs{D\prs{1}, g} \\&= \trs{1, D^*\prs{g}} \\&= \int_{-1}^1 D^*\prs{g}\prs{x} \diff x
+\end{align*}
+עם
+$x$
+\begin{align*}
+        \frac{2a}{3} + 2c &= \left. \frac{ax^3}{3} + \frac{bx^2}{2} + cx \right|_{-1}^1 \\&= \int_{-1}^1 ax^2 + bx + c \diff x \\&= \trs{1,g} \\&= \trs{D\prs{x}, g} \\&= \trs{x, D^*\prs{g}} \\&= \int_{-1}^1 x D^*\prs{g}\prs{x} \diff x
+\end{align*}
+ועם
+$x^2$
+\begin{align*}
+        \frac{4b}{3} &= \left. \frac{2ax^4}{4} + \frac{2bx^3}{3} + \frac{2cx^2}{2} \right|_{-1}^1 \\&= 2 \int_{-1}^1 ax^3 + bx^2 + cx \diff x \\&= \trs{2x,g} \\&= \trs{D\prs{x^2}, g} \\&= \trs{x^2, D^*\prs{g}} \\&= \int_{-1}^1 x^2 D^*\prs{g}\prs{x} \diff x
+\end{align*}
+
+נכתוב
+$D^*\prs{g} = \alpha x^2 + \beta x + \gamma$
+ונקבל
+\begin{align*}
+    0 &= \int_{-1}^1 \alpha x^2 + \beta x + \gamma \diff x = \frac{2 \alpha}{3} + 2 \gamma \\
+    \frac{2a}{3} + c &= \int_{-1}^1 \alpha x^3 + \beta x^2 + \gamma x \diff x = \frac{2\beta}{3} \\
+    \frac{4b}{3} &= \int_{-1}^1 \alpha x^4 + \beta x^3 + \gamma x^2 \diff x = \left. \frac{\alpha x^5}{5} + \frac{\beta x^4}{4} + \frac{\gamma x^3}{3} \right|_{-1}^1 = \frac{2 \alpha}{5} + \frac{2 \gamma}{3}
+\end{align*}
+מהמשוואה הראשונה,
+$\gamma = -\frac{\alpha}{3}$.
+אז מהמשוואה השלישית,
+$\frac{4b}{3} = \frac{2 \alpha}{5} - \frac{2 \alpha}{9}$
+כלומר
+\[4b = \prs{\frac{6}{5} - \frac{2}{3}}\alpha = \prs{\frac{18}{15} - \frac{10}{15}}\alpha = \frac{8 \alpha}{15}\]
+כלומר
+$b = \frac{2 \alpha}{15}$
+כלומר
+$\alpha = \frac{15}{2} b$.
+נקבל כי
+$\gamma = -\frac{5}{2}b$
+ומהמשוואה השנייה כי
+$\beta = a + \frac{3c}{2}$.
+לכן
+\[\text{.} D^*\prs{ax^2 + bx + c} = \frac{15}{2} b x^2 + \prs{a + \frac{3c}{2}}x - \frac{5}{2}b\]
+\end{solution}
+
+\printbibliography
+\end{document}

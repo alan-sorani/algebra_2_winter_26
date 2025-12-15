@@ -1,0 +1,103 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{1}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+%%%%%%%%%%
+% Title  %
+%%%%%%%%%%
+\title{
+אלגברה ב' - גיליון תרגילי בית 5 \\
+מכפלות פנימיות וניצבות
+\\
+\vspace{1cm}
+\large{5.12.2025}
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{exercise}
+עבור ההעתקות הבאות $f_i$, קיבעו האם $f_i$ מכפלה פנימית.
+
+\begin{enumerate}
+\item
+\begin{align*}
+f_1 \colon \mbb{R}^3 \times \mbb{R}^3 &\to \mbb{R} \\
+\prs{\pmat{a\\b\\c}, \pmat{x\\y\\z}} &\mapsto ax + by + az
+\end{align*}
+
+\item
+\begin{align*}
+f_2 \colon \mbb{R}^3 \times \mbb{R}^3 &\to \mbb{R} \\
+\prs{\pmat{a\\b\\c}, \pmat{x\\y\\z}} &\mapsto ax + by + cz + xz
+\end{align*}
+
+\item
+\begin{align*}
+f_3 \colon \Mat_n\prs{\mbb{C}} \times \Mat_n\prs{\mbb{C}} &\to \mbb{C} \\
+\prs{A,B} &\mapsto \tr\prs{B^t A}
+\end{align*}
+
+\item
+\begin{align*}
+f_4 \colon \mbb{R}_{\leq n}\brs{x} \times \mbb{R}_{\leq n}\brs{x} &\to \mbb{R} \\
+\prs{f,g} &\mapsto f\prs{0} g\prs{0} + \ldots + f\prs{n} g\prs{n}
+\end{align*}
+
+\item
+\begin{align*}
+f_5 \colon \mbb{C}_{\leq n}\brs{x} \times \mbb{C}_{\leq n}\brs{x} &\to \mbb{C} \\
+\prs{f,g} &\mapsto f\prs{0} g\prs{0} + \ldots + f\prs{n} g\prs{n}
+\end{align*}
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+היעזרו באי־שוויון קושי־שוורץ כדי להראות שמתקיים
+\[\text{.} \forall x,y,z \in \mbb{R}_+ \colon x + y + z \leq 2 \prs{\frac{x^2}{y+z} + \frac{y^2}{x+z} + \frac{z^2}{x+y}}\]
+\textbf{רמז:}
+חישבו כיצד לפרש את אגף ימין בעזרת נורמה.
+\end{exercise}
+
+\begin{exercise}
+יהי
+$V$
+מרחב מכפלה פנימית עם בסיס אורתונורמלי
+$\prs{v_1, \ldots, v_n}$,
+ויהיו
+$u_1, \ldots, u_n \in V$
+עבורם
+\[\text{.} \forall i \in \brs{n} \colon \norm{v_i - u_i} < \frac{1}{\sqrt{n}}\]
+הוכיחו כי
+$\prs{u_1, \ldots, u_n}$
+בסיס של
+$V$.
+\end{exercise}
+
+\end{document}

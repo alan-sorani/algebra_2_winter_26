@@ -1,0 +1,145 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{1}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+%%%%%%%%%%
+% Title  %
+%%%%%%%%%%
+\title{
+אלגברה ב' - גיליון תרגילי בית 2 \\
+מטריצות מייצגות
+\\
+\vspace{1cm}
+\large{13.11.2025}
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{exercise}
+יהי
+$V = \mbb{C}_3\brs{x}$,
+תהי
+\begin{align*}
+T \colon V &\to V \\
+\text{,} \hphantom{lalala} p\prs{x} &\mapsto p\prs{x+1}
+\end{align*}
+יהי
+$\St = \pmat{1,x,x^2,x^3}$,
+\emph{הבסיס הסטנדרטי של $V$}
+ותהי
+$A = \pmat{0 & 1 & 0 & 0 \\ 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0}$.
+כיתבו מפורשות בסיס
+$C$
+של
+$V$
+עבורו
+$A = \brs{T}^{\St}_C$.
+\end{exercise}
+
+\begin{exercise}
+יהי
+$V = \hom_{\RR}\prs{\RR^2, \RR^2}$
+עם הבסיס הסטנדרטי
+$\St = \prs{e_1, e_2}$,
+ויהי
+$D \coloneqq \prs{T_{1,1}, T_{1,2}, T_{2,1}, T_{2,2}}$
+כאשר
+$T_{i,j}$
+מוגדרים על ידי
+\begin{align*}
+\text{.} T_{i,j}\prs{e_k} = \fcases{e_j & k = i \\ 0 & \text{otherwise}}
+\end{align*}
+
+יהי
+\begin{align*}
+R \colon \RR^2 &\to \RR^2 \\
+\pmat{x \\ y} &\mapsto \pmat{x \\ -y}
+\end{align*}
+שיקוף דרך ציר ה־%
+$x$,
+ויהי
+\begin{align*}
+\phi \colon V &\to V \\
+\text{.} \hphantom{lala} T &\mapsto R^{-1} \circ T \circ R
+\end{align*}
+
+מיצאו את המטריצה המייצגת
+$\brs{\phi}_D$.
+\end{exercise}
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי מעל שדה
+$\mbb{F}$.
+נזכיר כי שני אופרטורים
+$T,S \in \End_{\mbb{F}}\prs{V}$
+הינם
+\emph{דומים}
+אם קיים אופרטור הפיך
+$P \in \End_{\mbb{F}}\prs{V}$
+עבורו
+$T = P^{-1} \circ S \circ P$.
+
+\begin{enumerate}
+\item הראו כי דמיון הינו יחס שקילות.
+
+\item הראו כי אם
+$\sim$
+הינו יחס שקילות על קבוצה
+$X$,
+ו־%
+$Y \subset X$,
+אז
+$\sim_Y$
+המוגדר על ידי
+\[y_1 \sim_Y y_2 \iff y_1 \sim y_2\]
+הינו יחס שקילות על
+$Y$.
+
+\item יהי
+$V = \Mat_2\prs{\CC}$
+ותהי
+$S \subseteq V$
+קבוצת כל המטריצות ב־%
+$V$
+ש־%
+$1$
+הינו הערך העצמי היחיד שלהן.
+
+מחלקת דמיון של מטריצה בקבוצה $X$, היא קבוצת כל המטריצות ב־%
+$X$ הדומות לה,
+וידוע כי ב־%
+$S$
+יש שתי מחלקות דמיון. כיתבו את שתיהן מפורשות.
+\end{enumerate}
+\end{exercise}
+
+\end{document}

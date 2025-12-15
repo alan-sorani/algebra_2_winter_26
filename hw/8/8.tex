@@ -1,0 +1,149 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{1}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+%%%%%%%%%%
+% Title  %
+%%%%%%%%%%
+\title{
+אלגברה ב' - גיליון תרגילי בית 7 \\
+אופרטורים צמודים ופירוק פולארי
+\\
+\vspace{1cm}
+\large{25.12.2025}
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{exercise}
+יהי
+$V = \Mat_2\prs{\mbb{R}}$
+עם המכפלה הפנימית
+$\trs{X,Y} = \tr\prs{Y^t X}$,
+ויהי
+$T \in \End_{\mbb{R}}\prs{V}$
+המוגדר על ידי
+\[\text{.} T\pmat{a & b \\ c & d} = \pmat{16 a & 4b -6c \\ -6b + 13c & 16d}\]
+מיצאו בסיס אורתונורמלי
+$B$
+של
+$V$
+עבורו
+$\brs{T}_B$
+אלכסונית, ומיצאו אופרטור
+$S \in \End_{\mbb{R}}\prs{V}$
+צמוד לעצמו עבורו
+$S^2 = T$.
+\end{exercise}
+
+\begin{exercise}
+יהי
+$V$
+מרחב מכפלה פנימית מרוכב ממימד סופי, יהי
+$T \in \End_{\mbb{C}}\prs{V}$
+נורמלי, ונניח כי
+$3,4$
+ערכים עצמיים של
+$T$.
+הראו שיש
+$v \in V$
+עבורו
+$\norm{v} = \sqrt{2}$
+וגם
+$\norm{Tv} = 5$.
+\end{exercise}
+
+\begin{exercise}
+יהי
+$V$
+מרחב מכפלה פנימית מרוכב ממימד סופי, יהי
+$T \in \End_{\mbb{C}}\prs{V}$
+ויהי
+$a \in \mbb{C}$
+עבורו
+$\abs{a} \neq 1$.
+
+\begin{enumerate}
+\item הראו כי אם
+$T^* = aT$
+אז
+$T = 0$.
+
+\item נניח כי
+$T$
+נורמלי, ויהי
+$S = T - a T^*$.
+הוכיחו כי
+$\ker\prs{T} = \ker\prs{S}$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+יהי
+$V = \Mat_2\prs{\mbb{R}}$
+עם המכפלה הפנימית
+$\trs{A,B} = \tr\prs{B^t A}$,
+ותהי
+\begin{align*}
+T \colon V &\to V \\
+\text{.} \hphantom{lala} A &\mapsto \frac{A + A^t}{2}
+\end{align*}
+
+\begin{enumerate}
+\item מיצאו את
+$T^*$.
+שימו לב כי
+$T = \frac{T_1 + T_2}{2}$
+עבור העתקות
+$T_i \colon V \to V$
+עבורן אנו יודעות מי הן
+$T_i^*$.
+
+\item
+מיצאו בסיסים אורתונורמליים
+$B,C$
+של
+$V$
+עבורם
+$\brs{T}^B_C = \diag\prs{\sigma_1, \ldots, \sigma_n}$
+כאשר
+$\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_n \geq 0$.
+
+\item
+מיצאו העתקה אוניטרית
+$U \in \End_\RR\prs{V}$
+והעתקה מוגדרת חיובית לחלוטין
+$P \in \End_\RR\prs{V}$
+עבורן
+$T = UP$.
+\end{enumerate}
+\end{exercise}
+
+\end{document}

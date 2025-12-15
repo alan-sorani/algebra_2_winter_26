@@ -1,0 +1,10 @@
+\selectlanguage *[calendar=gregorian]{hebrew}
+\contentsline {section}{\numberline {0.2}מטריצות מייצגות}{1}{section.0.2}%
+\contentsline {subsection}{\numberline {0.2.1}חזרה}{1}{subsection.0.2.1}%
+\contentsline {subsection}{\numberline {0.2.2}תרגילים}{1}{subsection.0.2.2}%
+\contentsline {section}{\numberline {0.3}מרחבי העתקות לינאריות}{1}{section.0.3}%
+\contentsline {subsection}{\numberline {0.3.1}חזרה}{1}{subsection.0.3.1}%
+\contentsline {subsection}{\numberline {0.3.2}תרגילים}{1}{subsection.0.3.2}%
+\contentsline {section}{\numberline {0.4}ערכים עצמיים ולכסון}{1}{section.0.4}%
+\contentsline {subsection}{\numberline {0.4.1}חזרה}{1}{subsection.0.4.1}%
+\contentsline {subsection}{\numberline {0.4.2}תרגילים}{1}{subsection.0.4.2}%

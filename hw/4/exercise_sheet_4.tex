@@ -1,0 +1,143 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{1}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+%%%%%%%%%%
+% Title  %
+%%%%%%%%%%
+\title{
+אלגברה ב' - גיליון תרגילי בית 4 \\
+מרחבים שמורים והטלות
+\\
+\vspace{1cm}
+\large{28.11.2025}
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{exercise}
+\begin{enumerate}
+\item
+יהי
+$V$
+מרחב וקטורי ממימד
+$n \in \mbb{N}_+$
+מעל שדה
+$\mbb{F}$
+ותהי
+$T \in \endo_{\mbb{F}}\prs{V}$.
+יהי
+$W \leq V$
+תת־מרחב
+$T$%
+־שמור ויהי
+$U \leq V$
+משלים ישר של
+$W$
+ב־%
+$V$.
+הראו כי
+$\rest{T}{W} = T_{W,U}$.
+\item
+מצאו דוגמא עבור
+$T \in \endo_{\mbb{F}}\prs{V}$,
+$W \leq V$
+כלשהו עם משלימים ישרים
+$U_1, U_2 \leq V$,
+כך ש־%
+${T}_{W, U_1} \neq T_{W,U_2}$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל שדה
+$\mbb{F}$
+ותהיינה
+$P,Q \in \End_\FF\prs{V}$
+הטלות.
+
+הראו כי אם
+$PQ = QP$
+אז
+$PQ$
+הטלה על
+$\im\prs{P} \cap \im\prs{Q}$
+במקביל ל־%
+$\ker\prs{P} + \ker\prs{Q}$.
+\end{exercise}
+
+\begin{exercise}
+יהי
+$T \in \End_{\FF}\prs{V}$
+אופרטור לכסין שערכיו העצמיים השונים הם
+$\lambda_1, \ldots, \lambda_k$.
+הראו כי התת־מרחבים ה־%
+$T$
+שמורים של
+$V$
+הם אלו מהצורה
+$W_1 \oplus \ldots \oplus W_k$
+עבור
+$W_i \leq V_{\lambda_i}$.
+\end{exercise}
+
+\begin{exercise}
+יהי
+$T \in \End_\FF\prs{V}$
+אופרטור לכסין עם ערכים עצמיים שונים
+$\lambda_1, \ldots, \lambda_k$,
+ולכל
+$i \in \brs{k}$
+תהי
+$P_i \in \End_\FF\prs{V}$
+ההטלה על
+$V_i$
+במקביל ל־%
+$\oplus_{j \in \brs{k} \setminus \set{i}} V_j$.
+
+\begin{enumerate}
+\item לכל
+$i \in \brs{k}$,
+מיצאו  פולינום
+$p_i$
+עבורו
+\[\text{.} p_i\prs{\lambda_i} = \delta_{i,j} \coloneqq \fcases{1 & i = j \\ 0 & \text{otherwise}}\]
+
+\item
+הראו כי
+$p_i\prs{T} = P_i$
+לכל
+$i \in \brs{k}$.
+\end{enumerate}
+\end{exercise}
+
+\end{document}

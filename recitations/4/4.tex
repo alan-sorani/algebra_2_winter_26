@@ -1,0 +1,1013 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{polynom}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{0}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+\title{
+אלגברה ב' (01040168) - חורף 2026
+\\
+תרגול 4 - מרחבי מכפלה פנימית, וניצבות
+\\
+אלן סורני
+\\
+הרשימות עודכנו לאחרונה בתאריך ה־%
+\today
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{מוטיבציה}
+
+נסתכל תחילה על המרחב הוקטורי
+$\mbb{R}^n$.
+כיוון שנוכל לחשוב על וקטורים ב־%
+$\mbb{R}^n$
+בתור נקודות במרחב, נוכל לחשוב על המרחק בין שני וקטורים
+$u,v \in \mbb{R}^n$,
+שנסמנו
+$d\prs{u,v}$.
+
+כדי לחשב מרחק כזה, נסתכל על האורך של הקטע המחבר בין
+$u,v$,
+וזה אותו אורך כמו של הקטע המחבר בין
+$0,u-v$.
+לכן,
+$d\prs{u,v} = d\prs{0,u-v}$.
+נקרא למרחק
+$d\prs{0,u-v}$
+\emph{האורך}
+של
+$u-v$,
+כיוון שזה האורך של הקו המחבר בין
+$0,u-v$,
+ונסמנו
+$\norm{u-v}$
+בדומה לסימון
+$\abs{z}$
+של ערך מוחלט ב־%
+$\mbb{C}$.
+נוכל להשתמש במשפט פיתגורס כדי לקבל כי
+\[\norm{\pmat{v_1 \\ \vdots \\ v_n}} = \sqrt{v_1^2 + \ldots + v_n^2}\]
+ולמשל מתקיים
+$\norm{\pmat{a\\b}} = \sqrt{a^2 + b^2} = \abs{a + ib}$.
+
+כשמדובר על גיאומטריה אוקלידית, מושג חשוב בנוסף למרחק ואורך הוא זה של זווית. נסתכל על שני וקטורים
+$u,v$
+באורך
+$1$
+ועל הישרים
+$\ell_u, \ell_v$
+שעוברים דרכם.
+הקוסינוס
+$\cos\prs{\alpha}$
+של הזווית מ־%
+$\ell_u$
+ל־%
+$\ell_v$
+שווה לאורך של הוקטור שהקצה שלו הוא החיתוך בין
+$\ell_u$
+לאנך מ־%
+$v$
+ל־%
+$\ell_u$.
+נסמן וקטור זה
+$\trs{v,u} u$,
+כיוון שהוא אכן כפולה של
+$u$
+מהיותו על
+$\ell_u$.
+במקרה זה נקרא לו
+\emph{ההטלה של
+$v$
+על
+$u$}.
+אז יתקיים
+\[\cos\prs{\alpha} = \trs{v,u}\]
+ולכן
+\[\text{.} \alpha = \acos\prs{\trs{v,u}}\]
+
+כדי להכליל את המושג של זווית, נכליל את הביטוי
+$\trs{v,u}$
+באמצעות ההגדרה הבאה, של מכפלה פנימית.
+
+\section{מכפלות פנימיות}
+
+\begin{definition}[מכפלה פנימית]
+יהי
+$V$
+מרחב וקטורי מעל
+$\mbb{F} \in \set{\mbb{R}, \mbb{C}}$.
+\emph{מכפלה פנימית}
+על
+$V$
+היא פונקציה
+\begin{align*}
+\trs{\cdot,\cdot} \colon V \times V &\to \mbb{F}
+\end{align*}
+המקיימת את התכונות הבאות.
+\begin{description}
+\item[חיוביות:]
+לכל
+$v \in V \setminus \set{0}$
+מתקיים
+$\trs{v,v} \geq 0$.
+
+\item[סימטריות (הרמיטיות):]
+לכל
+$u,v \in V$
+מתקיים
+$\trs{u,v} = \overline{\trs{v,u}}$.
+
+\item[לינאריות ברכיב הראשון:]
+לכל
+$u,v \in V$
+ולכל
+$\alpha \in \mbb{F}$
+מתקיים
+\[\text{.}\trs{\alpha u + v, w} = \alpha\trs{u,w} + \trs{v,w}\]
+\end{description}
+
+מרחב וקטורי
+$V$
+יחד עם מכפלה פנימית
+$\trs{\cdot,\cdot}$
+נקרא
+\emph{מרחב מכפלה פנימית}.
+\end{definition}
+
+\begin{remark}
+בודגמא מהמרחב האוקלידי, ניתן לראות שנובע מהדרישה הגיאומטרית שלנו כי
+\[\trs{u,v} = \sum_{i \in [n]} u_i v_i\]
+עבור
+$u,v \in \mbb{R}^n$
+מאורך
+$1$.
+נוכל בעצם להגדיר זאת עבור וקטור כללי, ונשים לב כי הדבר אכן מקיים את שלוש התכונות הדרושות, ולכן הינו מכפלה פנימית על
+$\mbb{R}^n$.
+
+מכפלה פנימית זאת נקראת
+\emph{המכפלה הפנימית הסטנדרטית}
+על
+$\mbb{R}^n$
+ולעתים נסמן אותה
+$u \cdot v \coloneqq \trs{u,v}_{\mrm{std}}$.
+\end{remark}
+
+\begin{exercise}
+קיבעו אלו מההעתקות הבאות הן מכפלות פנימיות.
+
+\begin{enumerate}
+\item
+\begin{align*}
+f_1 \colon \mbb{R}^3 \times \mbb{R}^3 \mbb{R} \\
+\prs{\pmat{a\\b\\c}, \pmat{x\\y\\z}} &\mapsto ax + by + \prs{cz}^2
+\end{align*}
+
+\item
+\begin{align*}
+f_2 \colon \mbb{R}^4 \times \mbb{R}^4 &\to \mbb{R} \\
+\prs{\pmat{a\\b\\c\\d}, \pmat{w\\x\\y\\z}} &\mapsto ax + by + cz 
+\end{align*}
+
+\item
+\begin{align*}
+f_3 \colon \mbb{C}^3 \times \mbb{C}^3 &\to \mbb{C} \\
+\prs{\pmat{a\\b\\c}, \pmat{x\\y\\z}} &\mapsto ax + by + cz
+\end{align*}
+
+\item
+\begin{align*}
+f_4 \colon \Mat_n\prs{\mbb{C}} \times \Mat_n\prs{\mbb{C}} &\to \mbb{C} \\
+\prs{A,B} &\mapsto \tr\prs{B^t A}
+\end{align*}
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+אף אחת מההעתקות אינה מכפלה פנימית.
+\begin{enumerate}
+\item
+ההעתקה
+$f_1$
+אינה לינארית ברכיב הראשון, כי
+\[f_1\prs{\pmat{0\\0\\1}, \pmat{0\\0\\1}} = 1\]
+ואילו
+\[\text{.} f_1\prs{\pmat{0\\0\\2}, \pmat{0\\0\\1}} = 2^2 = 4 \neq 2 = 2 f_1\prs{\pmat{0\\0\\1}, \pmat{0\\0\\1}}\]
+
+\item
+ההעתקה
+$f_2$
+אינה חיובית, כי
+\[\text{.} f_2\prs{\pmat{0\\0\\0\\1}, \pmat{0\\0\\0\\1}} = 0 \leq 0\]
+
+\item
+ההעתקה
+$f_3$
+אינה הרמיטית, כי
+\[f_3\prs{\pmat{0\\0\\1}, \pmat{0\\0\\i}} = i\]
+ואילו
+\[\text{.} f_3\prs{\pmat{0\\0\\i}, \pmat{0\\0\\1}} = i \neq -i = \bar{i} = \overline{f_3\prs{\pmat{0\\0\\1}, \pmat{0\\0\\i}}}\]
+\end{enumerate}
+
+\item
+ההעתקה
+$f_4$
+אינה הרמיטית, כי
+$f_4\prs{I_n, iI_n} = \tr\prs{iI_n} = in$
+ואילו
+\[\text{.} f_4\prs{i I_n, I_n} = \tr\prs{iI_n} =in \neq \overline{in} = \overline{f_4\prs{I_n, iI_n}}\]
+\end{solution}
+
+\section{תכונות של מכפלות פנימיות, ונורמות}
+
+במרחב האוקלידי, כאשר
+$\norm{u} = \norm{v} = 1$,
+אמרנו שהערך
+$\abs{\trs{u,v}}$
+שווה לאורך של ההטלה של
+$v$
+על
+$u$
+(או להיפך, כי המכפלה הפנימית סימטרית).
+בפרט, אורך זה יכול להיות לכל היותר
+$1$,
+והינו שווה
+$1$
+אם ורק אם
+$u = v$,
+כי אחרת ההטלה תהיה קצרה יותר.
+
+ניעזר בלינאריות של המכפלה הפנימית ונקבל כי לוקטורים
+$u,v \in \mbb{R} \setminus \set{0}$
+כלליים מתקיים
+\begin{align*}
+\abs{\trs{u,v}} &= \trs{\norm{u} \frac{u}{\norm{u}}, \norm{v} \frac{v}{\norm{v}}}
+\\&=
+\norm{u} \norm{v} \abs{\trs{\frac{u}{\norm{u}}, \frac{v}{\norm{v}}}}
+\\&\leq \norm{u} \norm{v}
+\end{align*}
+כאשר
+$\abs{\trs{\frac{u}{\norm{u}}, \frac{v}{\norm{v}}}} \leq 1$
+כי הוקטורים
+$\frac{u}{\norm{u}}, \frac{v}{\norm{v}}$
+הינם מאורך
+$1$.
+
+אי־שוויון כזה מתקבל גם במרחב מכפלה פנימית כללי, כפי שקובע אי־שוויון קושי־שוורץ, אך לשם כך עלינו להגדיר מושג של אורך בהגדרה הבאה.
+
+\begin{definition}[נורמה]
+יהי
+$V$
+מרחב מכפלה פנימית מעל
+$\mbb{F} \in \set{\mbb{R}, \mbb{C}}$.
+\emph{נורמה}
+על
+$V$
+היא פונקציה
+$\norm{\cdot} \colon V \to \mbb{R}$
+המקיימת את התכונות הבאות.
+
+\begin{description}
+\item[חיוביות:]
+לכל
+$v \in V \setminus \set{0}$
+מתקיים
+$\norm{v} > 0$.
+
+\item[הומוגניות:]
+לכל
+$v \in V$
+ולכל
+$\alpha \in \mbb{F}$
+מתקיים
+$\norm{\alpha v} = \abs{\alpha} \norm{v}$.
+
+\item[אי־שוויון המשולש:]
+לכל
+$u,v \in V$
+מתקיים
+$\norm{u+v} \leq \norm{u} + \norm{v}$.
+\end{description}
+
+מרחב וקטורי עם נורמה נקרא
+\emph{מרחב נורמי}.
+\end{definition}
+
+\begin{theorem}[אי־שוויון קושי־שוורץ]
+יהי
+$V$
+מרחב מכפלה פנימית. אז לכל
+$u,v \in V$
+מתקיים
+\[\abs{\trs{u,v}} \leq \norm{u} \cdot \norm{v}\]
+ושוויון מתקיים אם ורק אם
+$u,v$
+תלויים לינארית.
+\end{theorem}
+
+\begin{exercise}
+יהי
+$V$
+מרחב מכפלה פנימית, ויהיו
+$u_1, \ldots, u_n, v_1, \ldots, v_n \in V$.
+הראו שמתקיים
+\begin{align*}
+\text{.} \sum_{i = 1}^n \trs{u_i, v_i} \leq \sqrt{{\sum_{i = 1}^n \norm{u_i}^2}} \cdot \sqrt{\sum_{i=1}^n \norm{v_i}^2}
+\end{align*}
+\end{exercise}
+
+\begin{solution}
+נרצה לפרש את אגף שמאל בתור מכפלה פנימית.
+כיוון שהוא מזכיר את המכפלה הפנימית על
+$\mbb{R}^n$,
+רק עם וקטורים מ־%
+$V$
+במקום מספרים ב־%
+$\mbb{R}$,
+נרצה להגדיר מכפלה זאת על המרחב
+\[\text{.} V^n \coloneqq \set{\prs{v_1, \ldots, v_n}}{v_i \in V}\]
+זה אכן מרחב וקטורי עם חיבור וכפל בסקלר לפי כל קואורדינטה בנפרד, ונגדיר עליו מכפלה פנימית לפי
+\[\text{.} \trs{\prs{u_1, \ldots, u_n}, \prs{v_1, \ldots, v_n}} \coloneqq \sum_{i = 1}^n \trs{u_i, v_i}\]
+אם
+$v \coloneqq \prs{v_1, \ldots, v_n} \neq \prs{0, \ldots, 0}$,
+יש
+$v_j \neq 0$
+ולכן
+\[\text{,} \trs{v,v} \geq \trs{v_j, v_j} > 0\]
+לכון מתקיימת חיוביות.
+סימטריה ולינאריות ברכיב הראשון מתקיימות בכל רכיב בנפרד, ולכן גם בסך הכל.
+
+כעת, אי־שוויון קושי־שוורץ על
+$V^n$
+אומר לנו כי
+\begin{align*}
+\sum_{i = 1}^n \trs{u_i, v_i}
+&\leq
+\abs{\sum_{i = 1}^n \trs{u_i, v_i}}
+\\&=
+\abs{\trs{u,v}}
+\\&\leq
+\norm{u} \norm{v}
+\\&=
+\sqrt{\trs{u,u}} \cdot \sqrt{v,v}
+\\&=
+\sqrt{{\sum_{i = 1}^n \trs{u_i, u_i}}} \cdot \sqrt{\sum_{i=1}^n \trs{v_i, v_i}}
+\\\text{,}\hphantom{\sum_{i = 1}^n \trs{u_i, v_i}}&=
+\sqrt{{\sum_{i = 1}^n \norm{u_i}^2}} \cdot \sqrt{\sum_{i=1}^n \norm{v_i}^2}
+\end{align*}
+כנדרש.
+\end{solution}
+
+\section{בסיסים אורתונורמליים והמרחב הניצב}
+
+\begin{definition}[מטריקה המושרית מנורמה]
+יהי
+$\prs{V,\norm{\cdot}}$
+מרחב נורמי.
+\emph{המטריקה המושרית}
+על
+$V$
+היא
+$d\prs{x,y} = \norm{x-y}$.
+\end{definition}
+
+כעת, את המרחק בין שני שני וקטורים קל בדרך כלל לחשב כאשר יש לנו נורמה נתונה. מעט מסובך יותר לחשב את המרחב מוקטור לקבוצה.
+
+\begin{definition}[מרחק מקבוצה]
+יהי
+$\prs{X,d}$
+מרחב מטרי, יהי
+$x \in X$
+ותהי
+$S \subseteq X$.
+נגדיר את
+\emph{המרחק של
+$x$
+מ־%
+$S$}
+להיות
+\begin{align*}
+\text{.} d\prs{x,S} \coloneqq \inf\set{d\prs{x,s}}{s \in S}
+\end{align*}
+\end{definition}
+
+תת־קבוצות של מרחב וקטורי שמעניינות אותנו הן בדרך כלל תת־מרחבים. במקרה האוקלידי, אנו יודעות כיצד לחשב את המרחק מתת־מרחב. כדי לחשב את
+$d\prs{x,W}$
+עבור
+$W \leq \mbb{R}^n$,
+נעביר אנך מ־%
+$x$
+ל־%
+$W$
+ונחשב את המרחק בין
+$x$
+ונקודת החיתוך בין
+$W$
+לאנך.
+
+כדי לעשות דבר דומה במרחבי מכפלה פנימית כלליים, נצטרך לדבר קודם כל על ניצבות.
+
+\begin{definition}[זווית במרחב מכפלה פנימית]
+יהי
+$V$
+מרחב מכפלה פנימית ויהיו
+$u,v \in V$.
+נגדיר את
+\emph{הזווית}
+בין
+$u,v$
+בתור
+\[\text{.} \angle\prs{u,v} = \acos\prs{{\frac{\Re\prs{\trs{u,v}}}{\norm{u} \norm{v}}}}\]
+\end{definition}
+
+\begin{definition}[וקטורים ניצבים]
+יהי
+$V$
+מרחב מכפלה פנימית.
+וקטורים
+$u,v \in V$
+נקראים
+\emph{ניצבים}
+אם
+$\trs{u,v} = 0$.
+במקרה זה נסמן
+$u \perp v$.
+\end{definition}
+
+\begin{remark}
+מעל
+$\mbb{R}$,
+וקטורים ניצבים בדיוק כאשר הזווית בינם היא
+$\frac{\pi}{2}$.
+\end{remark}
+
+\begin{definition}
+קבוצה
+$S \subseteq V$
+במרחב מכפלה פנימית נקראת
+\emph{אורתוגונלית}
+אם
+$s_1 \perp s_2$
+לכל
+$s_1, s_2 \in S$
+שונים.
+\end{definition}
+
+\begin{theorem}[פיתגורס]
+תהי
+$\prs{v_1, \ldots, v_n}$
+סדרה של וקטורים אורתוגונליים במרחב מכפלה פנימית
+$V$.
+אז
+\begin{align*}
+\text{.} \norm{v_1 + \ldots + v_n}^2 = \norm{v_1}^2 + \ldots + \norm{v_n}^2
+\end{align*}
+\end{theorem}
+
+כדי לדבר על המרחק של וקטור
+$v \in V$
+מתת־מרחב
+$W \leq V$,
+נרצה לכתוב את
+$v$
+בתור סכום של שני וקטורים, כאשר אחד מהם מ־%
+$W$
+והשני ניצב ל־%
+$W$.
+ראינו כי
+$V = W \oplus W^{\perp}$
+עבור
+$W^\perp$
+תת־המרחב של הוקטורים הניצבים ל־%
+$W$
+ולכן זה אפשרי.
+ככה, ושהמרחק יצא, כמו במקרה האוקלידי, האורך של החלק הניצב ל־%
+$W$.
+
+\begin{definition}[מרחב ניצב]
+יהי
+$V$
+מרחב מכפלה פנימית, ותהי
+$S \subseteq V$.
+\emph{המרחב הניצב ל־%
+$S$}
+הוא
+\[\text{.} S^\perp = \set{v \in V}{\forall s \in S \colon v \perp s}\]
+\end{definition}
+
+\begin{proposition}
+יהי
+$V$
+מרחב מכפלה פנימית ויהי
+$W \leq V$.
+מתקיים
+$V = W \oplus W^\perp$.
+\end{proposition}
+
+\begin{exercise}
+יהי
+$V$
+מרחב מכפלה פנימית סוף־מימדי ותהיינה
+$S,T \subseteq V$.
+
+\begin{enumerate}
+\item 
+נניח כי
+$S \subseteq T$.
+הראו כי
+$T^\perp \subseteq S^\perp$.
+
+\emph{התאמה כזאת, כמו $S \mapsto S^\perp$, שהופכת יחס הכלה, נקראת
+\emph{התאמת גלואה}.}
+
+\item
+נסמן
+$W = \Span\prs{S}$.
+הראו כי
+$S^\perp = W^\perp$.
+
+\item
+הראו כי
+$\prs{S^{\perp}}^\perp = \Span\prs{S}$.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+\item
+יהי
+$v \in T^\perp$
+ויהי
+$s \in S$.
+אז
+$s \in T$
+כי
+$S \subseteq T$,
+ולכן
+$v \perp s$,
+כי
+$v$
+ניצב לכל וקטור ב־%
+$T$.
+לכן
+$v \in S^\perp$.
+
+\item
+מתקיים
+$S \subseteq W$
+ולכן
+$W^\perp \subseteq S^\perp$.
+יהי
+$v \in S^\perp$
+ויהי
+$w \in W$.
+כיוון ש־%
+$W = \Span\prs{S}$,
+יש איברים
+$s_1, \ldots, s_k$
+וסקלרים
+$\alpha_1, \ldots, \alpha_k$
+עבורם
+$w = \sum_{i \in [k]} \alpha_i s_i$.
+אז
+\[\trs{v,w} = \trs{v, \sum_{i \in [k]} \alpha_i s_i} = \sum_{i \in [k]} \alpha_i \cancelto{0}{\trs{v_i, s_i}} = 0\]
+ולכן
+$v \in W^\perp$.
+
+\item
+ראינו כי
+$\prs{W^\perp}^\perp = W$
+עבור
+$W \leq V$.
+ניקח
+$W = \Span\prs{S}$.
+מתקיים
+$S \subseteq W$
+ולכן
+$W^\perp \subseteq S^\perp$
+ואז
+$\prs{S^\perp}^\perp \subseteq \prs{W^\perp}^\perp = W$.
+כמו כן,
+$S^\perp = W^\perp$
+תת־מרחב וקטורי ומכיוון ש־%
+$V = S^\perp \oplus \prs{S^\perp}^\perp$,
+נקבל כי
+\[\dim\prs{\prs{S^\perp}^\perp} = \dim\prs{V} - \dim\prs{S^\perp} = \dim\prs{V} - \dim\prs{W^\perp} = \dim\prs{W}\]
+ולכן יש שוויון
+$\prs{S^\perp}^\perp = W = \Span\prs{S}$.
+\end{enumerate}
+\end{solution}
+
+\begin{remark}
+לא יכולנו בתרגיל האחרון להניח כי
+$S$
+אינסופית. באופן כללי,
+\[\Span\prs{S} = \set{\sum_{i \in [k]} \alpha_i s_i}{\substack{\alpha_i \in \mbb{F} \\ s_i \in S}}\]
+גם כאשר
+$S$
+אינסופית.
+\end{remark}
+
+\begin{exercise}
+מצאו את
+$W^\perp$
+עבור
+\[\text{.} W \ceq \spn\prs{e_1 + e_2} \leq \mbb{R}^2\]
+\end{exercise}
+
+\begin{solution}
+ראינו כי מתקיים
+$v \in \Span\prs{e_1 + e_2}^\perp$
+אם ורק אם
+$v \perp e_1 + e_2$.
+זה מתקיים
+אם ורק אם
+$v_1 + v_2 = 0$
+אם ורק אם
+$v_2 = - v_1$.
+לכן
+\[\text{.} W^\perp = \spn\prs{e_1 - e_2}\]
+\end{solution}
+
+\begin{definition}[בסיס אורתונורמלי]
+יהי
+$V$
+מרחב מכפלה פנימית.
+בסיס
+$B = \prs{v_1, \ldots, v_n}$
+של
+$V$
+נקרא
+\emph{אורתוגונלי}
+אם
+$\trs{v_i, v_j} = 0$
+לכל
+$i \neq j$,
+ו%
+\emph{אורתונורמלי}
+אם
+$\trs{v_i, v_j} = \delta_{i,j} \coloneqq \fcases{0 & i \neq j \\ 1 & i=j}$.
+\end{definition}
+
+\begin{definition}[הטלה אורתוגונלית]
+יהי
+$V$
+מרחב מכפלה פנימית ויהי
+$W \leq V$.
+\emph{ההטלה האורתוגונלית על
+$W$}
+היא ההטלה על
+$W$
+ביחס לסכום הישר
+$V = W \oplus W^\perp$.
+\end{definition}
+
+\begin{proposition}
+יהי
+$V$
+מרחב מכפלה פנימית ויהי
+$W \leq V$.
+יהי
+$B = \prs{w_1, \ldots, w_m}$
+בסיס
+\textbf{אורתונורמלי}
+של
+$W$
+ויהי
+$v \in V$.
+תהי
+$P_W$
+ההטלה האורתוגונלית על
+$W$.
+אז
+\[\text{.} P_W\prs{w} = \sum_{i \in [m]} \trs{v, w_i} w_i\]
+\end{proposition}
+
+\begin{exercise}
+יהי
+$V$
+מרחב מכפלה פנימית ויהיו
+$u,v \in V$.
+הראו כי
+$u \perp v$
+אם ורק אם
+\[\norm{u} \leq \norm{u+av}\]
+לכל
+$a \in \mbb{F}$.
+\end{exercise}
+
+\begin{solution}
+אם
+$u \perp v$
+ו־%
+$a \in \mbb{F}$,
+נקבל מפיתגורס
+\begin{align*}
+\norm{u+av}^2 &= \norm{u}^2 + \abs{a}^2 \norm{v}^2 \geq \norm{u}^2
+\end{align*}
+ולכן
+$\norm{u} \leq \norm{u+av}$.
+
+נניח כי
+$\trs{u,v} \neq 0$
+ונניח תחילה כי
+$\norm{v} = 1$.
+אז
+\[\trs{\trs{u,v}v, v} = \trs{u,v} \trs{v,v} = \trs{u,v} \norm{v}^2 = \trs{u,v} \neq 0\]
+וגם
+\[\text{.} \trs{u - \trs{u,v}v, v} = \trs{u,v} - \trs{\trs{u,v}v,v} = 0\]
+אז, ממשפט פיתגורס
+\begin{align*}
+\norm{u}^2 &= \norm{u - \trs{u,v}v + \trs{u,v}v}^2
+\\&=
+\norm{u - \trs{u,v}v}^2 + \norm{\trs{u,v}v}^2
+\\&>
+\norm{u-\trs{u,v}v}^2
+\end{align*}
+כאשר האי־שוויון חזק כי
+$\trs{u,v}v \neq 0$
+מההנחה
+$\trs{u,v} \neq 0$.
+לכן, עבור
+$a = \trs{u,v}$
+לא מתקיים
+$\norm{u} \leq \norm{u+av}$.
+
+כעת, אם
+$v$
+כללי, הוקטור
+$\frac{v}{\norm{v}}$
+הינו מאורך
+$1$
+ולכן יש
+$a' \in \mbb{F}$
+עבורו
+$\norm{u} > \norm{u+a' \frac{v}{\norm{v}}}$.
+אז ניקח
+$a = \frac{a'}{\norm{v}}$
+ונקבל כי
+$\norm{u} > \norm{u + av}$.
+\end{solution}
+
+כדי למצוא בסיסים אורתונורמליים ומשלימים ישרים, ניעזר בתהליך שלוקח בסיס כלשהו ומחזיר בסיס אורתונורמלי.
+
+\begin{theorem}[גרם־שמידט]
+יהי
+$V$
+מרחב מכפלה פנימית ויהי
+$B = \prs{u_1, \ldots, u_n}$
+בסיס של
+$V$.
+קיים בסיס אורתונורמלי
+$C = \prs{v_1, \ldots, v_n}$
+של
+$V$
+עבורו
+\[\Span\prs{u_1, \ldots, u_i} = \Span\prs{v_1, \ldots, v_i}\]
+לכל
+$i \in \brs{n}$.
+\end{theorem}
+
+ניסוח זה של המשפט לא מתאר לנו איך למצוא את
+$C$,
+אבל ההוכחה שלו קונסטרוקטיבית ומתארת את האלגוריתם הבא.
+
+\begin{enumerate}
+\item
+עבור
+$i = 1$
+ניקח
+$v_i = \frac{u_i}{\norm{u_i}}$.
+
+\item
+עבור כל
+$i$
+לאחר מכן, לפי הסדר, ניקח
+\[w_i = u_i - \sum_{j \in \brs{i-1}} \trs{u_i, v_j}\]
+ואז
+$v_i = \frac{w_i}{\norm{w_i}}$.
+\end{enumerate}
+
+\begin{corollary}
+יהי
+$W \leq V$
+תת־מרחב במרחב מכפלה פנימית.
+כדי למצוא אורתונורמלי של
+$W$
+ושל
+$W^\perp$
+ניקח בסיס
+$B_W$
+של
+$W$
+ונשלים אותו לבסיס
+$B = B_W \cup B'_W$
+של
+$V$.
+נבצע את תהליך גרם־שמידט על
+$B$
+ונקבל בסיס
+$C = C_W \cup C_W^\perp$
+כך ש־%
+$\Span\prs{C_W} = \Span\prs{B_W} = W$.
+כל הוקטורים ב־%
+$C_W^\perp$
+ניצבים ל־%
+$W$
+כי
+$C$
+אורתונורמלי, ולכן
+$W' \coloneqq \Span\prs{C_W^\perp} \subseteq W^\perp$.
+כמו כן,
+\[\dim\prs{W'} = \dim\prs{V} - \dim\prs{W} = \dim\prs{W^\perp}\]
+כי
+$V = W \oplus W' = W \oplus W^\perp$,
+ולכן יש שוויון
+$W' = W^\perp$.
+\end{corollary}
+
+\begin{theorem}[מרחק של וקטור מתת־מרחב]
+יהי
+$V$
+מרחב מכפלה פנימית, יהי
+$W \leq V$,
+תהי
+$P_W$
+ההטלה האורתוגונלית על
+$W$
+ויהי
+$v \in V$.
+מתקיים
+\[\text{.} d\prs{v,W} = d\prs{v, p_W\prs{v}}\]
+\end{theorem}
+
+\begin{exercise}
+יהי
+$V = \Mat_2\prs{\mbb{R}}$
+עם המכפלה הפנימית הסטנדרטית
+\[\trs{A,B} = \tr\prs{B^t A}\]
+ויהי
+$W \leq V$
+התת־מרחב של המטריצות הסימטריות.
+
+\begin{enumerate}
+\item מיצאו בסיס אורתונורמלי עבור
+$W$
+ועבור
+$W^\perp$.
+
+\item
+הראו כי
+$P_W\prs{A} = \frac{A + A^t}{2}$
+בשתי דרכים שונות.
+
+\item
+חשבו את המרחק של
+$A = \pmat{1 & 2 \\ 3 & 4}$
+מ־%
+$W$.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+\item
+ניקח בסיס
+$B_W = \prs{E_{1,1}, E_{1,2} + E_{2,1}, E_{2,2}}$
+של
+$W$
+ונשלים אותו לבסיס
+\[B = \prs{u_1, u_2, u_3, u_4} = \prs{E_{1,1}, E_{1,2} + E_{2,1}, E_{2,2}, E_{1,2}}\]
+של
+$V$.
+נבצע את תהליך גרם־שמידט כדי לקבל בסיס אורתונורמלי
+$\prs{v_1, v_2, v_3, v_4}$
+עבורו
+$W = \Span\prs{v_1, v_2, v_3}$
+וגם
+$W^\perp = \Span\prs{v_4}$.
+
+נחשב
+\begin{align*}
+v_1 &= \frac{1}{\norm{E_{1,1}}} E_{1,1} = E_{1,1} \\
+w_2 &= u_2 - \trs{u_2,v_1} v_1 = E_{1,2} + E_{2,1} - 0 = E_{1,2} + E_{2,1} \\
+v_2 &= \frac{1}{\norm{w_2}} w_2 = \frac{1}{\sqrt{2}} \prs{E_{1,2} + E_{2,1}} \\
+w_3 &= u_3 - \trs{u_3, v_2} v_2 - \trs{u_3, v_1} v_1 = u_3 = E_{2,2} \\
+v_3 &= \frac{1}{\norm{w_3}} w_3 = E_{2,2} \\
+w_4 &= u_4 - \trs{u_4, v_3}v_3 - \trs{u_4, v_2}v_2 - \trs{u_4, v_1}v_1 \\&= E_{1,2} - \trs{E_{1,2}, \frac{1}{\sqrt{2}} \prs{E_{1,2} + E_{2,1}}} \prs{\frac{1}{\sqrt{2}} \prs{E_{1,2} + E_{2,1}}}
+\\&= E_{1,2} - \frac{1}{2} \prs{E_{1,2} + E_{2,1}}
+\\&= \frac{1}{2} \prs{E_{1,2} - E_{2,1}} \\
+v_4 &= \frac{w_4}{\norm{w_4}} = \frac{1}{\norm{E_{1,2} - E_{2,1}}} \prs{E_{1,2} - E_{2,1}} = \frac{1}{\sqrt{2}} \prs{E_{1,2} - E_{2,1}}
+\end{align*}
+ונקבל כי
+\[\prs{v_1, v_2, v_3} = \prs{E_{1,1}, \frac{1}{\sqrt{2}} \prs{E_{1,2} + E_{2,1}}, E_{2,2}}\]
+בסיס אורתונורמלי של
+$W$
+וכי
+$\frac{1}{\sqrt{2}} \prs{E_{1,2} - E_{2,1}}$
+בסיס אורתונורמלי של
+$W^\perp$.
+אז,
+$W^\perp$
+מרחב המטריצות האנטיסימטריות.
+
+\item
+בדרך אחת, זכור לנו מאלגברה א' כי
+\[A = \frac{A + A^t}{2} + \frac{A - A^t}{2}\]
+כאשר
+$\frac{A + A^t}{2}$
+סימטרית ו־%
+$\frac{A - A^t}{2}$
+אנטי־סימטרית.
+אז
+$\frac{A + A^t}{2} \in W$
+וכיוון ש־%
+$W^\perp$
+מרחב המטריצות האנטיסימטריות, נקבל גם
+$\frac{A - A^t}{2} \in W^\perp$.
+לכן
+$P_W\prs{A} = \frac{A + A^t}{2}$.
+
+אבל, במקרה הכללי, לא נדע מראש איך לכתוב וקטור
+$v \in V$
+בתור סכום של וקטור ב־%
+$W \leq V$
+ווקטור ב־%
+$W^\perp$.
+כדי לחשב את ההטלה
+$P_W\prs{A}$
+נוכל לקחת בסיס אורתונורמלי של
+$W$
+ולהשתמש בנוסחא עבור ההטלה האורתוגונלית לפי בסיס כזה.
+
+אכן,
+\begin{align*}
+P_W\prs{A} &= \sum_{i \in [3]} \trs{A, v_i} v_i \\&= \trs{A, E_{1,1}} E_{1,1} + \trs{A, \frac{1}{\sqrt{2}} \prs{E_{1,2} + E_{2,1}}} \cdot \frac{1}{\sqrt{2}} \prs{E_{1,2} + E_{2,1}} + \trs{A, E_{2,2}}, E_{2,2}
+\\&=
+a_{1,1} E_{1,1} + \frac{1}{2} \prs{a_{1,2} + a_{2,1}} \prs{E_{1,2} + E_{2,1}} + a_{2,2} E_{2,2}
+\\&=
+\pmat{a_{1,1} & \frac{a_{1,2} + a_{2,1}}{2} \\ \frac{a_{1,2} + a_{2,1}}{2} & a_{2,2}}
+\\ \text{.} \hphantom{P_W\prs{A}} &=
+\frac{A + A^t}{2}
+\end{align*}
+
+\item
+נכתוב את
+$A$
+בתור סכום של מטריצה סימטרית ואנטי־סימטרית. ראינו כי
+\[A = \frac{A + A^t}{2} + \frac{A - A^t}{2}\]
+כאשר
+$\frac{A + A^t}{2}$
+סימטרית ו־%
+$\frac{A - A^t}{2}$
+אנטי־סימטרית.
+אז
+$d_W\prs{A} = \frac{A+A^t}{2}$
+ונקבל כי
+המרחק של
+$A$
+מ־%
+$W$
+הוא
+\[\text{.} d\prs{A, \frac{A + A^t}{2}} = \norm{A - \frac{A + A^t}{2}}\]
+מתקיים
+\begin{align*}
+\norm{A - \frac{A + A^t}{2}} &= \norm{\frac{A - A^t}{2}}
+\\&= \frac{1}{2} \norm{\pmat{0 & -1 \\ & 1 & 0}}
+\\&= \frac{1}{2} \cdot \sqrt{2}
+\\&= \frac{1}{\sqrt{2}}
+\end{align*}
+ולכן
+$d\prs{A, W} = \frac{1}{\sqrt{2}}$.
+\end{enumerate}
+\end{solution}
+
+\printbibliography
+\end{document}
