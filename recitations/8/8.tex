@@ -1,0 +1,770 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{polynom}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+\newcommand{\Std}{\mrm{Std}}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{0}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+\title{
+אלגברה ב' (01040168) - חורף 2026
+\\
+תרגול 8 - נילפוטנטיות ומרחבים עצמיים מוכללים
+\\
+אלן סורני
+\\
+הרשימות עודכנו לאחרונה בתאריך ה־%
+\today
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{נילפוטנטיות}
+
+\begin{definition}[העתקה נילפוטנטית]
+העתקה
+$T \in \endo_{\mbb{F}}\prs{V}$
+נקראת
+\emph{נילפוטנטית}
+אם יש
+$k \in \mbb{N}_+$
+עבורו
+$T^k = 0$.
+ה־%
+$k$
+המינימלי הזה נקרא
+\emph{אינדקס הנילפוטנטיות של
+$T$}.
+\end{definition}
+
+\begin{remark}
+נניח לאורך התרגול כי
+$V$
+מרחב וקטורי סוף־מימדי.
+\end{remark}
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי ממימד
+$n \in \mbb{N}_+$
+ותהי
+$T \in \endo_{\mbb{F}}\prs{V}$
+נילפוטנטית מאינדקס
+$k$.
+הראו כי
+$k \leq n$.
+\end{exercise}
+
+\begin{solution}
+\begin{description}
+\item[דרך 1:]
+
+ראינו כי
+$\ker\prs{T^k} \leq \ker\prs{T^n}$,
+לכן אם
+$T^k = 0$
+נקבל
+$\ker\prs{T^k} = V \leq \ker\prs{T^n}$
+כלומר
+$\ker\prs{T^n} = V$
+כלומר
+$T^n = 0$.
+ממינימליות
+$k$
+נקבל
+$k \leq n$.
+
+\item[דרך 2:]
+ראינו כי
+\begin{align*}
+\text{.} \ker\prs{T} \leq \ker\prs{T^2} \leq \ldots \leq \ker\prs{T^k} = V
+\end{align*}
+אם נראה שמתקיים
+$\ker\prs{T^i} \neq \ker\prs{T^{i+1}}$
+לכל
+$i \leq k$
+נקבל כי
+$\dim \ker\prs{T^{i+1}} > \dim \ker\prs{T^i}$
+וכיוון ש־%
+$\dim \ker\prs{T} \geq 1$
+נקבל באינדוקציה כי
+$\dim \ker\prs{T^i} \geq i$
+לכל
+$i \leq k$
+ובפרט
+$\dim \ker\prs{T^k} \geq k$.
+אבל
+$\dim \ker\prs{T^k} = \dim\prs{V} = n$,
+לכן
+$n \geq k$,
+כנדרש.
+\end{description}
+
+\end{solution}
+
+\begin{exercise}
+יהי
+$\mbb{F}$
+סגור אלגברית ותהי
+$T \in \endo_{\mbb{F}}\prs{V}$.
+הראו ש־%
+$T$
+ נילפוטנטית אם ורק אם הערך העצמי היחיד שלה הוא
+$0$.
+מצאו דוגמא נגדית כאשר
+$\mbb{F}$
+אינו סגור אלגברית.
+\end{exercise}
+
+\begin{solution}
+נניח כי
+$\lambda \in \mbb{F}$
+ערך עצמי של
+$T \in \endo_{\mbb{F}}\prs{V}$
+נילפוטנטית.
+יש
+$k \in \mbb{N}_+$
+עבורו
+$T^k = 0$.
+יהי
+$v \in V$
+וקטור עצמי של
+$T$
+עם ערך עצמי
+$\lambda$.
+אז
+$T^k v = \lambda^k v = 0$
+לכן
+$\lambda = 0$.
+
+נניח כי
+$S \in \endo_{\mbb{F}}\prs{V}$
+עם ערך עצמי יחיד
+$0$.
+כיוןן ש־%
+$\mbb{F}$
+סגור־אלגברית,
+יש בסיס
+$B$
+כך ש־%
+$\brs{S}_B$
+משולשת עליונה, ונקבל שיש על האלכסון שלה אפסים כי
+$0$
+ערך עצמי יחיד של
+$S$.
+נכתוב
+$B = \prs{v_1, \ldots, v_n}$
+וגם
+$V_i \ceq \spn\prs{v_1, \ldots, v_i}$
+לכל
+$i \in [n]$.
+נסיק כי
+$S V_i \subseteq V_{i-1}$
+לכל
+$i \in [n]$,
+וגם
+$S V_1 = 0$.
+אז
+\[S^n V = S^n V_n = S^{n-1} V_{n-1} = \ldots = S V_1 = 0\]
+כלומר
+$S^n = 0$.
+
+עבור
+$\mbb{F} = \mbb{R}$
+ניקח את
+$T = L_A$
+עבור
+\[A = \pmat{0 & 1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & 0}\]
+שהערך העצמי הממשי היחיד שלה הוא
+$0$
+(כי
+$\pm i \notin \mbb{R}$)
+אבל
+$A^4 = \pmat{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0}$
+לכן
+$T^4 = e_1 = e_1$.
+כלומר
+$T^4 \neq 0$
+ולכן
+$T$
+אינה נילפוטנטית.
+\end{solution}
+
+\begin{examples}
+\begin{description}
+\item[העתקות נילפוטנטיות:]
+ההעתקה
+$L_A$
+נילפוטנטית עבור כל אחת מהמטריצות הבאות.
+\begin{itemize}
+\item $A = \pmat{0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0}$.
+\item כל $A$
+משולשת עליונה עם
+$0$
+על כל האלכסון הראשי, כפי שראינו בתרגיל האחרון.
+\item $A = \pmat{0 & 0 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0}$.
+\end{itemize}
+\item[העתקות שאינן נילפוטנטיות:]
+עבור המטריצות הבאות,
+$L_A$
+אינה נילפוטנטית.
+\begin{itemize}
+\item $A = \pmat{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0}$.
+מתקיים
+$Ae_1 = e_1$
+ולכן
+$1$
+ערך עצמי ולא יתכן כי
+$L_A$
+נילפוטנטית.
+\item $A = \pmat{1 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 1}$.
+מתקיים
+$A\prs{e_1 + e_2 + e_3} = 3 \prs{e_1 + e_2 + e_3}$
+לכן
+$3$
+ערך עצמי, ולא יתכן כי
+$L_A$
+נילפוטנטית.
+\item $A = \pmat{0 & 1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & 0} \in M_3\prs{\mbb{R}}$.
+מתקיים
+$A^4 = \pmat{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0} \neq 0$
+לכן
+$L_A^4 \neq 0$
+וראינו שאינדקס הנילפוטנטיות חייב להיות לכל היותר
+$3$
+במקרה זה. לכן
+$L_A$
+אינה נילפוטנטית.
+\end{itemize}
+\end{description}
+\end{examples}
+
+\begin{exercise}
+הראו כי
+$T \in \endo_{\mbb{F}}\prs{V}$
+נילפוטנטית אם ורק אם לכל
+$v \in V$
+יש
+$k \in \mbb{N}_+$
+עבורו
+$T^k v = 0$.
+\end{exercise}
+
+\begin{solution}
+נניח כי
+$T$
+נילפוטנטית מאינדקס
+$k$.
+אז
+$T^k v = 0 v = 0$
+לכל
+$v \in V$.
+
+נניח להיפך כי לכל
+$v \in V$
+יש
+$k \in \mbb{N}_+$
+עבורו
+$T^k v = 0$.
+אז
+$v \in \ker\prs{T^k}$.
+אבל, ראינו כי
+\[\ker\prs{T} \leq \ker\prs{T^2} \leq \ker\prs{T^3} \leq \ldots\]
+מתייצבת, לכן יש
+$m \in \mbb{N}_+$
+עבורו
+$\ker\prs{T^k} \subseteq \ker\prs{T^m}$
+לכל
+$k \in \mbb{N}_+$.
+נקבל
+$v \in \ker\prs{T^m}$
+לכל
+$v \in V$,
+לכן
+$T^m = 0$.
+\end{solution}
+
+\begin{exercise}
+הראו שצירוף לינארי של העתקות נילפוטנטיות מתחלפות הוא נילפוטנטי.
+מצאו דוגמה נגדית עבור העתקות נילפוטנטיות שאינן מתחלפות.
+\end{exercise}
+
+\begin{solution}
+יהיו
+$T_1. T_2 \in \endo_{\mbb{F}}\prs{V}$
+נילפוטנטיות מאינדקסים
+$k_1, k_2$
+בהתאמה וכך שמתקיים
+$T_1 T_2 = T_2 T_1$.
+יהי
+$\alpha \in \mbb{F}$.
+
+מתקיים
+\begin{align*}
+\prs{\alpha T_1}^{k_1} = \alpha^{k_1} T_1^{k_1} = \alpha^{k_1} 0 = 0
+\end{align*}
+לכן
+$\alpha T_1$
+נילפוטנטית מאינדקס קטן או שווה ל־%
+$k$.
+כעת
+\begin{align*}
+\text{.} \prs{T_1 + T_2}^{k_1 + k_2 + 1} &= \sum_{i=0}^{k_1 + k_2} \binom{k_1 + k_2}{i} T_1^i T_2^{k_1 + k_2 - i}
+\end{align*}
+כאשר
+$i \geq k_1$
+מתקיים
+$T_1^i = 0$
+וכאשר
+$i < k_1$
+מתקיים
+$k_1 + k_2 - i \geq k_2$
+לכן
+$T_2^{k_1 + k_2 - i} = 0$.
+נקבל בסך הכל כי
+$T_1 + T_2$
+נילפוטנטית מאינדקס קטן או שווה
+$k_1 + k_2$.
+
+בלי ההנחה שההעתקות מתחלפות, אפשר לקחת
+\begin{align*}
+T_1 &= \pmat{0 & 1 \\ 0 & 0}, \\
+T_2 &= \pmat{0 & 0 \\ 1 & 0}
+\end{align*}
+כאשר שתיהן נילפוטנטיות מאינדקס 2, אבל
+\[T_1 + T_2 = \pmat{0 & 1 \\ 1 & 0}\]
+הפיכה ולכן אינה נילפוטנטית (אין לה ערך עצמי
+$0$).
+\end{solution}
+
+\begin{exercise}[לא עשינו בתרגול]
+תהי
+$T \in \endo_{\mbb{F}}\prs{V}$
+נילפוטנטית.
+הראו כי
+$\det\prs{T} = \tr\prs{T} = 0$.
+\end{exercise}
+
+\begin{solution}
+ראינו בהרצאה שיש בסיס
+$B$
+של
+$V$
+כך ש־%
+$\brs{T}_B$
+משולשת עליונה.
+כיוון שכל הערכים העצמיים של
+$T$
+שווים לאפס, נקבל שיש
+$0$
+על האלכסון.
+אז
+$\det\prs{T} = \det\prs{\brs{T}_B} = 0$
+כמכפלת איברי האלכסון וגם
+$\tr\prs{T} = \tr\prs{\brs{T}_B} = 0$
+כסכום איברי האלכסון.
+\end{solution}
+
+\begin{exercise}
+תהי
+$T$
+נילפוטנטית מאינדס
+$k$.
+הראו שהעתקות
+$\prs{\id_V \pm T}$
+הפיכות ומצאו את ההופכיות שלהן.
+\end{exercise}
+
+\begin{solution}
+אנו יודעים כי
+\[\sum_{k \in \mbb{N}} r^k = \frac{1}{1-r}\]
+עבור
+$r < 0$.
+נרצה אם כן שההופכית של
+$\id_V - T$
+תהיה
+$\id_V + T + \ldots + T^{k-1}$.
+אכן,
+\begin{align*}
+\prs{\id_V - T}\prs{\id_V + T + \ldots + T^{k-1}} &= \sum_{i = 0}^{k-1} T^{i} - \sum_{i = 1}^k T^^i
+\\&= \id_V - T^k
+\\&= \id_V - 0
+\\ \text{.} \hphantom{\prs{\id_V - T}\prs{\id_V + T + \ldots + T^{k-1}}} &= \id_V
+\end{align*}
+
+כעת, אם
+$T$
+נילפוטנטית מאינדקס
+$k$
+גם
+$-T$
+נילפוטנטית מאינדקס
+$k$,
+לכן ההופכית של
+$\id_V + T = \id_V - \prs{-T}$
+היא
+\[\text{.} \id_V - T + T^2 - T^3 + \ldots + \prs{-1}^{k-1} T^{k-1}\]
+\end{solution}
+
+\begin{exercise}[לא עשינו בתרגול]
+הראו כי
+\begin{align*}
+D \colon \mbb{F}_n\brs{x} &\to \mbb{F}_n\brs{x} \\
+p &\mapsto p'
+\end{align*}
+נילפוטנטית.
+\end{exercise}
+
+\begin{solution}
+לכל
+$p \in \mbb{F}_n\brs{x}$
+מתקיים
+$\deg_{\mbb{F}}\prs{p} \leq n$
+לכן
+$D^{n-1}\prs{p}$
+פולינום קבוע, ולכן
+$D^n p = 0$.
+\end{solution}
+
+\begin{exercise}[לא עשינו בתרגול]
+הראו כי
+\begin{align*}
+D \colon \mbb{F}\brs{x} &\to \mbb{F}\brs{x} \\
+p &\mapsto p'
+\end{align*}
+אינה נילפוטנטית.
+\end{exercise}
+
+\begin{solution}
+נניח בשלילה כי
+$D$
+נילפוטנטית מאינדקס
+$k$.
+אז
+$D^k x^{k+1} = 0$,
+אבל
+\begin{align*}
+D^k x^{k+1} &= \prs{k+1} D^{k-1} x^k
+\\&= \ldots
+\\&= \prs{k+1}!
+\\&\neq 0
+\end{align*}
+בסתירה.
+\end{solution}
+
+\begin{exercise}[לא עשינו בתרגול]
+יהי
+$V$
+מרחב וקטורי ממימד
+$n \in \mbb{N}_+$
+ותהי
+$T \in \endo_{\mbb{F}}\prs{V}$
+נילפוטנטית מאינדקס
+$k$.
+לכל
+$i \in [k]$
+נסמן
+$n_i \ceq \dim \ker\prs{T^i}$.
+הראו שמתקיים
+\begin{align*}
+\text{.} 0 < n_1 < n_2 < \ldots < n_{k-1} < n_k = n
+\end{align*}
+\end{exercise}
+
+\begin{solution}
+מתקיים
+$\ker\prs{T^k} = \ker\prs{0} = V$
+לכן
+$n_k = \dim\prs{V} = n$.
+אם
+$n_1 = 0$
+נקבל
+$\dim \ker\prs{T} = 0$
+לכן
+$T$
+חד־חד ערכית ולכן הפיכה, בסתירה לנילפוטנטיות.
+
+אם
+$n_i = n_{i+1}$
+עבור
+$i \in [k-1]$
+נקבל
+$\ker\prs{T^i} = \ker\prs{T^{i+1}}$.
+אבל, ראינו שבמקרה זה
+$\ker\prs{T^i} = \ker\prs{T^j}$
+לכל
+$j \geq i$.
+בפרט
+$\ker\prs{T^i} = \ker\prs{T^k} = V$,
+כלומר
+$i = k$
+בסתירה להנחה
+$i \in \brs{k-1}$.
+\end{solution}
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי ממימד
+$n \in \mbb{N}_+$
+עם בסיס
+$B \prs{v_1, \ldots, v_n}$.
+תהי
+\begin{align*}
+T \colon V &\to V \\
+v_1 &\mapsto 0 \\
+\text{.} \forall i > 1: v_i &\mapsto v_{i-1}
+\end{align*}
+הראו כי
+$T$
+נילפוטנטית מאינדקס
+$n$
+וכיתבו את
+$\brs{T}_B$.
+\end{exercise}
+
+\begin{solution}
+מתקיים
+\[\brs{T}_B = \pmat{0 & 1 & 0 & \ldots & 0 \\ 0 & 0 & 1 & \ddots & \vdots \\ \vdots & \ddots & 0 & \ddots & 0 \\ 0 & 0 & \ddots & 0 & 1 \\ 0 & 0 & \cdots & 0 & 0}\]
+וזאת משולשת עליונה עם
+$0$
+על האלכסון, לכן כפי שתיארנו מקודם
+$T^n = 0$.
+מאידך,
+$T^{n-1}v_n = v_1 \neq 0$
+לכן האינדקס של
+$T$
+שווה
+$n$.
+\end{solution}
+
+\newpage
+
+\section{מרחבים עצמיים מוכללים}
+
+\begin{definition}[בלוק ז'ורדן]
+עבור
+$\lambda \in \FF$
+ועבור
+$m \in \NN_+$
+נסמן
+\begin{align*}
+\text{.} J_m\pmat{\lambda} \coloneqq \pmat{
+\lambda & 1 & 0 & \cdots & 0 \\
+0 & \lambda & 1 & \ddots & \vdots \\
+\vdots & \ddots & \ddots & \ddots & 0 \\ 
+\vdots & \ddots & \ddots & \lambda & 1 \\
+0 & \cdots & \cdots & 0 & \lambda
+}
+\end{align*}
+נסמן גם
+$J_m \coloneqq J_m\prs{0}$.
+\end{definition}
+
+\begin{definition}[מטריצת ז'ורדן]
+מטריצה מהצורה
+\[\diag\prs{J_{m_1}\prs{\lambda_1}, \ldots, J_{m_k}\prs{\lambda_k}}\]
+נקראת
+\emph{מטריצת ז'ורדן}.
+\end{definition}
+
+\begin{definition}[בסיס ז'ורדן]
+בסיס
+$B$
+עבורו
+$\brs{T}_B$
+מטריצת ז'ורדן נקרא
+\emph{בסיס ז'ורדן עבור
+$T$}.
+\end{definition}
+
+\begin{theorem}[משפט ז'ורדן]
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל שדה סגור אלגברית
+$\FF$
+ויהי
+$T \in \End_\FF\prs{V}$.
+קיים בסיס
+ז'ורדן עבור
+$T$.
+
+בנוסף, $\brs{T}_B$ יחידה כמטריצת ז'ורדן מייצגת של $T$, עד כדי שינוי סדר הבלוקים.
+\end{theorem}
+
+\begin{remark}
+כדי לדבר על בסיסי ז'ורדן, נשים לב כי אם
+$B$
+בסיס ז'ורדן כנ"ל, נוכל לכתוב
+\begin{align*}
+B &= \prs{v_{1,1}, \ldots, v_{1,m_1}, v_{2,1}, \ldots, v_{2,m_2}, \ldots, v_{k,1}, \ldots, v_{k,m_k}}
+\\&= \prs{v_{1,1}, \ldots, v_{1,m_1}} * \prs{v_{2,1}, \ldots, v_{2,m_2}} * \ldots * \prs{v_{k,1}, \ldots, v_{k,m_k}}
+\end{align*}
+כאשר לכל
+$i \in \brs{k}$
+ולכל
+$j \in \brs{m_i}$
+מתקיים
+\begin{align*}
+\text{.} \prs{T-\lambda \id_V} \prs{v_{i,j}} = \fcases{
+v_{i,j-1} & j > 1 \\
+0 & j = 1
+}
+\end{align*}
+\end{remark}
+
+\begin{definition}[שרשרת ז'ורדן]
+יהי
+$V$
+מרחב וקטורי מעל
+$\FF$
+ויהי
+$T \in \End_\FF\prs{V}$.
+
+\emph{שרשרת ז'ורדן}
+של
+$T$
+עם ערך עצמי
+$\lambda \in \FF$
+היא קבוצה סדורה
+$C \coloneqq \prs{v_1, \ldots, v_m} \subseteq V$
+כך שמתקיים
+\begin{align*}
+\text{.} \prs{T - \lambda \id_V} \prs{v_j} = \fcases{
+v_{j-1} & j > 1 \\
+0 & j = 1
+}
+\end{align*}
+באופן שקול, מתקיים
+\begin{align*}
+C = \prs{\prs{T-\lambda \id_V}^{m-1} \prs{v_m} , \prs{T - \lambda \id_V}^{m-2} \prs{v_m}, \ldots, v_m}
+\end{align*}
+וגם
+$\prs{T - \lambda \id_V}^m \prs{v_m} = 0$.
+\end{definition}
+
+\begin{remark}
+משפט ז'ורדן אומר שאם
+$T$
+אופרטור על מרחב וקטורי סוף־מימדי מעל שדה סגור אלגברית
+$\FF$
+אז קיים בסיס של
+$B$
+המורכב משרשראות ז'ורדן של
+$T$.
+\end{remark}
+
+\begin{definition}[מרחב עצמי מוכלל]
+יהי
+$V$
+מרחב וקטורי מעל
+$\FF$
+ממימד
+$n \in \NN_+$,
+ויהי
+$T \in \End_\FF\prs{V}$.
+
+\emph{המרחב העצמי המוכלל של
+$T$
+עבור ערך
+$\lambda \in \FF$}
+הוא
+\begin{align*}
+\text{.} V'_{\lambda, T} &\coloneqq \set{v \in V}{\exists k \in \NN: \prs{T - \lambda}^k\prs{v} = 0}
+\end{align*}
+\end{definition}
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל שדה סגור אלגברית
+$\FF$,
+ויהי
+$T \in \End_\FF\prs{V}$.
+יהיו
+$\lambda, \mu \in \FF$.
+אז
+\begin{align*}
+\text{.} V'_{\lambda - \mu, T} = V'_{\lambda, T + \mu \id_V}
+\end{align*}
+\end{exercise}
+
+\begin{solution}
+יהי
+$v \in V'_{\lambda - \mu, T}$.
+לפי ההגדרה, קיים
+$k \in \NN_+$
+עבורו
+\[\text{.} \prs{T - \prs{\lambda - \mu} \id_V}^k \prs{v} = 0\]
+אז
+\begin{align*}
+0 &= \prs{T - \lambda \id_V + \mu \id_V}^k \prs{v}
+\\&= \prs{\prs{T + \mu \id_V} - \lambda \id_V}^k\prs{v}
+\end{align*}
+ושוב לפי ההגדרה נקבל כי
+\[\text{.} v \in V'_{\lambda, T + \mu \id_V}\]
+לכן
+\[\text{.} V'_{\lambda - \mu, T} \subseteq V'_{\lambda, T + \mu \id_V}\]
+
+עבור ההכלה השנייה, נסמן
+\begin{align*}
+\lambda' &\coloneqq \lambda - \mu \\
+\mu' &\coloneqq -\mu \\
+T' &\coloneqq T + \mu
+\end{align*}
+ואז
+$\lambda = \lambda' + \mu = \lambda' - \mu'$
+וגם
+$T = T' - \mu = T' + \mu'$
+ונקבל מהכיוון הראשון כי
+\begin{align*}
+\text{,} V'_{\lambda, T + \mu \id_V} = V'_{\lambda' - \mu', T'} \subseteq V'_{\lambda', T' + \mu' \id_V} = V'_{\lambda - \mu, T}
+\end{align*}
+כנדרש.
+\end{solution}
+
+\begin{exercise}\label{exercise:jordan-nilpotency-index}
+יהי
+$T$
+אופרטור על מרחב וקטורי
+$V$
+ממימד
+$n \in \NN_+$
+מעל שדה סגור אלגברית
+$\FF$,
+ויהי
+$\lambda \in \FF$
+ערך עצמי של
+$T$.
+אז
+\[\text{.} \prs{T - \lambda \id_V}^{r^T_a\prs{\lambda}} = \prs{T - \lambda \id_V}^n\]
+\end{exercise}
+
+\printbibliography
+\end{document}

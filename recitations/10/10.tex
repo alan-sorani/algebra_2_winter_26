@@ -1,0 +1,583 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{polynom}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+\usepackage{ytableau}
+
+\setlength{\parindent}{0pt}
+\newcommand{\Std}{\mrm{Std}}
+\DeclareMathOperator{\Sym}{Sym}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{0}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+\title{
+אלגברה ב' (01040168) - חורף 2026
+\\
+תרגול 10 - פולינומים אופייני ומינימלי, והדטרמיננטה
+\\
+אלן סורני
+\\
+הרשימות עודכנו לאחרונה בתאריך ה־%
+\today
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{פולינומים אופייני ומינימלי}
+
+\begin{definition}[פולינום אופייני]
+יהי $V$ מרחב וקטורי סוף־מימדי ויהי
+$T \in \End_{\FF}\prs{V}$
+עם ערכים עצמיים שונים
+$\lambda_1, \ldots, \lambda_k$
+כאשר הערך העצמי
+$\lambda_i$
+מריבוי אלגברי
+$r_i \coloneqq r_a\prs{\lambda_i}$
+וכאשר
+\[\text{.} \sum_{i \in \brs{k}} r_i = \dim\prs{V}\]
+
+\emph{הפולינום האופייני של
+$T$}
+הוא
+\begin{align*}
+\text{.} p_T\prs{x} \coloneqq \prod_{i \in \brs{k}} \prs{x - \lambda_i}^{r_i}
+\end{align*}
+\end{definition}
+
+\begin{definition}[פולינום מינימלי]
+יהי $V$ מרחב וקטורי סוף־מימדי ויהי
+$T \in \End_{\FF}\prs{V}$.
+\emph{הפולינום המינימלי של
+$T$}
+הוא הפולינום
+$p \in \FF\brs{x}$
+המתוקן מהמעלה המינימלית עבורו
+$p\prs{T} = 0$.
+נסמנו
+$m_i\prs{x}$.
+\end{definition}
+
+\begin{proposition}
+נניח כי
+$\FF$
+סגור אלגברית.
+אז ל־%
+$T$
+כנ"ל יש פולינום מינימלי, והחזקה של
+$\prs{x-\lambda_i}$
+בפולינום המינימלי היא אינדקס הנילפוטנטיות של
+$\left. T - \lambda_i \id_V \right|_{V'_{\lambda_i}}$,
+שהוא גודל בלוק ז'ורדן המקסימלי עם ערך עצמי
+$\lambda_i$
+בצורת ז'ורדן של
+$T$.
+\end{proposition}
+
+\begin{proposition}
+יהי
+$T$
+כנ"ל ויהי
+$f \in \FF\brs{x}$
+עבורו
+$f\prs{T} = 0$.
+אז
+$m_T \mid f$.
+כלומר, קיים פולינום
+$g \in \FF\brs{x}$
+עבורו
+$m_T\prs{x} = f\prs{x} g\prs{x}$.
+\end{proposition}
+
+\begin{corollary}[משפט קיילי־המילטון]
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל שדה
+$\FF$.
+לכל
+$T \in \End_\FF\prs{V}$
+מתקיים
+$p_T\prs{T} = 0$.
+\end{corollary}
+
+\begin{remark}
+עבור מטריצה ריבועית
+$A$,
+נגדיר
+\begin{align*}
+p_A &\coloneqq p_{L_A}, \\
+\text{,} m_A &\coloneqq m_{L_A}
+\end{align*}
+ובאותו אופן אם
+$f\prs{A} = 0$
+אז
+$m_A \mid f$,
+ומתקיים
+$p_A\prs{A} = 0$.
+\end{remark}
+
+\begin{exercise}
+יהי
+$\mbb{F} = \mbb{C}$
+ותהי
+$T \in \endo_{\mbb{F}}\prs{V}$.
+יהי
+$m \in \mbb{N}_+$
+עבורו
+$T^m = \id_V$.
+הראו כי
+$T$
+לכסין.
+\end{exercise}
+
+\begin{solution}
+כדי להראות ש־%
+$T$
+לכסין מספיק להראות שכל שורשי
+$m_T$
+הינם מריבוי
+$1$.
+מההנחה, מתקיים
+$m_T \mid \prs{x^m - 1}$
+ולכן די להראות שכל שורשי
+$x^m - 1$
+הם מריבוי
+$1$.
+אכן, יש לפולינום זה
+$m$
+שורשים שונים
+\[\text{.} \set{e^{\frac{2 \pi i k}{m}}}{k \in [m]} = \set{\mrm{cis}\prs{\frac{2 \pi k}{m}}}{k \in [m]}\]
+\end{solution}
+
+\begin{exercise}
+\begin{enumerate}
+\item
+תהיינה
+$A,B \in \Mat_6\prs{\mbb{C}}$
+המקיימות
+\begin{enumerate}[label = (\roman*)]
+\item $p_A = p_B$.
+\item $m_A = m_B$
+וזהו פולינום ממעלה
+$5$.
+\end{enumerate}
+הראו כי
+$A \sim B$.
+
+\item
+מצאו
+$A,B \in \Mat_6\prs{\mbb{C}}$
+שאינן דומות וכך שמתקיים
+\begin{enumerate}[label = (\roman*)]
+\item $p_A = p_B$.
+\item $m_A = m_B$
+וזהו פולינום ממעלה
+$4$.
+\end{enumerate}
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+\item נתון
+$\deg m_A = 5$,
+וזהו סכום גדלי הבלוקים המקסימליים של הערכים העצמיים השונים של
+$A$.
+לכן יש ערך עצמי
+$\lambda$
+מריבוי גיאומטרי
+$2$
+ובלוק מגודל
+$1$,
+וכל ערך עצמי אחר הוא מריבוי גיאומטרי
+$1$.
+אז
+\[\text{.} A \sim \pmat{\lambda & 0 & \cdots & & 0 \\ 0 & J_m\prs{\lambda_1} & \ddots & & \\ \vdots & \ddots & \ddots & & \vdots \\ & & & \ddots & 0 \\ 0 & & \cdots & 0 & J_{m_r}\prs{\lambda_r}}\]
+נתון
+$m_A = m_B$
+לכן באותו אופן
+\[B \sim \pmat{\lambda & 0 & \cdots & & 0 \\ 0 & J_m\prs{\lambda_1} & \ddots & & \\ \vdots & \ddots & \ddots & & \vdots \\ & & & \ddots & 0 \\ 0 & & \cdots & 0 & J_{m_r}\prs{\lambda_r}}\]
+ונסיק כי
+$A \sim B$.
+
+\item נסתכל על
+\begin{align*}
+A &\ceq \pmat{J_1\prs{0} & & \\  & J_1\prs{0} & \\ & & J_4\prs{0}} \\
+B &\ceq \pmat{J_2\prs{0} & \\ & J_4\prs{0}}
+\end{align*}
+ונקבל
+$m_A = m_B = x^4$
+אבל
+$A \not\sim B$
+כי יש להן צורת ז'ורדן שונה.
+\end{enumerate}
+\end{solution}
+
+\section{הדטרמיננטה}
+
+\begin{definition}[תמורה]
+תהי
+$X$
+קבוצה.
+\emph{תמורה על
+$X$}
+היא העתקה הפיכה
+$\sigma \colon X \to X$.
+\end{definition}
+
+\begin{notation}
+נסמן ב־%
+$\Sym\prs{n}$
+את התמורות על הקבוצה
+$\brs{n}$.
+\end{notation}
+
+\begin{definition}[סימן של תמורה]
+תהי
+$\sigma \in \Sym\prs{n}$.
+\emph{הסימן של
+$\sigma$}
+הוא
+\begin{align*}
+\mrm{sgn}\prs{\sigma} \coloneqq \prs{-1}^k
+\end{align*}
+כאשר
+\begin{align*}
+\text{.} k \coloneqq \abs{\set{\prs{i,j} \in \brs{n}^2}{\substack{i < j \\ \sigma\prs{i} > \sigma\prs{j}}}}
+\end{align*}
+\end{definition}
+
+\begin{definition}[הדטרמיננטה]
+תהי
+$A = \prs{a_{i,j}}_{i,j \in \brs{n}} \in \Mat_n\prs{\FF}$.
+\emph{הדטרמיננטה של
+$A$}
+היא
+\begin{align*}
+\text{.} \det\prs{A} \coloneqq \sum_{\sigma \in \Sym\prs{n}} \mrm{sgn}\prs{\sigma} \prod_{i \in \brs{k}} a_{i, \sigma\prs{i}}
+\end{align*}
+\end{definition}
+
+\begin{definition}[תבנית
+$k$%
+־לינארית]
+יהי
+$V$
+מרחב וקטורי מעל שדה
+$\FF$.
+תבנית
+$k$%
+־לינארית על
+$V$
+היא העתקה
+\begin{align*}
+f\prs{\cdot, \ldots, \cdot} \colon V^k &\to \FF
+\end{align*}
+שהינה לינארית בכל רכיב.
+\end{definition}
+
+\begin{definition}[תבנית מתחלפת]
+תהי
+$f$
+תבנית
+$k$%
+־לינארית על מרחב וקטורי
+$V$
+מעל
+$\FF$.
+נגיד כי
+$f$
+\emph{תבנית מתחלפת}
+אם לכל
+$\sigma \in \Sym\prs{k}$
+ולכל
+$v_1, \ldots, v_k \in V$
+מתקיים
+\[\text{.} f\prs{v_{\sigma\prs{1}}, \ldots, v_{\sigma\prs{k}}} = \mrm{sgn}\prs{\sigma} f\prs{v_1, \ldots, v_k}\]
+\end{definition}
+
+\begin{exercise}
+נוכל לחשוב על הדטרמיננטה כעל העתקה
+\[\prs{\FF^n}^n \to \FF\]
+שלוקחת וקטורים
+$v_1, \ldots, v_n \in \FF^n$
+לדטרמיננטה של
+\[\text{.} \pmat{\vert & & \vert \\ v_1 & \cdots & v_n \\ \vert & & \vert} \in \Mat_n\prs{\FF}\]
+
+\begin{enumerate}
+\item הראו שהעתקה זאת לינארית בכל רכיב.
+
+\item הראו שמתקיים
+\[\det\prs{v_1, \ldots, v_i, v_{i+1}, \ldots, v_n} = - \det\prs{v_1, \ldots, v_{i+1}, v_{i}, \ldots, v_n}\]
+והסבירו איך נובע ש־%
+$\det$
+תבנית
+$n$%
+־לינארית מתחלפת.
+היעזרו בכך שמתקיים
+\[\mrm{sgn}\prs{\sigma \tau} = \mrm{sgn}\prs{\sigma} \mrm{sgn}\prs{\tau}\]
+לכל זוג תמורות
+$\sigma, \tau \in \Sym\prs{k}$.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+\item
+יהיו
+$v_1, \ldots, v_{i-1}, v_{i+1} v_n, u,w \in \FF^n$
+ותהי
+$\alpha \in \FF$.
+נסמן
+$v_i = \alpha u + w$.
+נראה שמתקיים
+\begin{align*}
+\text{.} \det\prs{v_1, \ldots, v_{i-1}, \alpha u + w, v_{i+1}, \ldots, v_n} = \alpha \det{v_1, \ldots, v_{i-1}, u, v_{i+1}, \ldots, v_n} + \det{v_1, \ldots, v_{i-1}, w, v_{i+1}, \ldots, v_n}
+\end{align*}
+
+אכן,
+\begin{align*}
+\det\prs{v_1, \ldots, v_{i-1}, \alpha u + w, v_{i+1}, \ldots, v_n} &= \sum_{\sigma \in \Sym\prs{n}} \prod_{j \in \brs{k}} \mrm{sgn}\prs{\sigma} \prs{v_i}_{\sigma^{-1}\prs{i}}
+\\&=
+\sum_{\sigma \in \Sym\prs{n}} \mrm{sgn}\prs{\sigma} \prs{\prod_{\substack{j \in \brs{n} \\ \sigma\prs{j} \neq i}}  \prs{v_{\sigma\prs{j}}}_j} \cdot \prs{v_i}_{\sigma^{-1}\prs{i}}
+\\&=
+\sum_{\sigma \in \Sym\prs{n}} \mrm{sgn}\prs{\sigma} \prs{\prod_{\substack{j \in \brs{n} \\ \sigma\prs{j} \neq i}}  \prs{v_{\sigma\prs{j}}}_j} \cdot \prs{\alpha u_{\sigma^{-1}\prs{i}} + w_{\sigma^{-1}\prs{i}}}
+\\&=
+\alpha \sum_{\sigma \in \Sym\prs{n}} \mrm{sgn}\prs{\sigma} \prs{\prod_{\substack{j \in \brs{n} \\ \sigma\prs{j} \neq i}}  \prs{v_{\sigma\prs{j}}}_j} \cdot u_{\sigma^{-1}\prs{i}}
+\\&+ \sum_{\sigma \in \Sym\prs{n}} \mrm{sgn}\prs{\sigma} \prs{\prod_{\substack{j \in \brs{n} \\ \sigma\prs{j} \neq i}}  \prs{v_{\sigma\prs{j}}}_j} \cdot w_{\sigma^{-1}\prs{i}}
+\\&=
+\alpha \det\prs{v_1, \ldots, v_{i-1}, u, v_{i+1}, \ldots, v_n} + \det\prs{v_1, \ldots, v_{i-1}, w, v_{i+1}, \ldots, v_n}
+\end{align*}
+כאשר במעבר האחרון השתמשנו בכך ש־%
+$u,w$
+העמודות ה־%
+$i$
+במטריצות שעמודותיהן
+$\prs{v_1, \ldots, v_{i-1}, u, v_{i+1}, \ldots, v_n}$
+ו־%
+$\prs{v_1, \ldots, v_{i-1}, w, v_{i+1}, \ldots, v_n}$
+בהתאמה.
+
+\item תהי
+$\sigma \in \Sym\prs{k}$.
+בחישוב הדטרמיננטה באגף שמאל יופיע הגורם
+\[\text{,} \mrm{sgn}\prs{\sigma} \prod_{j \in \brs{k}} \prs{v_{\sigma\prs{j}}}_j\]
+ואילו בחישוב הדטרמיננטה של אגף ימין יופיע הגורם
+\[\text{.} \mrm{sgn}\prs{\sigma} \prs{\prod_{\substack{j \in \brs{k} \\ \sigma\prs{j} \notin \set{i, i+1}}} \prs{v_{\sigma\prs{j}}}_j}
+\cdot \prs{v_{i}}_{\sigma^{-1}\prs{i+1}} \cdot \prs{v_{i+1}}_{\sigma^{-1}\prs{i}}\]
+נסתכל על התמורה
+$\tau = \prs{i, i+1}$
+ועל התמורה
+$\tilde{\sigma} \coloneqq \sigma \circ \tau$.
+אז המכפלה שבגורם הראשון תופיע בגורם
+\begin{align*}
+\mrm{sgn}\prs{\tilde{\sigma}} \prod_{j \in \brs{k}} \prs{v_{\tilde{\sigma}}\prs{j}}_j
+\end{align*}
+בחישוב הדטרמיננטה שבאגף ימין.
+אבל,
+$\mrm{sgn}\prs{\tau} = -1$
+ולכן
+$\mrm{sgn}\prs{\sigma \circ \tau} = -\mrm{sgn}\prs{\sigma}$,
+ולכן
+\begin{align*}
+\mrm{sgn}\prs{\sigma} \prod_{j \in \brs{k}} \prs{v_{\sigma\prs{j}}}_j = - \mrm{sgn}\prs{\tilde{\sigma}} \prod_{j \in \brs{k}} \prs{v_{\tilde{\sigma}}\prs{j}}_j
+\end{align*}
+ונקבל כי
+\begin{align*}
+\det\prs{v_1, \ldots, v_n} &= \sum_{\sigma \in \Sym\prs{n}} \mrm{sgn}\prs{\sigma} \mrm{sgn}\prs{\sigma} \prod_{j \in \brs{k}} \prs{v_{\sigma\prs{j}}}_j
+\\&=
+- \sum_{\sigma \in \Sym\prs{n}} \mrm{sgn}\prs{\tilde{\sigma}} \prod_{j \in \brs{k}} \prs{v_{\tilde{\sigma}}\prs{j}}_j
+\\&=
+- \sum_{\sigma' \in \Sym\prs{n}} \mrm{sgn}\prs{\sigma'} \prod_{j \in \brs{k}} \prs{v_{\sigma'}\prs{j}}_j \\
+- \det\prs{v_1, \ldots, v_{i+1}, v_i, \ldots, v_n}
+\end{align*}
+כאשר השתמשנו בכך שהעתקה
+$\sigma \mapsto \tilde{\sigma}$
+הפיכה (היא ההופכית של עצמה).
+
+כיוון שכל תמורה ניתן לכתוב כהרכבת חילופים, וכיוון שהסימן הוא כפלי, נקבל מכך את הנדרש. אם
+$\sigma = \tau_1 \circ \ldots \tau_m$
+עבור חילופים
+$\tau_i$,
+נקבל כי הדטרמיננטה
+$\det\prs{v_{\sigma\prs{1}}, \ldots, v_{\sigma\prs{k}}}$
+היא
+$\prs{-1}^m$,
+וגם כי
+$\mrm{sgn}\prs{\sigma} = \prs{-1}^m$.
+\end{enumerate}
+\end{solution}
+
+\begin{proposition}
+$\det\prs{A} = \det\prs{A^t}$.
+\end{proposition}
+
+\begin{corollary}
+תהי
+$A \in \Mat_n\prs{\FF}$.
+הדטרמיננטה של המטריצה המתקבלת מ־%
+$A$
+לאחר
+\begin{enumerate}
+\item הוספת כפולה של שורה או עמודה לשורה או עמודה (בהתאם) אחרת היא
+$\det\prs{A}$.
+
+\item החלפת שורות או עמודות של
+$A$
+היא
+$\prs{-1} \det\prs{A}$.
+
+\item כפל של שורה או עמודה בסקלר
+$\alpha$
+היא
+$\alpha \det\prs{A}$.
+\end{enumerate}
+
+בנוסף,
+אם
+$B \in \Mat_n\prs{\FF}$,
+מתקיים
+$\det\prs{AB} = \det\prs{BA}$,
+ואם
+$A$
+הפיכה מתקיים
+$\det\prs{A^{-1}} = \det\prs{A}^{-1}$.
+\end{corollary}
+
+\begin{exercise}
+עבור פולינום מתוקן
+$p \in \mbb{F}\brs{x}$
+נכתוב
+\[p\prs{x} = \sum_{i = 0}^n c_i x^i\]
+כאשר
+$c_n = 1$,
+ונגדיר את
+\emph{המטריצה המלווה של
+$p$}
+על ידי
+\[\text{.} C\prs{p} \ceq \pmat{0 & 0 & \cdots & 0 & -c_0 \\ 1 & 0 & \cdots & 0 & -c_1 \\ 0 & 1 & \cdots & 0 & -c_2 \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0 & \dots & 1 & -c_{n-1}} \in M_n\prs{\mbb{F}}\]
+
+יהי
+$p \in \mbb{F}\brs{x}$
+ממעלה
+$n$.
+מצאו את הפולינום האופייני ואת הפולינום המינימלי של
+$C\prs{p}$.
+\end{exercise}
+
+\begin{solution}
+\begin{itemize}
+\item
+מתקיים
+\begin{align*}
+\text{.} p_{C\prs{p}} &= \det\prs{I - xC\prs{p}}
+= \det\pmat{x & 0 & \cdots & 0 & c_0 \\ -1 & x & \cdots & 0 & c_1 \\ 0 & -1 & \cdots & 0 & -c_2 \\ \vdots & \vdots & \ddots & \ddots & \vdots \\ 0 & 0 & \dots & -1 & x + c_{n-1}}
+\end{align*}
+ניעזר בכך שהטרמיננטה אינווריאנטית תחת הוספת כפולה של שורה לשורה אחרת.
+נוסיף את השורה האחרונה כפול
+$x$
+לזאת שלפניה. לאחר מכן נוסיף את השורה ה־%
+$n-1$
+כפול
+$x$
+לזאת שלפניה ונמשיך כך עד שנקבל מטריצה
+\begin{align*}
+\pmat{0 & 0 & \cdots & 0 & y \\ -1 & 0 & \cdots & 0 & * \\ 0 & -1 & \cdots & 0 & * \\ \vdots & \vdots & \ddots & \ddots & \vdots \\ 0 & 0 & \dots & -1 & *}
+\end{align*}
+כאשר
+\[\text{.} y = a_0 + x\prs{a_1 + x\prs{a_2 + x\prs{\ldots \prs{a_{n-2} + x\prs{a_{n-1} + x}} \ldots}}} = \sum_{i=0}^n c_i x^i = f\]
+אז
+\[\text{.} p_{C\prs{p}} = \prs{-1}^{n-1} \det \pmat{-1 & x & \cdots & 0 \\ 0 & -1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & - 1} = \prs{-1}^{n-1} \prs{-1}^{n-1} f = f\]
+\item
+יהי
+$g \in \mbb{F}_{n-1}\brs{x}$
+ונכתוב
+\[\text{.} g\prs{x} = \sum_{i = 0}^{n-1} b_i x^i\]
+אז
+\begin{align*}
+g\prs{C\prs{p}}\prs{e_1} &= \sum_{i = 0}^{n-1} b_i C\prs{p}^i e_1
+\\&= \sum_{i=0}^{n-1} b_i e_{1+i}
+\end{align*}
+וביטוי זה שונה מאפס כאשר
+$g \neq 0$
+כי אז יש
+$b_i \neq 0$
+עבור
+$i$
+כלשהו.
+
+לכן
+$\deg\prs{m_{C\prs{p}}} \geq n$
+ולכן
+$m_{C\prs{p}} = p_{C\prs{p}}$.
+\end{itemize}
+\end{solution}
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי ממימד $n \in\NN_+$ מעל שדה
+$\FF$
+ותהי
+$T \in \End_\FF\prs{V}$.
+נגדיר
+\begin{align*}
+\det\prs{T} \coloneqq \det\prs{\brs{T}_B}
+\end{align*}
+כאשר
+$B$
+בסיס של
+$V$.
+
+הראו שהדטרמיננטה הזאת מוגדרת היטב.
+\end{exercise}
+
+\begin{solution}
+יהיו
+$B,C$
+שני בסיסים של
+$V$.
+עלינו להראות כי
+$\det\prs{\brs{T}_B} = \det\prs{\brs{T}_C}$.
+ניזכר כי מתקיים
+\begin{align*}
+\text{.} \brs{T}_B = \prs{M^B_C}^{-1} \brs{T}_C M^B_C
+\end{align*}
+אז, מכפליות הדטרמיננטה,
+\begin{align*}
+\text{.} \det\prs{\brs{T}_B} &= \det\prs{\prs{M^B_C}^{-1} \brs{T}_C M^B_C}
+\\&= \det\prs{\prs{M^B_C}^{-1}} \det\prs{\brs{T}_C} \det\prs{M^B_C}
+\\&= \det\prs{\prs{M^B_C}}^{-1} \det\prs{\brs{T}_C} \det\prs{M^B_C}
+\\&= \det\prs{\brs{T}_C}
+\end{align*}
+כאשר בשוויון השלישי השתמשנו בכך שאם
+$A$
+הפיכה מתקיים
+$\det\prs{A^{-1}} = \det\prs{A}^{-1}$.
+\end{solution}
+
+\printbibliography
+\end{document}

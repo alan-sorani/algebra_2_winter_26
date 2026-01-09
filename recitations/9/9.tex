@@ -1,0 +1,683 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{polynom}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+\usepackage{ytableau}
+
+\setlength{\parindent}{0pt}
+\newcommand{\Std}{\mrm{Std}}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{0}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+\title{
+אלגברה ב' (01040168) - חורף 2026
+\\
+תרגול 9 - משפט ז'ורדן
+\\
+אלן סורני
+\\
+הרשימות עודכנו לאחרונה בתאריך ה־%
+\today
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{משפט ז'ורדן}
+
+כדי למצוא בסיס ז'ורדן, נרצה לכתוב את המרחב כסכום ישר של המרחבים העצמיים המוכללים של הערכים העצמיים השונים, ולהתייחס לצמצום של כל אחד מהם בנפרד.
+
+\begin{theorem}[המשפט הפרימרי עבור $\CC$]
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל
+$\CC$,
+יהי
+$T \in \End_\CC\prs{V}$
+ויהיו
+$\lambda_1, \ldots, \lambda_k$
+הערכים העצמיים השונים של
+$T$.
+אז
+\begin{align*}
+\text{.} V = V'_{\lambda_1, T} \oplus \ldots \oplus V'_{\lambda_k, T}
+\end{align*}
+\end{theorem}
+
+נזכיר כי ראינו בהרצאה, בהינתן אופרטור
+$T$,
+איך למצוא בסיס
+$B$
+עבורו
+$\brs{T}_B$
+משולשית עליונה. ניתן להיעזר בכך עבור מציאת פירוק פרימרי עבור
+$T$.
+
+\begin{exercise}
+תהי
+\begin{align*}
+A = \pmat{1 & 1 & 0 \\ 0 & 2 & 1 \\ 0 & 0 & 1} \in \Mat_3\prs{\CC}
+\end{align*}
+ותהי
+$L_A \in \End_\CC\prs{\CC^3}$
+העתקת הכפל משמאל ב־%
+$A$.
+
+כיתבו את הפירוק הפרימרי עבור
+$L_A$.
+\end{exercise}
+
+\begin{solution}
+כיוון ש־%
+$A$
+משולשית עליונה, הערכים העצמיים שלה הם איברי האלכסון, כלומר
+$1$
+ו־%
+$2$
+מריבויים אלגבריים
+$2$
+ו־%
+$1$
+בהתאמה.
+
+ניזכר כי
+$\dim V'_{\lambda, T} = r^T_a\prs{\lambda}$
+הריבוי האלגברי של
+$\lambda$,
+ולכן
+\begin{align*}
+\dim_\CC V'_{1, L_A} = r_a\prs{1} &= 2 \\
+\text{.} \dim_\CC V'_{2, L_A} = r_a\prs{2} = 1
+\end{align*}
+
+נמצא וקטורים עצמיים. עבור
+$\lambda = 1$:
+\begin{align*}
+A - I &= \pmat{0 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 0} \xrightarrow{R_2 \mapsto R_2 - R_1}
+\\&\hphantom{=l} \pmat{0 & 1 & 0 \\
+0 & 0 & 1 \\
+0 & 0 & 0}
+\end{align*}
+ולכן המרחב העצמי של
+$1$
+כערך עצמי של
+$A$
+(או של $L_A$) הוא
+$V_{1, L_A} = \Span\prs{e_3}$.
+
+עבור
+$\lambda = 2$:
+\begin{align*}
+A - 2I &= \pmat{-1 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & -1}\xrightarrow{R_3 \mapsto R_3 + R_2}
+\\&\hphantom{=l} \pmat{-1 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0}
+\end{align*}
+ולכן
+$V_{2, L_A} = \Span\prs{\pmat{1 \\ 1 \\ 0}}$.
+
+כעת
+$V_{2, L_A} \subseteq V'_{2, L_A}$
+ושניהם ממימד
+$1$,
+לכן
+\[\text{.} V'_{2, L_A} = V_{2, L_A} = \Span\prs{\pmat{1 \\ 1 \\ 0}}\]
+בנוגע לערך העצמי
+$1$,
+מתקיים
+\begin{align*}
+V'_{1, L_A} = \ker\prs{\prs{L_A - \id_{\CC^3}}^{r_a\prs{1}}} = \ker\prs{\prs{L_A - \id_{\CC^3}}^2}
+\end{align*}
+לפי תרגיל
+\ref{exercise:jordan-nilpotency-index}.
+מתקיים
+\begin{align*}
+\prs{A - I}^2 &= \pmat{0 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 0}^2
+\\&= \pmat{0 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 0} \xrightarrow{R_2 \mapsto R_2 - R_1}
+\\&\hphantom{=l} \pmat{0 & 1 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0}
+\end{align*}
+ולכן
+\begin{align*}
+V'_{1, L_A} &= \ker\prs{\prs{L - \id_{\CC^3}}^2}
+\\&= \ker\prs{L_{\prs{A - I}^2}}
+\\&= \Span\prs{e_1, e_2 - e_3}
+\end{align*}
+כנדרש.
+
+נקבל כי בסך הכל
+\begin{align*}
+\CC^3 = \Span\prs{\pmat{1 \\ 1 \\ 0}} \oplus \Span\prs{\pmat{1 \\ 0 \\ 0}, \pmat{0 \\ 1 \\ -1}}
+\end{align*}
+הינו הפירוק הפרימרי עבור
+$L_A$.
+\end{solution}
+
+\begin{remark}
+מצאנו בעצם בסיס ז'ורדן ל־%
+$L_A$.
+מתקיים
+\[\prs{A - I}\pmat{0 \\ 1 \\ -1} = \pmat{1 \\ 0 \\ 0}\]
+ולכן
+\begin{align*}
+\prs{\pmat{1 \\ 0 \\ 0}, \pmat{0 \\ 1 \\ -1}}
+\end{align*}
+שרשרת ז'ורדן של
+$L_A$
+עם ערך עצמי
+$1$.
+אז
+\[B = \prs{\pmat{1 \\ 1 \\ 0}} * \prs{\pmat{1 \\ 0 \\ 0}, \pmat{0 \\ 1 \\ -1}}\]
+בסיס של
+$\CC^3$
+המורכב משרשראות ז'ורדן של
+$T$,
+ולכן הינו בסיס ז'ורדן עבור
+$T$.
+מתקיים
+\[\text{.} \brs{T}_B = \pmat{2 & 0 \\ 0 & J_2\prs{1}}\]
+
+אבל, לא תמיד יתקבל כך בסיס ז'ורדן. יכולנו לכתוב
+\begin{align*}
+V'_{1,L_A} = \Span\prs{\pmat{1 \\ 0 \\ 0}, \pmat{0 \\ 2 \\ -2}}
+\end{align*}
+ואז
+$\prs{\pmat{1 \\ 0 \\ 0}, \pmat{0 \\ 2 \\ -2}}$
+אינה שרשרת ז'ורדן. במקרה זה יש לחשב את
+$\prs{A - I}\pmat{0 \\ 2 \\ -2} = \pmat{2 \\ 0 \\ 0}$
+כדי לקבל בסיס ז'ורדן
+\[\text{.} B_2 = \prs{\pmat{1 \\ 1 \\ 0}} * \prs{\pmat{2 \\ 0 \\ 0}, \pmat{0 \\ 2 \\ -2}}\]
+
+שימו לב שקיבלנו שני בסיסי ז'ורדן שונים. בסיסי ז'ורדן אינם יחידים, ויתכנו אינסוף בסיסי ז'ורדן שונים עבור אותו אופרטור. במקרה זה, שרשרת ז'ורדן שקיבלנו בבסיס השני היא כפולה בסקלר של זאת שבבסיס הראשון, אך במקרים כלליים גם זה לא חייב להתקיים.
+\end{remark}
+
+\subsection{מציאת צורת ז'ורדן}
+
+תהי
+$T \in \endo_{\mbb{F}}\prs{V}$
+עבור
+$\mbb{F}$
+סגור אלגברית.
+יהי
+$\lambda \in \mbb{F}$
+ערך עצמי של
+$T$
+ונסתכל על
+$\rest{T}{V_{\lambda}'}$.
+נתאר את צורת ז'ורדן של
+$\rest{T}{V_{\lambda}'}$
+באמצעות דיאגרמת יאנג, כאשר אורכי השורות הם גדלי הבלוקים.
+
+\begin{example}
+נסתכל על המטריצה
+\begin{align*}
+\text{.} A = \pmat{0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 & 0} = \pmat{J_3\prs{0} & 0 \\ 0 & J_2\prs{0}}
+\end{align*}
+מתאימה לה הדיאגרמה הבאה.
+
+\begin{center}
+\begin{english}
+\ydiagram{3,2}
+\end{english}
+\end{center}
+\end{example}
+
+נסמן ב־%
+$b_i$
+את אורך העמודה ה־%
+$i$.
+אז
+$b_1$
+הוא מספר הבלוקים שגודלם לפחות 1. זה בדיוק מספר הוקטורים העצמיים של הערך העצמי
+$0$
+כי כל בלוק מתאים לשרשרת
+\[\prs{\prs{T-\lambda \id_V}^{k-1}\prs{v} , \ldots, \prs{T-\lambda \id_V}\prs{v}, v}\]
+כאשר
+$\prs{T - \lambda \id_V}^k\prs{v} = 0$.
+
+באופן כללי אפשר לראות כי
+$b_i$
+הוא מספר הבלוקים מגודל לפחות
+$i$,
+וכי
+$\dim\ker\prs{T-\lambda \id_V}^i$
+הוא הסכום
+$b_1 + \ldots + b_i$.
+
+מספר הבלוקים מגודל
+$j$
+הוא מספר הבלוקים מגודל לכל הפחות
+$j$
+פחות מספר הבלוקים מגודל גדול מ־%
+$j$.
+מספר זה שווה
+$b_j - b_{j+1}$.
+אבל, מהמשוואה
+\[\dim\ker\prs{T-\lambda \id_V}^i = b_1 + \ldots + b_i\]
+נקבל
+\[b_i = \dim\ker\prs{T-\lambda \id_V}^i - \dim\ker\prs{T-\lambda \id_V}^{i-1}\]
+ולכן מספר הבלוקים מגודל
+$j$
+הוא
+\begin{align*}
+b_j - b_{j+1} &= \dim \ker\prs{T - \lambda \id_V}^j - \dim\ker\prs{T-\lambda \id_V}^{j-1} - \dim\ker\prs{T-\lambda \id_V}^{j+1} + \dim\ker\prs{T-\lambda \id_V}^{j}
+\\\text{.} \hphantom{b_j - b_{j+1}} &= 2\dim \ker\prs{T - \lambda \id_V}^j - \dim\ker\prs{T-\lambda \id_V}^{j+1} - \dim\ker\prs{T-\lambda \id_V}^{j-1}
+\end{align*}
+
+\begin{exercise}
+מצאו את צורת ז'ורדן של המטריצה
+\[\text{.} A = \pmat{1 & 1 & \cdots & 1 & 1 \\ 0 & 1 & \cdots & 1 & 1 \\ 0 & 0 & \ddots & \vdots & \vdots \\ \vdots & \vdots & \ddots & 1 & 1 \\ 0 & 0 & \cdots & 0 & 1} \in M_n\prs{\mbb{C}}\]
+\end{exercise}
+
+\begin{solution}
+המטריצה משולשת עליונה ולכן הערכים העצמיים של
+$A$
+על האלכסון. נקבל כי
+$1$
+הערך העצמי היחיד וכי הוא מריבוי
+$n$.
+הדרגה של
+$A - I$
+היא
+$n-1$
+ולכן הריבוי הגיאומטרי של
+$1$
+הוא
+$1$.
+לכן יש בלוק יחיד בצורת ז'ורדן, ונקבל כי צורת ז'ורדן היא
+$J\prs{A} = J_n\prs{1}$.
+\end{solution}
+
+\begin{exercise}
+חשבו את צורת ז'ורדן
+$J\prs{A}$
+של המטריצה הבאה,
+\[A = \pmat{1 & 0 & 0 & 0 & 0 \\ 1 & - 1 & 0 & 0 & -1 \\ 1 & -1 & 0 & 0 & -1 \\ 0 & 0 & 0 & 0 & -1 \\ -1 & 1 & 0 & 0 & 1}\]
+כאשר נתון כי
+$p_A\prs{x} = x^4\prs{x-1}$.
+\end{exercise}
+
+\begin{solution}
+לפי הפולינום האופייני,
+$1$
+ערך עצמי מריבוי אלגברי
+$1$.
+לכן גם הריבוי הגיאומטרי שלו הוא
+$1$
+ונקבל כי יש בלוק יחיד עם ערך עצמי
+$1$,
+ושגודלו
+$1$.
+
+כמו כן, אנו יודעים כי
+$0$
+ערך עצמי מריבוי אלגברי
+$4$.
+לכן יהיו בלוקי ז'ורדן עם ערך עצמי
+$0$
+שסכום הגדלים שלהם הוא
+$4$.
+ניתן לראות כי
+$r\prs{A} = 3$,
+ולכן יש
+$5 - r\prs{A} = 2$
+וקטורים עצמיים עם ערך עצמי
+$0$.
+אז, $J\prs{A}$
+היא אחת מהמטריצות הבאות.
+\begin{align*}
+J_1 &= \pmat{1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 & 0} = \mrm{diag}\prs{J_1\prs{1}, J_2\prs{0}, J_2\prs{0}} \\
+J_2 &= \pmat{1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 & 0} = \mrm{diag}\prs{J_1\prs{1}, J_1\prs{0}, J_3\prs{0}}
+\end{align*}
+
+כדי למצוא איזו מהמטריצות היא צורת ז'ורדן של
+$A$
+ניעזר בנוסחא לחישוב מספר הבלוקים מגודל נתון.
+מספר הבלוקים מגודל לפחות
+$2$
+הוא
+\[b_2 = \dim \ker\prs{{L_A}^2} - \dim \ker\prs{{L_A}^1}\]
+כאשר ניתן לראות כי
+\[\text{.} \dim \ker\prs{\prs{L_A}^1} = 2\]
+מתקיים
+\[A^2 = \pmat{1 & 0 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 & 0 \\ 1 & -1 & 0 & 0 & -1 \\ -1 & 0 & 0 & 0 & 0}\]
+ולכן
+\[\text{.} \dim \ker\prs{{L_A}^2} = 3\]
+אז
+$b_2 = 3 - 2 = 1$,
+כלומר יש בלוק אחד עם ערך עצמי
+$0$
+ומגודל לפחות
+$2$.
+זה לא המקרה עבור
+$J_2$
+ולכן נקבל כי צורת ז'ורדן של
+$A$
+היא
+$J_1$.
+\end{solution}
+
+\begin{exercise}
+\begin{enumerate}
+\item האם כל המטריצות
+$A \in M_5\prs{\mbb{C}}$
+המקיימות
+$A^4 \neq 0$
+וגם
+$A^5 = 0$
+הן דומות?
+
+\item האם כל המטריצות
+$A \in M_5\prs{\mbb{C}}$
+המקיימות
+$A^3 \neq 0$
+וגם
+$A^4 = 0$
+הן דומות?
+
+\item האם כל המטריצות
+$A \in M_5\prs{\mbb{C}}$
+המקיימות
+$A^2 \neq 0$
+וגם
+$A^3 = 0$
+הן דומות?
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+\item התנאי
+$A^4 \neq 0$
+וגם
+$A^5 = 0$
+אומר כי
+\[\text{,}\dim \ker\prs{L_A^5} - \dim \ker\prs{L_A^4} \geq 1\]
+כלומר יש בלוק מגודל לפחות
+$5$.
+לכן
+$A$
+דומה ל־%
+$J_5\prs{0}$,
+ולכן התשובה היא כן.
+\item התנאי
+$A^3 \neq 0$
+וגם
+$A^4 = 0$
+אומר כי
+\[\text{,} \dim \ker\prs{L_A^4} - \dim \ker\prs{L_A^3} \geq 1\]
+ולכן יש בלוק מגודל לפחות
+$4$.
+אבל,
+$A^4 = 0$
+ולכן לא יתכן שיש בלוק ז'ורדן מגודל
+$5$.
+לכן כל
+$A$
+כזאת דומה ל-%
+$\mrm{diag}\prs{J_4\prs{0}, J_1\prs{0}}$,
+והתשובה היא כן.
+\item התנאים
+$A^2 \neq 0, A^3 = 0$
+מראים כי
+\[\text{,} \dim \ker\prs{L_A^3} - \dim \ker\prs{L_A^2} \geq 1\]
+ולכן יש בלוק מגודל לפחות
+$3$.
+אבל,
+\begin{align*}
+\mrm{diag}\prs{J_3\prs{0}, J_2\prs{0}} \\
+\mrm{diag}\prs{J_3\prs{0}, J_1\prs{0}, J_1\prs{0}}
+\end{align*}
+שתיהן עומדות בתנאים, ואינן דומות.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+מצאו צורת ובסיס ז'ורדן עבור
+\begin{align*}
+D \colon \mbb{C}_n\brs{x} &\to \mbb{C}_n\brs{x} \\
+\text{.} \hphantom{lalalala} p &\mapsto p'
+\end{align*}
+\end{exercise}
+
+\begin{solution}
+נשים לב כי
+\[\text{.} \ker\prs{D^i} = \spn\prs{1, x, \ldots, x^{i-1}} = \mbb{C}_{i-1}\brs{x}\]
+לכן נסתכל על
+$k = n+1$.
+נרצה להשלים בסיס של
+$\ker\prs{D^{n}}$
+לבסיס של
+$\ker\prs{D^{n+1}}$.
+מתקיים
+\[\ker\prs{D^n} = \spn\set{1, x, x^2, \ldots, x^{n-1}}\]
+לכן נשלים את הבסיס
+$\prs{1, \ldots, x^{n-1}}$
+לבסיס
+$\prs{1, \ldots, x^{n-1}, x^n}$.
+נקבל בסיס ז'ורדן
+\[\text{.} \prs{D^n\prs{x^n}, D^{n-1}\prs{x^n}, \ldots, D\prs{x^n}, x^n} = \prs{n!, n! x, \frac{n!}{2!} x^2, \ldots, frac{n!}{\prs{n-1}!} x^{n-1}, x^n}\]
+\end{solution}
+
+\begin{exercise}
+נתונה המטריצה הנילפוטנטית
+\[\text{.} A = \pmat{21 & -7 & 8 \\ 60 & -20 & 23 \\ -3 & 1 & -1}\]
+מצאו צורת ובסיס ז'ורדן עבור
+$A$.
+\end{exercise}
+
+\begin{solution}
+חישוב ישיר מראה כי
+$A^2 \neq 0$.
+$A$
+נילפוטנטית ולכן
+$A^3 = 0$
+ונקבל
+$\dim \ker \prs{L_A^3} = 3 = r_a\prs{0}$.
+אז אורך השרשרת המקסימלית הוא
+$3$
+ונקבל כי
+$J\prs{A} = J_3\prs{0}$.
+ניתן לראות שהעמודה הראשונה והשנייה של
+$A$
+תלויות לינארית, ושהן בלתי תלויות בשלישית, לכן
+$r\prs{A} = 2$.
+אז הריבוי הגיאומטרי של
+$0$
+הוא
+$1$
+(יכולנו לדעת את זה גם לפי מספר הבלוקים) ונקבל כי
+\[\text{.} \ker\prs{L_A} = \spn\set{e_1 + 3 e_2}\]
+כעת נחשב את
+$\ker\prs{L_A^2}$.
+מתקיים
+\[A^2 = \pmat{-3 & 1 & -1 \\ -9 & 3 & - 3 \\ 0 & 0 & 0}\]
+לכן
+$\ker\prs{L_A^2}$,
+ששווה למרחב הפתרונות של המערכת ההומוגונית, הוא
+\[\text{.} \ker\prs{A^2} = \spn\set{e_1 + 3 e_2, e_2 + e_3}\]
+
+\begin{remark}
+קיבלנו בינתיים גרעין דו־מימדי עבור
+$L_A^2$,
+מה שמסתדר עם צורת ז'ורדן של
+$A$
+שגילינו.
+\end{remark}
+
+כעת, נשלים את הבסיס של
+$\ker\prs{L_A^2}$
+לבסיס של
+$\ker\prs{L_A^3}$,
+למשל על ידי הוספת
+$e_1$:
+\[\text{.} \ker\prs{L_A^3} = \spn\set{e_1 + 3 e_2, e_2 + e_3, e_1}\]
+אז שרשרת ז'ורדן תהיה
+\[\text{.} \prs{A^2 e_1, A e_1, e_1} = \pmat{\pmat{-3 \\ -9 \\ 0}, \pmat{21 \\ 60 \\ -3}, e_1}\]
+
+\begin{remark}
+\emph{אין קשר}
+בין בסיס ז'ורדן לבין הבסיסים שמצאנו עבור הגרעינים השונים תוך כדי מציאת הוקטורים בראש השרשרת.
+\end{remark}
+\end{solution}
+
+\begin{exercise}
+הראו כי
+\begin{align*}
+\text{.} J_n\prs{\lambda}^r = \pmat{\lambda^r & \pmat{r \\ 1} \lambda^{r-1} & \pmat{r \\ 2} \lambda^{r-2} & \cdots & \\ & \lambda^r & \ddots & & \vdots \\ & & \ddots & \ddots & \pmat{r\\2}\lambda^{r-2} \\ & & & \lambda^r & \pmat{r \\ 1} \lambda^{r-1} \\ & & & & \lambda^r}
+\end{align*}
+\end{exercise}
+
+\begin{solution}
+מתקיים
+\begin{align*}
+J_n\prs{\lambda}^r &= \prs{J_n\prs{0} + \lambda I}^r
+\end{align*}
+כאשר
+$J_n\prs{0}, \lambda I$
+מתחלפות כי
+$\lambda I$
+סקלרית.
+נקבל מהבינום של ניוטון כי
+\begin{align*}
+J_n\prs{\lambda}^r = \lambda^r I + \binom{r}{1} \lambda^{r-1} J_n\prs{0} + \binom{r}{2} \lambda^{r-2} J_n\prs{0}^2 + \ldots
+\end{align*}
+כאשר
+$J_n\prs{0}^k$
+היא מטריצה עם אפסים פרט ל־%
+$1$
+באלכסון ה־%
+$k$
+מעל האלכסון הראשי.
+לכן
+\begin{align*}
+\text{,} J_n\prs{\lambda}^r = \pmat{\lambda^r & \pmat{r \\ 1} \lambda^{r-1} & \pmat{r \\ 2} \lambda^{r-2} & \cdots & \\ & \lambda^r & \ddots & & \vdots \\ & & \ddots & \ddots & \pmat{r\\2}\lambda^{r-2} \\ & & & \lambda^r & \pmat{r \\ 1} \lambda^{r-1} \\ & & & & \lambda^r}
+\end{align*}
+כנדרש.
+\end{solution}
+
+\begin{exercise}
+תהי
+\[\text{.} A \ceq \pmat{2 & 4 & 0 \\ -1 & -2 & 0 \\ 8 & 7 & 9} \in \Mat_3\prs{\mbb{C}}\]
+חשבו את
+$A^{2025}$.
+\end{exercise}
+
+\begin{solution}
+נסמן
+$V = \mbb{C}^3$
+ונמצא בסיס ז'ורדן
+$B$
+עבור
+$A$.
+אז נקבל
+$P \in \Mat_3\prs{\mbb{C}}$
+עבורה
+$J \ceq P A P^{-1}$
+מטריצת ז'ורדן, ואז
+\begin{align*}
+A^{2025} &= \prs{P^{-1}JP}^{2025}
+= P^{-1}J^{2025}P
+\end{align*}
+כאשר מהחישוב הנ"ל נדע לחשב את
+$J^{2025}$.
+
+\begin{description}
+\item[ערכים עצמיים:]
+ניתן לראות כי
+$9$
+ערך עצמי של
+$A$
+כי
+$A e_3 = 9 e_3$.
+נסמן ב־%
+$\lambda_1, \lambda_2$
+את הערכים העצמיים הנוספים ונקבל
+\begin{align*}
+\lambda_1 + \lambda_2 + 9 = \tr\prs{A} = 9 \\
+9 \lambda_1 \lambda_2 = \det\prs{A} = 9\prs{-4+4} = 0
+\end{align*}
+לכן
+$\lambda_1 = \lambda_2 = 0$.
+
+נקבל כי
+$9$
+ערך עצמי מריבוי אלגברי
+$1$
+וכי
+$0$
+ערך עצמי מריבוי אלגברי
+$2$.
+בפרט,
+$\prs{e_3}$
+שרשרת ז'ורדן עבור הערך העצמי
+$9$.
+\item[שרשרת ז'ורדן עבור
+$\lambda = 0$:]
+ניתן לראות כי
+$r\prs{A} = 2$
+ולכן
+$\dim \ker \prs{T_A} = 1$.
+נשים לב כי
+\[2 e_1 - e_2 - e_3 \in \ker\prs{L_A}\]
+ולכן
+\[\text{.} \ker\prs{T_A} = \spn\prs{2 e_1 - e_2 - e_3}\]
+מתקיים
+\[A^2 = \pmat{0 & 0 & 0 \\ 0 & 0 & 0 \\ 81 & 81 & 81}\]
+לכן נוכל להשלים את
+$\prs{2 e_1 - e_2 - e_3}$
+לבסיס
+\[\prs{2 e_1 - e_2 - e_3, e_1 - e_3}\]
+של
+$\ker\prs{T_A^2}$.
+מתקיים
+\[A \prs{e_1 - e_3} = 2e_1 - e_2 - e_3\]
+לכן נקבל שרשרת ז'ורדן
+\[\text{.} \prs{A\prs{e_1 - e_3}, e_1 - e_3} = \prs{2e_1 - e_2 - e_3, e_1 - e_3}\]
+
+\item[מסקנה:]
+קיבלנו
+\[B \ceq \prs{2e_1 - e_2 - e_3, e_1 - e_3, e_3}\]
+עבורו
+\[\brs{T_A}_B = J \ceq \pmat{0 & 1 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 9}\]
+ולכן
+\begin{align*}
+\text{.} A &= \brs{T_A}_E
+= \brs{\id_V}^{B}_E \brs{T_A}_B \brs{\id_V}^E_B
+\end{align*}
+נסמן
+\[P \ceq \brs{\id_V}^B_E = \pmat{2 & 1 & 0 \\ -1 & 0 & 0 \\ -1 & -1 & 1}\]
+שעמודותיה הן וקטורי הבסיס
+$B$,
+ונקבל
+\[\text{.} A = P J P^{-1}\]
+אז
+\begin{align*}
+A^{2025} &= P J^{2025} P^{-1}
+\\&= \pmat{2 & 1 & 0 \\ -1 & 0 & 0 \\ -1 & -1 & 1} \pmat{0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 9^{2025}} \pmat{0 & -1 & 0 \\ 1 & 2 & 0 \\ 1 & 1 & 1}
+\\ \text{.} \hphantom{A^{2025}} &= \pmat{0 & 0 & 0 \\ 0 & 0 & 0 \\ 9^{2025} & 9^{2025} & 9^{2025}}
+\end{align*}
+\end{description}
+\end{solution}
+
+\printbibliography
+\end{document}

@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Debian) (preloaded format=xelatex 2025.3.10)  17 DEC 2025 11:49
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Debian) (preloaded format=xelatex 2025.3.10)  2 JAN 2026 00:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**7.tex
-(./7.tex
+**9.tex
+(./9.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-01-16>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -1770,13 +1770,13 @@ Package: blx-case-expl3 2022/07/12 v3.18b expl3 case changing code for biblatex
 LaTeX Warning: Unused global option(s):
     [openany].
 
-(./7.aux
+(./9.aux
 Package polyglossia Info: Option: Hebrew, calendar=gregorian.
 Package polyglossia Info: Option: Hebrew, calendar=gregorian.
 Package polyglossia Info: Option: Hebrew, calendar=gregorian.
 Package polyglossia Info: Option: Hebrew, calendar=gregorian.
 )
-\openout1 = `7.aux'.
+\openout1 = `9.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
 LaTeX Font Info:    ... okay on input line 42.
@@ -1842,9 +1842,9 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring ON on input line 42.
-(./7.out) (./7.out)
+(./9.out) (./9.out)
 \@outlinefile=\write6
-\openout6 = `7.out'.
+\openout6 = `9.out'.
 
 
 Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
@@ -1966,11 +1966,11 @@ Package biblatex Info: XeTeX detected.
 (biblatex)             Assuming input encoding 'utf8'.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
-\openout5 = `7.bcf'.
+\openout5 = `9.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file '7.bbl' not found.
-No file 7.bbl.
+Package biblatex Info: ... file '9.bbl' not found.
+No file 9.bbl.
 Package biblatex Info: Reference section=0 on input line 42.
 Package biblatex Info: Reference segment=0 on input line 42.
 Package polyglossia Info: Option: Hebrew, calendar=gregorian.
@@ -1999,8 +1999,11 @@ LaTeX Warning: No \author given.
 
 Package hyperref Info: bookmark level for unknown exercise defaults to 0 on inp
 ut line 46.
+[1
+
+]
 \tf@thm=\write7
-\openout7 = `7.thm'.
+\openout7 = `9.thm'.
 
 The property list \polyglossia@langsetup contains the pairs (without outer
 braces):
@@ -2091,27 +2094,25 @@ The property list \__xpg_alias contains the pairs (without outer braces):
 >  {newzealand/target}  =>  {english}
 >  {newzealand/variant}  =>  {newzealand}
 >  {newzealand/options}  =>  {variant=newzealand}.
-[1
-
-] (./7.aux
+ [2] (./9.aux
 Package polyglossia Info: Option: Hebrew, calendar=gregorian.
 Package polyglossia Info: Option: Hebrew, calendar=gregorian.
 Package polyglossia Info: Option: Hebrew, calendar=gregorian.
 Package polyglossia Info: Option: Hebrew, calendar=gregorian.
 )
-Package rerunfilecheck Info: File `7.out' has not changed.
+Package rerunfilecheck Info: File `9.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to '7.run.xml'.
-\openout1 = `7.run.xml'.
+Package logreq Info: Writing requests to '9.run.xml'.
+\openout1 = `9.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43459 strings out of 476775
- 923265 string characters out of 5808212
- 1910050 words of memory out of 5000000
- 62863 multiletter control sequences out of 15000+600000
- 520172 words of font info for 89 fonts, out of 8000000 for 9000
+ 43463 strings out of 476775
+ 923378 string characters out of 5808212
+ 1912039 words of memory out of 5000000
+ 62864 multiletter control sequences out of 15000+600000
+ 520180 words of font info for 90 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 115i,11n,118p,1273b,880s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 115i,14n,118p,1273b,880s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on 7.pdf (1 page).
+Output written on 9.pdf (2 pages).

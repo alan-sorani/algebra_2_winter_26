@@ -1,0 +1,178 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{1}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+%%%%%%%%%%
+% Title  %
+%%%%%%%%%%
+\title{
+אלגברה ב' - גיליון תרגילי בית 9 \\
+משפט ז'ורדן
+\\
+\vspace{1cm}
+\large{תאריך הגשה: 8.1.2026}
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{exercise}%1
+\begin{enumerate}
+\item מצאו את צורת ז'ורדן של
+$J_n\prs{\lambda}^{-1}$
+עבור
+$\lambda \in \mbb{C}\setminus\set{0}$
+ועבור
+$n \in \mbb{N}_+$.
+
+\item תהי
+$A \in M_n\prs{\mbb{C}}$
+הפיכה.
+מצאו את צורת ז'ורדן של
+$A^{-1}$.
+
+\item מצאו תנאי הכרחי ומספיק על צורת ז'ורדן של
+$A \in M_n\prs{\mbb{C}}$
+כך שיתקיים
+$A \sim A^{-1}$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise} %2
+בשמורת הטבע ליד הטכניון סין יש היום 2 דרקונים, 600 פנדות ו־20000 במבוקים.
+
+כל שנה הדרקונים, הפנדות והבמבוקים מתרבים ומספרם גדל פי 2.
+
+לאחר מכן, כל פנדה אוכלת במבוק אחד וכל דרקון אוכל שתי פנדות.
+
+אז, רשות הטבע והגנים הסינית משחררת לטבע 4 דרקונים ו־10 פנדות, אם עדיין יש פנדות בשמורה.
+
+לבסוף, אם לא נשאר במבוק בסוף השנה, כל הפנדות מתות.
+
+\begin{enumerate}
+\item
+מיצאו מטריצה
+$A \in \Mat_4\prs{\mbb{C}}$
+וערכים
+$d,p,b$
+עבורם מספרי הדרקונים, הפנדות והבמבוקים בסוף השנה ה־%
+$t$
+הם מקדמים בוקטור
+$A^t \pmat{1 \\ d \\ p \\ b}$
+לכל
+$t \in \mbb{N}$.
+
+\item נשיא הטכניון מתכנן לבקר בסין עוד 30 שנה. האם יהיו פנדות בשמורה בזמן הביקור שלו?
+
+\item הטכניון החליט להעביר את הלימודים מסין למאדים עוד 230 שנה. האם ישארו עד אז פנדות בשמורת הטבע?
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+תהיינה
+\begin{align*}
+A_1 &\coloneqq \pmat{1 & -2 & 2 \\ 2 & -1 & 2 \\ 2 & -2 & 3} \\
+A_2 &\coloneqq \pmat{1 & 2 & 2 \\ 2 & 1 & 2 \\ 2 & 2 & 3} \\
+A_3 &\coloneqq \pmat{1 & 2 & -2 \\ 2 & 1 & -2 \\ 2 & 2 & -3}
+\end{align*}
+מטריצות ב־%
+$\Mat_3\prs{\RR}$,
+ויהי
+$v_0 = \pmat{3 \\ 4 \\ 5}$.
+
+נגיד כי וקטור
+$v = \pmat{a \\ b \\ c} \in \RR^3$
+הוא
+\emph{שלשה פיתגורית}
+אם
+\[\text{,} f\prs{v} \coloneqq a^2 + b^2 - c^2 = 0\]
+וכי וקטור כזה הוא
+\emph{שלשה פיתגורית פרימיטיבית}
+אם בנוסף המחלק המשותף המקסימלי של
+$a,b,c$
+שווה
+$1$.
+
+\begin{enumerate}
+\item מתקיים כי אם
+$v \in \RR^3$
+שלשה פיתגורית, גם
+$A_i v$
+שלשה פיתגורית, וגם כי אם
+$v \in \RR^3$
+פרימיטיבית, גם
+$A_i v$
+פרימיטיבית.
+הראו זאת עבור
+$i = 1$.
+
+\textbf{רמז:}
+עבור פרימיטיביות, היעזרו במטריצה
+$A_1^{-1}$.
+
+\item הסיקו כי
+$A_1^k v_0$
+שלשה פיתגורית פרימיטיבית לכל
+$k \in \NN$.
+
+\item ידוע כי $1$ ערך עצמי של
+$A_1$
+ושל
+$A_3$,
+וכי
+$-1$
+ערך עצמי של
+$A_2$.
+
+הראו כי
+$A_2, A_3$
+לכסינות, ומיצאו מטריצה
+$P \in \Mat_3\prs{\RR}$
+הפיכה, ומטריצת ז'ורדדן
+$J \in \Mat_3\prs{\RR}$
+כך שמתקיים
+$P A_1 P = J$.
+
+\item נסמן
+$A \coloneqq A_1$.
+חשבו את
+$A^k$
+לכל
+$k \in \mbb{N}$,
+ומצאו שלשה פיתגורית פרימיטיבית מהצורה
+$\pmat{a \\ 2025 \\ c}$.
+האם יש בקבוצה
+$\set{A^k v_0}{k \in \NN}$
+וקטור מהצורה
+$\pmat{a \\ 2026 \\ c}$?
+
+\end{enumerate}
+\end{exercise}
+
+\end{document}

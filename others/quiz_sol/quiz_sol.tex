@@ -1,0 +1,668 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{0}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+%%%%%%%%%%
+% Title  %
+%%%%%%%%%%
+\title{
+אלגברה ב' - הצעה לפתרון בוחן אמצע
+\\
+סמסטר חורף 2025-2026
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{exercise}
+\begin{enumerate}[label = (\alph*)]
+\item
+הראו שהנוסחה
+\begin{align*}
+\trs{\pmat{x_1 \\ x_2 \\ x_3}, \pmat{y_1 \\ y_2 \\ y_3}}
+\coloneqq
+x_1 \overline{y_1} +
+\prs{x_1 + x_2}\overline{\prs{y_1 + y_2}} +
+x_3 \overline{y_3}
+\end{align*}
+נותנת מכפלה פנימית על המרחב הוקטורי המרוכב
+$\CC^3$.
+
+\item
+מיצאו בסיס אורתונורמלי למרחב המכפלה הפנימית שמתקבל.
+
+\item
+נתון האופרטור
+$T \colon \CC^3 \to \CC^3$
+המוגדר על ידי
+\begin{align*}
+\text{.} T\pmat{x_1 \\ x_2 \\ x_3} = \pmat{x_1 \\ 2 x_2 \\ 3 x_3}
+\end{align*}
+הראו ש־%
+$T$
+איננו אופרטור נורמלי (ביחס למכפלה הפנימית מהסעיפים הקודמים).
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}[label = (\alph*)]
+\item
+נראה כי ההעתקה הנתונה הינה מכפלה פנימית על ידי כך שנראה שהיא בי־סמי־לינארית, הרמיטית, וחיובית.
+
+\begin{description}
+\item[חיובית:]
+חיוביות אומרת כי
+$\trs{x,x} \geq 0$
+לכל
+$x \in \CC^3$
+וגם כי
+$x = 0$
+אם
+$\trs{x, x} = 0$.
+
+יהי
+$x = \pmat{x_1, x_2, x_3} \in \CC^3$.
+מתקיים
+\begin{align*}
+\trs{x, x} &= x_1 \overline{x_1} + \prs{x_1 + x_2} \overline{\prs{x_1 + x_2}} + x_3 \overline{x_3}
+\\&=
+\abs{x_1}^2 + \abs{x_1 + x_2}^2 + \abs{x_3}^2
+\end{align*}
+וכיוון שמתקיים
+$\abs{z} \geq 0$
+לכל
+$z \in \CC$
+נקבל כי
+$\trs{x,x} \geq 0$.
+
+אם
+$\trs{x, x} = 0$,
+נקבל כי
+\[\text{,} \abs{x_1}^2 + \abs{x_1 + x_2}^2 + \abs{x_3}^2 = 0\]
+וכיוון שכל אחד מהגורמים הינו אי־שלילי, נקבל כי
+\begin{align*}
+\abs{x_1}^2 &= 0 \\
+\abs{x_1 + x_2}^2 &= 0 \\
+\abs{x_3}^2 &= 0
+\end{align*}
+ואז גם
+\begin{align*}
+x_1 &= 0 \\
+x_1 + x_2 &= 0 \\
+\text{.} x_3 &= 0
+\end{align*}
+מהצבה של
+$x_1 = 0$
+במשוואה השנייה נקבל כי
+$x_2 = 0$,
+ולכן
+$x = 0$.
+
+\item[הרמיטיות:]
+הרמיטיות משמעותה שלכל
+$x,y \in \CC^3$
+מתקיים
+$\trs{y,x} = \overline{\trs{x,y}}$.
+
+יהיו
+$x,y \in \CC^3$.
+מתקיים
+\begin{align*}
+\trs{y,x} &= \overline{\overline{\trs{y,x}}}
+\\&=
+\overline{\overline{y_1 \overline{x_1} + \prs{y_1 + y_2} \overline{x_1 + x_2} + y_3 \overline{x_3}}}
+\\&=
+\overline{\overline{y_1} \overline{\overline{x_1}} + \overline{\prs{y_1 + y_2}} \overline{\overline{\prs{x_1 + x_2}}} + \overline{y_3} \overline{\overline{x_3}}}
+\\&=
+\overline{ \overline{y_1} x_1 + \overline{ \prs{y_1 + y_2} } \prs{x_1 + x_2} + \overline{y_3} x_3}
+\\&= \overline{\trs{x,y}}
+\end{align*}
+כאשר בשוויון השני השתמשנו בכך שלכל
+$z_1, z_2 \in \CC$
+מתקיים
+$\overline{z_1 + z_2} = \overline{z_1} + \overline{z_2}$
+ובשלישי בכך שלכל
+$z \in \CC$
+מתקיים
+$\overline{\overline{z}} = z$.
+
+\item[בי־סמי־לינאריות]:
+בי־סמי־לינאריות משמעותה לינאריות ברכיב הראשון וסמי־לינאריות ברכיב השני.
+
+נראה ראשית לינאריות ברכיב הראשון. יהי
+$\alpha \in \CC$
+ויהיו
+$x,y,z \in \CC^3$.
+מתקיים
+\begin{align*}
+\trs{\alpha x + z, y} &= \prs{\alpha x_1 + z_1} \overline{y_1} + \prs{\alpha x_1 + z_1 + \alpha x_2 + z_2} \overline{\prs{y_1 + y_2}} + \prs{\alpha x_3 + z_3} \overline{y_3}
+\\&= \alpha x_1 \overline{y_1} + z_1 \overline{y_1} + \alpha \prs{x_1 + x_2} \overline{\prs{y_1 + y_2}} + \prs{z_1 + z_2}\overline{\prs{y_1 + y_2}} + \alpha x_3 \overline{y_3} + z_3 \overline{y_3}
+\\&=
+\alpha \prs{x_1 \overline{y_1} + \prs{x_1 + x_2} \overline{\prs{y_1 + y_2}} + x_3 \overline{y_3}} + \prs{z_1 \overline{y_1} + \prs{z_1 + z_2} \overline{\prs{y_1 + y_2}} + z_3 \overline{y_3}}
+\\&= \alpha \trs{x, y} + \trs{z, y}
+\end{align*}
+כנדרש.
+
+נראה כעת סמי־לינאריות ברכיב השני. יהי
+$\alpha \in \CC$
+ויהיו
+$x,y,z \in \CC$.
+יש להראות כי
+\begin{align*}
+\text{.} \trs{x, \alpha y + z} = \bar{\alpha} \trs{x, y} + \trs{x,z}
+\end{align*}
+אכן,
+\begin{align*}
+\trs{x, \alpha y + z} &= \overline{\trs{\alpha y + z, x}}
+\\&= \overline{\alpha \trs{y, x} + \trs{z,x}}
+\\&= \overline{\alpha} \overline{\trs{y,x}} + \overline{\trs{z,x}}
+\\&= \overline{\alpha} \trs{x,y} + \trs{x,z}
+\end{align*}
+כאשר בשוויון הראשון והאחרון השתמשנו בהרמיטיות של
+$\trs{\cdot, \cdot}$
+(שהוכחנו קודם), וכאשר בשוויון השני השתמשנו בלינאריות ברכיב הראשון (שגם הוכחנו קודם).
+\end{description}
+
+\item
+
+יהי
+$\St = \prs{e_1, e_2, e_3}$
+הבסיס הסטנדרטי של
+$\CC^3$.
+נבצע את תהליך גרם־שמידט על
+$\St$,
+שייתן לנו בסיס
+$B$
+אורתונורמלי.
+
+נסמן בכל שלב ב־%
+$w_i$
+את הוקטור המתקבל מ־%
+$e_i$
+לאחר חיסור ההטלה על המרחב הנפרש על ידי הוקטורים שכבר בנינו, וב־%
+$v_i$
+את הנרמול שלו, שיהיה הוקטור ה־%
+$i$
+בבסיס
+$B$.
+
+תחילה, יש לנרמל את הוקטור הראשון,
+$v_1 = \frac{e_1}{\norm{e_1}}$.
+מתקיים
+\[\norm{e_1}^2 = \trs{e_1, e_1} = 1 \cdot 1 + \prs{1 + 0}\prs{1+0} + 0 \cdot 0 = 2\]
+ולכן
+$\norm{e_1} = \sqrt{2}$
+ונקבל כי
+$v_1 = \frac{1}{\sqrt{2}} e_1$.
+
+כעת,
+\begin{align*}
+w_2 &= e_2 - \trs{e_2, v_1} v_1
+\\&= e_2 - \trs{e_2, \frac{1}{\sqrt{2}} e_1} \cdot \frac{1}{\sqrt{2}} e_1
+\\&= e_2 - \frac{1}{2} \trs{e_2, e_1} e_1
+\\&= e_2 - \frac{1}{2} \prs{0 + 1 + 0} e_1
+\\&= e_2 - \frac{1}{2} e_1
+\end{align*}
+ואז
+\begin{align*}
+\norm{w_2}^2 = \trs{w_2, w_2} = \prs{-\frac{1}{2}}^2 + \prs{\frac{1}{2}}^2 + 0 = \frac{1}{2}
+\end{align*}
+ולכן
+\begin{align*}
+\text{.} v_2 = \frac{w_2}{\norm{w_2}} = \sqrt{2} \prs{e_2 - \frac{1}{2} e_1}
+\end{align*}
+
+לבסוף,
+\begin{align*}
+w_3 &= e_3 - \trs{e_3, v_2} v_2 - \trs{e_3, v_1} v_1 = e_3
+\end{align*}
+כיוון שמתקיים
+\begin{align*}
+\trs{e_3, v_2} &= \sqrt{2} \prs{0 \cdot \prs{- \frac{1}{2}} + 0 \cdot 1 + 1 \cdot 0} = 0 \\
+\text{.} \trs{e_3, v_1} &= \frac{1}{\sqrt{2}} \prs{0 \cdot 1 + 0 \cdot 0 + 1 \cdot 0} = 0
+\end{align*}
+אז
+\begin{align*}
+\norm{w_3}^2 = \trs{w_3, w_3} = 0 \cdot 0 + 0 \cdot 0 + 1 \cdot 1 = 1
+\end{align*}
+ונקבל
+\begin{align*}
+\text{.} v_3 = \frac{w_3}{\norm{w_3}} = w_3 = e_3
+\end{align*}
+
+בסך הכל, נקבל בסיס אורתונורמלי
+\begin{align*}
+B &= \prs{\frac{1}{\sqrt{2}} e_1, \sqrt{2} \prs{e_2 - \frac{1}{2} e_1}, e_3}
+\\&= \prs{\pmat{\frac{1}{\sqrt{2}} \\ 0 \\ 0}, \pmat{\frac{-\sqrt{2}}{2} \\ \sqrt{2} \\ 0}, \pmat{0 \\ 0 \\ 1}}
+כנדרש.
+\end{align*}
+
+\item
+נציע שתי דרכי פתרון.
+
+\begin{description}
+\item[דרך 1:]
+ראינו כי עבור אופרטור נורמלי מעל
+$\CC$,
+וקטורים עצמיים של ערכים עצמיים שונים הינם ניצבים זה לזה.
+נשים לב כי
+$T\prs{e_1} = e_1$
+וכי
+$T\prs{e_2} = 2 e_2$,
+לכן
+$e_1, e_2$
+וקטורים עצמיים של ערכים עצמיים שונים. אך מתקיים
+\[\text{,} \trs{e_1, e_2} = 1 \cdot 0 + \prs{\prs{1 + 0} \cdot \prs{0 + 1}} + 0 \cdot 0 = 1 \neq 0\]
+ולכן הם אינם ניצבים.
+לכן לא יתכן כי
+$T$
+נורמלי.
+
+\item[דרך 2:]
+ממשפט, עבור אופרטור
+$S$
+על מרחב מכפלה פנימית עם בסיס אורתונורמלי
+$C$,
+מתקיים
+\begin{align*}
+\text{.} \brs{S^*}_C = \brs{S}_C^*
+\end{align*}
+לכן,
+כאשר
+$B$
+הבסיס שמצאנו בסעיף הקודם, מתקיים
+\begin{align*}
+\text{.} \brs{T^*}_B = \brs{T}_B^*
+\end{align*}
+מתקיים תמיד
+$\brs{S_1 S_2}_C = \brs{S_1}_C \brs{S_2}_C$
+ולכן
+\begin{align*}
+\brs{T^* T}_B &= \brs{T}_B^* \brs{T}_B \\
+\text{.} \brs{T T^*}_B &= \brs{T}_B \brs{T}_B^*
+\end{align*}
+לכן, אם נראה כי
+$\brs{T}_B, \brs{T}_B^*$
+אינן מתחלפות, נקבל כי
+$T^* T \neq T T^*$,
+ולכן
+$T$
+אינה נורמלית.
+
+נחשב את
+$\brs{T}_B$
+לפי הגדרת מטריצה מייצגת,
+\begin{align*}
+\text{.} \brs{T}_B &= \pmat{\vert & \vert & \vert \\ \brs{T\prs{v_1}}_B & \brs{T\prs{v_2}}_B & \brs{T\prs{v_3}}_B \\ \vert & \vert & \vert}
+\end{align*}
+מתקיים
+\begin{align*}
+T\prs{v_1} &= T\prs{\frac{1}{\sqrt{2}} e_1} = \frac{1}{\sqrt{2}} T\prs{e_1} = \frac{1}{\sqrt{2}} e_1 = v_1 \\
+T\prs{v_2} &= T\prs{\sqrt{2} \pmat{- \frac{1}{2} \\ 1 \\ 0}}
+\\&= \sqrt{2} \pmat{-\frac{1}{2} \\ 2 \\ 0}
+\\&= 2 \sqrt{2} \pmat{- \frac{1}{2} \\ 1 \\ 0} + \pmat{\frac{\sqrt{2}}{2} \\ 0 \\ 0}
+\\&= 2 v_2 + \pmat{\frac{1}{\sqrt{2}} \\ 0 \\ 0}
+\\&= 2 v_2 + v_1 \\
+\text{,} T\prs{v_3} &= T\prs{e_3} = 3 e_3 = 3 v_3
+\end{align*}
+ולכן
+\begin{align*}
+\text{.} \brs{T}_B &= \pmat{1 & 1 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3}
+\end{align*}
+אז
+\begin{align*}
+\brs{T}_B^* &= \overline{\brs{T}_B}^t = \pmat{1 & 0 & 0 \\ 1 & 2 & 0 \\ 0 & 0 & 3}
+\end{align*}
+ומתקיים
+\begin{align*}
+\text{,} \brs{T}_B \brs{T}_B^* = \pmat{2 & 2 & 0 \\ 2 & 4 & 0 \\ 0 & 0 & 9} \neq \pmat{1 & 1 & 0 \\ 1 & 5 & 0 \\ 0 & 0 & 9} = \brs{T}_B^* \brs{T}_B
+\end{align*}
+כנדרש.
+
+\end{description}
+\end{enumerate}
+\end{solution}
+
+\newpage
+
+\begin{exercise}
+נתון מרחב מכפלה פנימית
+$V$,
+ונתון אופרטור הטלה (לא בהכרח אורתוגונלית)
+$P \colon V \to V$.
+
+נסמן את התת־מרחב
+$W \coloneqq \im\prs{P}$
+של
+$V$,
+וב־%
+$P_W \colon V \to V$
+את אופרטור ההטלה האורתוגונלית על
+$W$.
+
+הראו שמתקיים
+$P = P_W$
+אם ורק אם מתקיים
+$P = P^*$.
+\end{exercise}
+
+\begin{solution}
+נראה גרירה דו־כיוונית.
+
+\begin{itemize}
+\item נניח כי
+$P = P_W$.
+
+יהיו
+\[B_W \coloneqq \prs{w_1, \ldots, w_m}\]
+וגם
+\[B_{W^\perp} \coloneqq \prs{u_1, \ldots, u_k}\]
+בסיסים אורתונורמליים
+$W$
+ושל
+$W^\perp$
+בהתאמה. קיימים בסיסים כאלו כיוון שלכל מרחב מכפלה פנימית קיים בסיס אורתונורמלי.
+
+ראינו בהרצאה כי לכל
+$U \leq V$,
+מתקיים
+$V = U \oplus U^\perp$.
+לכן
+$V = W \oplus W^\perp$.
+ראינו בתרגול שעבור בסיסים
+$B_1, B_2$
+של
+$U_1, U_2 \leq V$
+כך ש־%
+$V = U_1 \oplus U_2$,
+מתקיים כי
+$B_1 * B_2$
+בסיס של
+$V$.
+לכן
+$B \coloneqq B_W * B_{W^\perp}$
+בסיס של
+$V$.
+הוא גם אורתונורמלי, כיוון שכל הוקטורים בו מאורך
+$1$,
+וכולם ניצבים שכן
+\begin{align*}
+\trs{w_i, w_j} &= \delta_{i,j} \\
+\trs{u_i, u_j} &= \delta_{i,j} \\
+\trs{w_i, u_j} &= 0
+\end{align*}
+כאשר שני השוויונות הראשונים מתקיימים כי
+$B_W, B_{W^\perp}$
+בסיסים אורתונורמליים, והשוויון השלישי כי כל וקטור ב־%
+$W^\perp$
+ניצב לכל וקטור ב־%
+$W$.
+
+ההטלה האורתוגונלית על
+$W$
+היא ההטלה על
+$W$
+במקביל ל־%
+$W^\perp$,
+ולכן
+\begin{align*}
+\text{.} \brs{P}_B = \pmat{I_m & 0 \\ 0 & 0_k}
+\end{align*}
+
+ראינו שכאשר
+$C$
+בסיס אורתונורמלי, ו־%
+$T$
+אופרטור על
+$V$,
+מתקיים
+$\brs{T^*}_C = \brs{T}_C^*$,
+לכן נקבל כי
+\begin{align*}
+\brs{P^*}_B = \brs{P}_B^* = \overline{\pmat{I_m & 0 \\ 0 & 0_k}}^t = \pmat{I_m & 0 \\ 0 & 0_k} = \brs{P}_B
+\end{align*}
+ולכן
+$P^* = P$.
+
+\item נניח כי
+$P = P^*$.
+האופרטור
+$P_W$
+הינו ההטלה על
+$W = \im\prs{P}$
+במקביל ל־%
+$\im\prs{P}^\perp$,
+והאופרטור
+$P$
+הינו ההטלה על
+$\im\prs{P}$
+במקביל ל־%
+$\ker\prs{P}$,
+לכן יש להראות בעצם שמתקיים
+\[\text{.} \ker\prs{P} = \im\prs{P}^{\perp}\]
+נכתוב שתי דרכים להראות זאת.
+
+\begin{description}
+\item[דרך 1:]
+נראה תחילה כי
+\[\text{.} \ker\prs{P} \subseteq \im\prs{P}^{\perp}\]
+יהי
+$v \in \ker\prs{P} = \ker\prs{P^*}$,
+ויהי
+$w \in \im\prs{P}$.
+אם נראה שמתקיים
+$\trs{v,w} = 0$
+נקבל כי
+$v \in W^\perp = \im\prs{P}^\perp$
+ולכן את ההכלה.
+כיוון ש־%
+$w \in \im\prs{P}$,
+קיים
+$u \in V$
+עבורו
+$w = P\prs{u}$.
+אכן
+\begin{align*}
+\text{.} \trs{v,w} &= \trs{v, P\prs{u}} = \trs{P^*\prs{v}, u} = \trs{0, u} = 0
+\end{align*}
+
+מצד שני, ראינו בהרצאה שלכל תת־מרחב
+$W' \leq V$
+מתקיים
+\[\text{,} V = W' \oplus \prs{W'}^\perp\]
+ולכן מתקיים
+\begin{align*}
+V = W \oplus W^\perp
+\end{align*}
+ואז
+\begin{align*}
+\dim\prs{V} = \dim\prs{W} \oplus \dim\prs{W^\perp}
+\end{align*}
+כיוון שהמימד של סכום ישר של מרחבים וקטוריים הוא סכום המימדים.
+לכן
+\begin{align*}
+\text{,} \dim\prs{\im\prs{P}^\perp} = \dim\prs{V} - \dim\prs{\im\prs{P}} = \dim\prs{\ker\prs{P}}
+\end{align*}
+כאשר השוויון האחרון מתקיים לפי משפט המימדים עבור גרעין ותמונה.
+
+קיבלנו כי
+\[\text{,} \ker\prs{P} \subseteq \im\prs{P}^{\perp}\]
+וכי למרחבים
+$\ker\prs{P}$
+ו־%
+$\im\prs{P}^{\perp}$
+אותו מימד, ולכן יש שוויון, כנדרש.
+
+\item[דרך 2:]
+
+כיוון ש־%
+$P = P^*$,
+לפי משפט הפירוק הספקטרלי, קיים בסיס אורתונורמלי
+$B$
+המלכסן את
+$P$
+(מעל
+$\RR$,
+השוויון
+$P = P^*$
+הוא בדיוק התנאי לכך, ומעל
+$\CC$,
+מתקיים
+$P^* P = P P = P P^*$
+כיוון ש־%
+$P = P^*$,
+וזה התנאי לכך).
+כיוון ש־%
+$P$
+הטלה, הערכים העצמיים היחידים האפשריים עבורה הם
+$0,1$.
+לכן, ניתן לכתוב
+\begin{align*}
+\brs{P}_B = \pmat{I_m & 0_{m \times k} \\ 0_{k \times m} & 0_{k \times k}}
+\end{align*}
+כאשר יתכן כי
+$m$
+או
+$k$
+שווים לאפס.
+
+נסמן
+\[B = \prs{v_1, \ldots, v_n}\]
+ואז
+\[\text{.} P\prs{v_i} = \fcases{v_i & i \leq m \\ 0 & i > m}\]
+נקבל כי
+\begin{align*}
+\Span\prs{v_1, \ldots, v_m} &= \im\prs{P} \\
+\text{.} \Span\prs{v_{m+1}, \ldots, v_n} &= \ker\prs{P}
+\end{align*}
+אבל,
+$B$
+אורתונורמלי ולכן
+\begin{align*}
+\text{,} \Span\prs{v_{m+1}, \ldots, v_n} = \Span\prs{v_1, \ldots, v_m}^\perp
+\end{align*}
+ונקבל בסך הכל כי
+\[\text{,} \ker\prs{P} = \im\prs{P}^\perp\]
+כנדרש.
+\end{description}
+\end{itemize}
+\end{solution}
+
+\newpage
+
+\begin{exercise}
+נתון מרחב מכפלה פנימית
+\textbf{ממשי}
+$V$,
+ונתונה העתקה אורתוגונלית
+$T \colon V \to V$
+שהיא לכסינה.
+
+(לא נתון ש־%
+$T$
+לכסינה אורתוגונלית!)
+
+\begin{enumerate}[label = (\alph*)]
+\item
+הראו שהערכים העצמיים האפשריים היחידים של
+$T$
+הם
+$1$
+ו־%
+$-1$.
+\item
+הראו ש־%
+$T$
+בהכרח לכסינה אורתוגונלית.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}[label = (\alph*)]
+\item
+ראינו בתרגול כי העתקה אורתוגונלית שומרת על הנורמה. כלומר, אצלנו,
+$\norm{T\prs{v}} = \norm{v}$
+לכל
+$v \in V$.
+לכן, אם
+$\lambda$
+ערך עצמי עם וקטור עצמי
+$v$
+מתקיים
+\begin{align*}
+\text{.} \norm{v} = \norm{T\prs{v}} = \norm{\lambda v} = \abs{\lambda} \norm{v}
+\end{align*}
+כיוון שוקטור עצמי בהכרח שונה מאפס, וכיוון שהנורמה של וקטור שונה מאפס הינה חיובית, נוכל לחלק את שני האגפים ב־%
+$\norm{v}$
+ולקבל כי
+$\abs{\lambda} = 1$,
+ולכן
+$\lambda \in \set{\pm 1}$.
+
+\item
+כיוון שנתון כי
+$T$
+לכסינה, וכיוון שהראנו שהערכים העצמיים של $T$ נמצאים בקבוצה $\set{\pm 1}$, קיים בסיס
+$B$
+עבורו
+\begin{align*}
+\text{,} \brs{T}_B &= \pmat{I_m & 0_{m \times k} \\ 0_{k \times m} & -I_k}
+\end{align*}
+כאשר יתכן כי
+$m$
+או
+$k$
+שווים לאפס.
+אז
+\begin{align*}
+\brs{T^{-1}}_B &= \brs{T}_B^{-1}
+\\&=
+\pmat{I_m & 0_{m \times k} \\ 0_{k \times m} & -I_k}^{-1}
+\\&=
+\pmat{I_m & 0_{m \times k} \\ 0_{k \times m} & -I_k}
+\\&= \brs{T}_B
+\end{align*}
+ולכן
+$T^{-1} = T$.
+מצד שני, נתון כי
+$T$
+אורתוגונלית, מה שאומר לפי ההגדרה כי
+$T^{-1} = T^*$.
+
+נקבל כי
+$T^* = T$,
+ומשפט הפירוק הספקטרלי מעל
+$\RR$
+אומר בדיוק שזה שקול לכך ש־%
+$T$
+לכסינה אורתוגונלית.
+\end{enumerate}
+\end{solution}
+
+\end{document}

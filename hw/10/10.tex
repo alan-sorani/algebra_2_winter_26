@@ -1,0 +1,206 @@
+\documentclass[a4paper,10pt,twoside]{article}
+
+\usepackage[lang=hebrew]{maths}
+
+\usepackage{siunitx,array}
+\sisetup{table-format=-1.5, group-digits=false}
+\newcolumntype{L}{>{\phantom{$-$}}l}       % prefix some whitespace
+\newcommand\mcL[1]{\multicolumn{1}{L}{#1}} % handy shortcut macro
+
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{1}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+%%%%%%%%%%
+% Title  %
+%%%%%%%%%%
+\title{
+אלגברה ב' - גיליון תרגילי בית 10 \\
+פולינומים אופייני ומינימלי, והדטרמיננטה
+\\
+\vspace{1cm}
+\large{תאריך הגשה: 16.1.2026}
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{exercise}[חישוב פולינום מינימלי]
+תהי
+$T \in \End_\CC\prs{V}$
+ויהי
+$B$
+בסיס של
+$V$
+עבורו
+\[\text{.} \brs{T}_B = \pmat{a & b \\ c & d} \in \Mat_2\prs{\CC}\]
+\begin{enumerate}
+\item הראו כי
+\[\text{,} p_T(x) = x^2 - \prs{a+d}x + \prs{ad - bc}\]
+והסיקו כי
+\[\text{.} T^2 - \prs{a+d} T + \prs{ad - bc} \id_V = 0\]
+
+\item הראו כי
+\begin{align*}
+\text{.} m_T\prs{x} = \fcases{
+x - a & b=c=0 \text{ and } a=d \\
+x^2 - \prs{a+d}x + \prs{ad - bc} & \text{otherwise}
+}
+\end{align*}
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[פולינום מינימלי של אופרטור הופכי]
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל
+$\CC$
+ויהי
+$T \in \End_\CC\prs{V}$
+עם פולינום מינימלי
+\[\text{.} m_T\prs{x} = x^5  + 2x^4 − 7x^3 - 6x^2 + 5x + 4\]
+הראו כי
+$T$
+הפיך
+ומיצאו את הפולינום המינימלי
+$m_{T^{-1}}\prs{x}$
+של
+$T^{-1}$.
+\end{exercise}
+
+\begin{exercise}[חסם עליון לדרגה של הפולינום המינימלי]
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל
+$\CC$
+ויהי
+$T \in \End_\CC\prs{V}$.
+
+\begin{enumerate}
+\item הראו כי
+\[\text{.} \deg m_T\prs{x} \leq \dim\prs{\im\prs{T}} + 1\]
+
+\item מיצאו דוגמה לאופרטור
+$T$
+עבורו מתקיים שוויון.
+\end{enumerate}
+
+\textbf{רמז:}
+חישבו על צורת ז'ורדן של
+$T$.
+\end{exercise}
+
+\begin{exercise}[דטרמיננטה לפי שורה או עמודה]
+הגדרנו בהרצאה את הדטרמיננטה של
+$A \in \Mat_n\prs{\FF}$
+בתור
+\begin{align*}
+\text{.} \det\prs{A} = \sum_{\sigma \in S_n} \epsilon\prs{\sigma} \prod_{i \in \brs{k}} \prs{A}_{\sigma\prs{i}, i}
+\end{align*}
+
+הראו שמתקיים
+\begin{align*}
+\text{,} \det\prs{A} = \sum_{\sigma \in S_n} \epsilon\prs{\sigma} \prod_{i \in \brs{k}} \prs{A}_{i, \sigma\prs{i}}
+\end{align*}
+והסיקו כי
+$\det\prs{A^t} = \det\prs{A}$.
+\end{exercise}
+
+\newpage
+
+\begin{exercise}[כלל קרמר]
+תהי
+$Ax = b$
+מערכת משוואות כאשר
+$A \in M_n\prs{\mbb{F}}$
+הפיכה.
+
+לכל
+$i \in [n]$
+תהי
+\begin{align*}
+K_{A,i} \colon \mbb{F}^n &\to \mbb{F} \\
+y &\mapsto \frac{\det\pmat{\vert & & \vert & \vert & \vert & & \vert \\ A_1 & \cdots & A_{i-1} & y & A_{i+1} & \cdots & A_n \\ \vert & & \vert & \vert & \vert & & \vert}}{\det\prs{A}}
+\end{align*}
+ותהי
+\begin{align*}
+K_A \colon \mbb{F}^n &\to \mbb{F}^n \\
+\text{.} \hphantom{lalala} y &\mapsto \pmat{K_{A,1}\prs{y} \\ K_{A,2}\prs{y} \\ \vdots \\ K_{A, n-1}\prs{y} \\ K_{A,n}\prs{y}}
+\end{align*}
+
+נראה שהפתרון היחיד למערכת נתון על ידי
+$x = K_{A}\prs{b}$.
+
+\begin{enumerate}
+\item הראו שלכל
+$i \in [n]$
+ההעתקה
+$K_{A,i}$
+לינארית.
+\item
+הסיקו ש־%
+$K_A$
+העתקה לינארית.
+\item
+תהי
+\begin{align*}
+L_A \colon \mbb{F}^n &\to \mbb{F}^n \\
+\text{.} \hphantom{lalala} v &\mapsto Av
+\end{align*}
+
+הראו ש־%
+$K_A \circ L_A = \id_{\mbb{F}^n}$
+על ידי בדיקה על הבסיס הסטנדרטי, והסיקו שמתקיים
+$K_A = \prs{L_A}^{-1}$.
+\item הסיקו שמתקיים
+$\brs{K_A}_E = A^{-1}$
+כאשר
+$E$
+הבסיס הסטנדרטי של
+$\mbb{F}^n$.
+\item הסיקו שהפתרון היחיד למערכת
+$Ax = b$
+הוא
+$x = K_{A}\prs{b}$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[חישוב בעזרת כלל קרמר]
+פיתרו את מערכת המשוואות הבאה, בעזרת כלל קרמר.
+
+\begin{center}
+\begin{english}
+\begin{tabular}{llllllllS}
+4x & + & y & + & z & + & w & = & 6  \\
+3x & + & 7y & - & z & + & w & = & 1 \\
+7x & + & 3y & - & 5z & + & 8w & = & -3 \\
+x & + & y & + & z & + & 2w & = & 3
+\end{tabular}
+\end{english}
+\end{center}
+\end{exercise}
+
+\end{document}

@@ -31,11 +31,11 @@ style=alphabetic,
 % Title  %
 %%%%%%%%%%
 \title{
-אלגברה ב' - גיליון תרגילי בית 7 \\
-אופרטורים צמודים ופירוק פולארי
+אלגברה ב' - גיליון תרגילי בית 8 \\
+אופרטורים נילפוטנטיים, ומרחבים עצמיים מוכללים
 \\
 \vspace{1cm}
-\large{25.12.2025}
+\large{1.1.2026}
 }
 \date{}
 
@@ -44,105 +44,83 @@ style=alphabetic,
 
 \begin{exercise}
 יהי
-$V = \Mat_2\prs{\mbb{R}}$
-עם המכפלה הפנימית
-$\trs{X,Y} = \tr\prs{Y^t X}$,
-ויהי
-$T \in \End_{\mbb{R}}\prs{V}$
-המוגדר על ידי
-\[\text{.} T\pmat{a & b \\ c & d} = \pmat{16 a & 4b -6c \\ -6b + 13c & 16d}\]
-מיצאו בסיס אורתונורמלי
-$B$
-של
-$V$
-עבורו
-$\brs{T}_B$
-אלכסונית, ומיצאו אופרטור
-$S \in \End_{\mbb{R}}\prs{V}$
-צמוד לעצמו עבורו
-$S^2 = T$.
-\end{exercise}
-
-\begin{exercise}
-יהי
-$V$
-מרחב מכפלה פנימית מרוכב ממימד סופי, יהי
-$T \in \End_{\mbb{C}}\prs{V}$
-נורמלי, ונניח כי
-$3,4$
-ערכים עצמיים של
-$T$.
-הראו שיש
-$v \in V$
-עבורו
-$\norm{v} = \sqrt{2}$
-וגם
-$\norm{Tv} = 5$.
-\end{exercise}
-
-\begin{exercise}
-יהי
-$V$
-מרחב מכפלה פנימית מרוכב ממימד סופי, יהי
-$T \in \End_{\mbb{C}}\prs{V}$
-ויהי
-$a \in \mbb{C}$
-עבורו
-$\abs{a} \neq 1$.
+$T$
+אופרטור נילפונטי מאינדקס
+$k$.
 
 \begin{enumerate}
-\item הראו כי אם
-$T^* = aT$
-אז
-$T = 0$.
+\item
+הראו כי מתקיים
+\begin{align*}
+\set{0} = \im\prs{T^k} \subset \im\prs{T^{k-1}} \subset \ldots \subset \im\prs{T}
+\end{align*}
+כאשר כל ההכלות הינן הכלות ממש.
 
-\item נניח כי
-$T$
-נורמלי, ויהי
-$S = T - a T^*$.
-הוכיחו כי
-$\ker\prs{T} = \ker\prs{S}$.
+\item
+הסיקו כי
+$k \leq \dim \im\prs{T} + 1$.
+וכי
+$T^{\dim \im\prs{T} + 1} = 0$.
 \end{enumerate}
 \end{exercise}
 
 \begin{exercise}
 יהי
-$V = \Mat_2\prs{\mbb{R}}$
-עם המכפלה הפנימית
-$\trs{A,B} = \tr\prs{B^t A}$,
-ותהי
-\begin{align*}
-T \colon V &\to V \\
-\text{.} \hphantom{lala} A &\mapsto \frac{A + A^t}{2}
-\end{align*}
+$T \in \End_\CC\prs{\CC^5}$
+עבורו
+$\dim \ker\prs{T^4} \neq \dim \ker\prs{T^5}$.
+הראו כי
+$T$
+נילפוטנטי מאינדקס
+$5$
+ושקיים בסיס
+$B$
+עבורו
+\[\text{.} \brs{T}_B = J_5 \coloneqq \pmat{0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 & 0}\]
+\end{exercise}
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל
+$\CC$
+ויהי
+$T \in \End_\CC\prs{V}$.
+הראו שלכל
+$i \geq r_a\prs{0}$
+מתקיים
+\[\text{,} \dim\ker\prs{T^i} = \dim\ker\prs{T^{r_a\prs{0}}}\]
+כאשר
+$r_a\prs{0}$
+הוא הריבוי האלגברי של
+$0$
+כערך עצמי של
+$T$.
+\end{exercise}
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי ממימד
+$n \in \NN_+$
+מעל
+$\CC$
+ויהי
+$T \in \End_\CC\prs{V}$
+עם
+$k$
+ערכים עצמיים שונים.
 
 \begin{enumerate}
-\item מיצאו את
-$T^*$.
-שימו לב כי
-$T = \frac{T_1 + T_2}{2}$
-עבור העתקות
-$T_i \colon V \to V$
-עבורן אנו יודעות מי הן
-$T_i^*$.
+\item הראו כי
+\begin{align*}
+\text{.} V = \ker\prs{T^{n-\prs{k-1}}} \oplus \im\prs{T^{{n-\prs{k-1}}}}
+\end{align*}
 
-\item
-מיצאו בסיסים אורתונורמליים
-$B,C$
-של
-$V$
-עבורם
-$\brs{T}^B_C = \diag\prs{\sigma_1, \ldots, \sigma_n}$
-כאשר
-$\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_n \geq 0$.
-
-\item
-מיצאו העתקה אוניטרית
-$U \in \End_\RR\prs{V}$
-והעתקה מוגדרת חיובית לחלוטין
-$P \in \End_\RR\prs{V}$
-עבורן
-$T = UP$.
+\item הראו בעזרת דוגמה נגדית שלא מתקיים תמיד
+\begin{align*}
+\text{.} V = \ker\prs{T^{n-k}} \oplus \im\prs{T^{n-k}}
+\end{align*}
 \end{enumerate}
 \end{exercise}
 
