@@ -1,0 +1,150 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{1}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+%%%%%%%%%%
+% Title  %
+%%%%%%%%%%
+\title{
+אלגברה ב' - גיליון תרגילי בית 11 \\
+תבניות בילינאריות וחוק האינרציה של סילבסטר
+\\
+\vspace{1cm}
+\large{תאריך הגשה: 23.1.2026}
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{exercise}
+תהי
+$A \in \Mat_n\prs{\mbb{R}}$
+סימטרית ויהי
+$m$
+סכום הריבויים האלגבריים של הערכים העצמיים החיוביים של
+$A$.
+
+\begin{enumerate}
+\item הראו כי יש תת־מרחב
+$W \leq \mbb{R}^n$
+ממימד
+$m$
+עבורו
+$\trs{Aw, w} > 0$
+לכל
+$w \in W \setminus \set{0}$.
+
+\item יהי
+$W' \leq \mbb{R}^n$
+תת־מרחב נוסף עבורו מתקיים
+$\trs{Aw, w} > 0$
+לכל
+$w \in W' \setminus \set{0}$.
+הראו כי
+$\dim W' \leq m$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+יהי
+$V = \Mat_2\prs{\mbb{R}}$.
+
+\begin{enumerate}
+    \item מיצאו מכפלה פנימית
+    $f$
+    על
+    $V$
+    כך ש־%
+    \[B = \pmat{E_{1,1} + E_{1,2}, E_{1,2} + E_{2,1}, E_{2,1} + E_{2,2}, E_{2,2}}\]
+    הוא בסיס אורתונורמלי לפי
+    $f$.
+    
+    \item
+    תהי
+    \[g\prs{A,B} = \tr\prs{AB}\]
+    תבנית בילינארית סימטרית על
+    $V$.
+    מיצאו בסיס
+    $C$
+    של
+    $V$
+    ומטריצה
+    $S = \diag\prs{I_{n_+}, I_{n_-}, 0_{n_0}}$
+    עבורם
+    $\brs{g}_C = S$.
+    
+    \item
+    מיצאו בסיס
+    $D$
+    של
+    $V$
+    עבורו
+    $\brs{f}_D, \brs{g}_D$
+    מטריצות אלכסוניות.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+יהי
+\begin{align*}
+\text{,} V = \set{p \in \RR_{\leq n}\brs{x}}{\substack{p\prs{0} = p\prs{1} \\ p'\prs{0} = p'\prs{1}}}
+\end{align*}
+ותהי
+\begin{align*}
+\rho \colon V \times V &\to \RR \\
+\text{.} \hphantom{lalala} \prs{f,g} &\mapsto \int_0^1 f\prs{x} g''\prs{x} \diff x
+\end{align*}
+
+\begin{enumerate}
+\item הראו כי
+$\rho$
+תבנית בילינארית סימטרית על
+$V$.
+
+\textbf{רמז:}
+היעזרו ב%
+\href{https://en.wikipedia.org/wiki/Integration_by_parts}{אינטגרציה בחלקים}.
+
+\item עבור
+$n = 4$,
+מיצאו בסיס
+$B$
+של
+$V$
+עבורו
+$\brs{\rho}_B$
+מטריצה מהצורה
+\begin{align*}
+\text{.} \diag\prs{I_{n_+}, - I_{n_-}, 0_{n_0}}
+\end{align*}
+\end{enumerate}
+\end{exercise}
+
+\end{document}
