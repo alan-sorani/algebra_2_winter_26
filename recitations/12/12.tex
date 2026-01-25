@@ -1,0 +1,521 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{polynom}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+\newcommand{\Std}{\mrm{Std}}
+\DeclareMathOperator{\Char}{char}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{0}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+\title{
+אלגברה ב' (01040168) - חורף 2026
+\\
+תרגול 12 - קריטריון סילבסטר, ותבניות ריבועיות
+\\
+אלן סורני
+\\
+הרשימות עודכנו לאחרונה בתאריך ה־%
+\today
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{קריטריון סילבסטר}
+
+\begin{theorem}[סילבסטר]
+תהי
+$f \in \mrm{Bil}\prs{V}$
+תבנית בילינארית סימטרית על מרחב מכפלה פנימית
+$V$,
+עם סימן
+$\prs{r,s,t}$.
+יהי
+$B$
+בסיס של
+$V$
+ותהי
+$A = \brs{f}_B$.
+נסמן ב־%
+$\gamma_k \coloneqq \det\prs{\prs{a_{i,j}}_{i,j \in [k]}}$
+את
+\emph{המינורים הראשיים}
+של
+$A$
+ונניח כי
+$\gamma_k \neq 0$
+לכל
+$k \in [n]$.
+אז
+$t = 0$,
+מספר הערכים החיוביים בקבוצה הסדורה
+$\prs{\gamma_1, \frac{\gamma_2}{\gamma_1}, \ldots, \frac{\gamma_n}{\gamma_{n-1}}}$
+הוא
+$r$,
+ומספר הערכים השליליים בה הוא
+$s$.
+\end{theorem}
+
+\begin{exercise}
+תהי
+$f \in \Bil\prs{V}$,
+יהי
+$B$
+בסיס של
+$V$
+ותהי
+$A = \brs{f}_B$.
+
+הראו כי
+$f$
+מכפלה פנימית אם ורק אם המינורים הראשיים של
+$A$
+חיוביים.
+\end{exercise}
+
+\begin{solution}
+נניח כי כל המינורים הראשיים חיוביים. נקבל כי כל האיברים בקבוצה הסדורה
+$\prs{\gamma_1, \frac{\gamma_2}{\gamma_1}, \ldots, \frac{\gamma_n}{\gamma_{n-1}}}$
+חיוביים, ולכן ממשפט סילבסטר הסימן של
+$f$
+הוא
+$\prs{n,0,0}$.
+תבנית בילינארית סימטרית הינה מכפלה פנימית אם הסימן שלה כזה, לכן
+$f$
+מכפלה פנימית.
+
+נניח כי
+$f$
+מכפלה פנימית. אז
+$\gamma_k = \det\prs{\prs{a_{i,j}}_{i,j \in [k]}}$
+כאשר
+$\prs{a_{i,j}}_{i,j \in [k]}$
+מטריצה מייצגת של
+$\left. f \right|_{\Span\prs{b_1, \ldots, b_k}}$.
+צמצום של מכפלה פנימית הוא מכפלה פנימית, והדטרמיננטה של מטריצה מוגדרת חיובית לחלוטין היא חיובית, לכן כל המינורים הראשיים חיוביים.
+\end{solution}
+
+\begin{exercise}
+תהי
+$f \in \mrm{Bil}\prs{V}$
+ויהי
+$B$
+בסיס של
+$V$.
+מיצאו תנאי הכרחי ומספיק על המינורים
+$\gamma_i\prs{\brs{f}_B}$
+לכך ש־%
+$f$
+מוגדרת שלילית (לחלוטין).
+\end{exercise}
+
+\begin{solution}
+ניעזר בתרגיל הקודם, ונשים לב כי
+$f$
+מוגדרת שלילית אם ורק אם
+$-f$
+מוגדרת חיובית לחלוטין. אכן, מתקיים
+$f\prs{v,v} < 0$
+לכל
+$v \in V$
+אם ורק אם
+$-f\prs{v,v} > 0$
+לכל
+$v \in V$.
+
+כעת,
+$-f$
+מוגדרת חיובית אם ורק אם המינורים הראשיים של
+$-A \coloneqq \brs{-f}_B$
+חיוביים. כעת,
+\[\gamma_k\prs{A} = \det\prs{\prs{a_{i,j}}_{i,j \in [k]}} = \prs{-1}^k \det\prs{\prs{-a_{i,j}}_{i,j \in [k]}} = \prs{-1}^k \gamma_k\prs{-A}\]
+לכן זה מתקיים אם ורק אם
+$\sgn\prs{\gamma_k\prs{A}} = \prs{-1}^k$
+לכל
+$k \in [n]$.
+\end{solution}
+
+\begin{exercise}
+תהי
+\[\text{.} A = \pmat{1 & 0 & 1 & 0 & 1 \\ 0 & 2 & 3 & 1 & 1 \\ 1 & 3 & -7 & 1 & 2 \\ 0 & 1 & 1 & 1 & 1 \\ 1 & 1 & 1 & 2 & 1} \in \Mat_5\prs{\mbb{R}}\]
+מיצאו את הסימן של
+$A$.
+\end{exercise}
+
+\begin{solution}
+ניעזר בקריטריון סילבסטר.
+מתקיים
+\begin{align*}
+    \det\prs{1} &= 1 \\
+    \det\prs{\pmat{1 & 0 \\ 0 & 2}} &= 2 \\
+    \det\prs{\pmat{1 & 0 & 1 \\ 0 & 2 & 3 \\ 1 & 3 & 7}} &= 1 \det\pmat{2 & 3 \\ 3 & 7} + 1 \det\pmat{0 & 2 \\ 1 & 3} = -23-2 = -25 \\
+    \det\pmat{1 & 0 & 1 & 0 \\ 0 & 2 & 3 & 1 \\ 1 & 3 & -7 & 1 \\ 0 & 1 & 1 & 1} &= -25 - \det\pmat{1 & 0 & 0 \\ 0 & 2 & 1 \\ 1 & 3 & 1} + \det\pmat{1 & 1 & 0 \\ 0 & 3 & 1 \\ 1 & -7 & 1} = -25 - \prs{-1} + \prs{10+1} = -13 \\
+    \text{.} \det A &= {\ldots} = 13
+\end{align*}
+נקבל כי המינורים הראשיים לא מתאפסים, וכי הסימן שלהם מתחיל חיובי ומתחלף פעמיים. מקריטריון סילבסטר נקבל כי הסימן של
+$A$
+הוא
+$\prs{3,2,0}$.
+\end{solution}
+
+\begin{exercise}
+הראו כי
+\[A \ceq \pmat{-1 & 1 & 0 & 1 \\ 1 & -3 & 0 & 0 \\ 0 & 0 & -1 & -1 \\ 1 & 0 & -1 & -3}\]
+מוגדרת שלילית.
+\end{exercise}
+
+\begin{solution}
+נחשב את המינורים הראשיים.
+מתקיים
+\begin{align*}
+    \det\prs{-1} &= -1 < 0 \\
+    \det\pmat{-1 & 1 \\ 1 & -3} &= 3-1 = 2 > 0 \\
+    \det\pmat{-1 & 1 & 0 \\ 1 & -3 & 0 \\ 0 & 0 & -1} &= -1 \cdot \det\pmat{-1 & 1 \\ 1 & -3} = -2 < 0 \\
+    \det A &= -3 \cdot \det\pmat{-1 & 1 & 0 \\ 1 & -3 & 0 \\ 0 & 0 & -1} +1 \cdot \det\pmat{-1 & 1 & 1 \\ 1 & -3 & 0 \\ 0 & 0 & -1} - 1 \cdot \det\pmat{1 & 0 & 1 \\ -3 & 0 & 0 \\ 0 & -1 & -1} \\&= 6 - \prs{3-1} - \prs{-3}\prs{-1}\prs{1} = 6 - 2 - 3 = 1 > 0
+\end{align*}
+ולכן מהתרגיל הקודם
+$A$
+מוגדרת שלילית.
+\end{solution}
+
+\section{תבניות ריבועיות}
+
+\begin{definition}[תבנית ריבועית]
+\emph{תבנית ריבועית
+על
+$\FF^n$}
+(עבור
+$\FF$
+כללי, שאינו בהכרח
+$\RR$
+או
+$\CC$)
+היא העתקה מהצורה
+\begin{align*}
+q \colon \FF^n &\to \FF \\
+\pmat{x_1 \\ \vdots \\ x_n} &\mapsto \sum_{\substack{i,j \in \brs{n} \\ i \leq j}} c_{i,j} x_i x_j
+\end{align*}
+עבור
+$c_{i,j} \in \FF$.
+\end{definition}
+
+\begin{remark}
+מטריצה סימטרית
+$A$
+מגדירה תבנית ריבועית על ידי
+$q\prs{\vec{x}} = \vec{x}^t A x$.
+להיפך, אם
+$q$
+תבנית ריבועית נוכל לכתוב
+\[q\prs{x} = \sum_{i \in \brs{n}} \sum_{j \in \brs{n}} a_{i,j} x_i x_j\]
+כאשר
+$a_{i,j} = a_{j,i}$.
+אז נגדיר
+$A \in M_n\prs{\mbb{F}}$
+עם
+\[\text{.} A_{i,j} = a_{i,j}\]
+היא מקיימת
+$q\prs{\vec{x}} = \vec{x}^t A x$.
+זה מגדיר איזומורפיזם בין מרחבי המטריצות הסימטריות והתבניות הריבועיות.
+למשל, במקום להגדיר
+$g\prs{\pmat{x_1 \\ x_2}} = x_1^2 + x_2^2$,
+נכתוב לפעמים את
+$g$
+בתור פולינום
+$g\prs{x_1, x_2} = x_1^1 + x_2^2 \in \FF\brs{x_1, x_2}$
+בשני משתנים.
+\end{remark}
+
+\begin{notation}
+עבור
+$A \in M_n\prs{\mbb{F}}$
+סימטרית נסמן ב־%
+$g_A$
+את התבנית הריבועית
+\[\text{.} g_A\prs{\vec{x}} = \vec{x}^t A \vec{x}\]
+\end{notation}
+
+\begin{exercise}
+יהי
+$\mbb{F} \ceq \quot{\mbb{Z}}{5\mbb{Z}}$
+השדה בן
+$5$
+האיברים.
+יתכן כי ראיתם את הסימון
+$\mbb{Z}_5$
+במקום זאת.
+תהי
+\begin{align*}
+g\prs{x_1, x_2, x_3, x_4} &= 2 x_1 x_2 + 2 x_2 x_3 + 2 x_3 x_4 \in \mbb{F}\brs{x_1, x_2, x_3, x_4}
+\end{align*}
+תבנית ריבועית מעל
+$\mbb{F}$.
+
+\begin{enumerate}
+\item מצאו מטריצה
+$A \in M_4\prs{\mbb{F}}$
+אלכסונית עבורה
+$g = g_A$.
+
+\item מצאו
+$P \in M_4\prs{\mbb{F}}$
+עבורה
+$P A P^t$
+אלכסונית.
+
+\item האם יש
+$P \in M_4\prs{\mbb{F}}$
+עבורה
+$P A P^t$
+אלכסונית עם
+$\pm 1, 0$
+על האלכסון?
+
+\item האם כל
+$A \in M_4\prs{\mbb{F}}$
+חופפת למטריצה עם
+$\pm 1, 0$
+על האלכסון?
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+\item
+
+לא מופיע ביטוי
+$x_i^2$.
+לכן נסתכל רק על המקדם של
+$x_i x_j$
+עבור
+$i \neq j$.
+כדי שיתקיים
+$a_{i,j} = a_{j,i}$
+ ניקח את חצי המקדם של
+$x_i x_j$
+ כפי שהוא כתוב (כי לא מופיע גם $x_j x_i$).
+נקבל
+\begin{align*}
+\text{.} A &= \pmat{0 & 1 & 0 & 0 \\ 1 & 0 & 1 & 0 \\ 0 & 1 & 0 & 1 \\ 0 & 0 & 1 & 0}
+\end{align*}
+
+\item
+
+נלכסן לפי שורה ועמודה כדי להביא את המטריצה לצורה אלכסונית.
+כאשר יש
+$0$
+על כל האלכסון, נוסיף כפולה של שורה או עמודה אחרת, כדי שיופיע מספר שונה מאפס במקום ה־%
+$\prs{1,1}$.
+נקבל
+\begin{align*}
+\text{.} A &\mapsto \pmat{1 & 1 & 0 & 0 \\ 1 & 0 & 1 & 0 \\ 1 & 1 & 0 & 1 \\ 0 & 0 & 1 & 0} \mapsto
+\pmat{2 & 1 & 1 & 0 \\ 1 & 0 & 1 & 0 \\ 1 & 1 & 0 & 1 \\ 0 & 0 & 1 & 0}
+\end{align*}
+כעת, נשתמש באיבר על האלכסון כדי לאפס את שאר האיברים, ונמשיך הלאה.
+\begin{align*}
+A &\mapsto \pmat{1 & 1 & 0 & 0 \\ 1 & 0 & 1 & 0 \\ 1 & 1 & 0 & 1 \\ 0 & 0 & 1 & 0} \mapsto
+\pmat{2 & 1 & 1 & 0 \\ 1 & 0 & 1 & 0 \\ 1 & 1 & 0 & 1 \\ 0 & 0 & 1 & 0}
+\\&\mapsto 
+\pmat{2 & 0 & 0 & 0 \\ 1 & 2 & 3 & 0 \\ 1 & 3 & 2 & 1 \\ 0 & 0 & 1 & 0} \mapsto
+\pmat{2 & 0 & 0 & 0 \\ 0 & 2 & 3 & 0 \\ 0 & 3 & 2 & 1 \\ 0 & 0 & 1 & 0}
+\\&\mapsto
+\pmat{2 & 0 & 0 & 0 \\ 0 & 2 & 0 & 0 \\ 0 & 3 & 0 & 1 \\ 0 & 0 & 1 & 0} \mapsto
+\pmat{2 & 0 & 0 & 0 \\ 0 & 2 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0}
+\\&\mapsto
+\pmat{2 & 0 & 0 & 0 \\ 0 & 2 & 0 & 0 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 1 & 0} \mapsto
+\pmat{2 & 0 & 0 & 0 \\ 0 & 2 & 0 & 0 \\ 0 & 0 & 2 & 1 \\ 0 & 0 & 1 & 0} \\ \text{.} \hphantom{A} &\mapsto
+\pmat{2 & 0 & 0 & 0 \\ 0 & 2 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 1 & 2} \mapsto
+\pmat{2 & 0 & 0 & 0 \\ 0 & 2 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 2}
+\end{align*}
+ניקח את
+$P$
+להיות המכפלה של 5 המטריצות האלמנטריות שמתאימות לפעולות הדירוג.
+
+\item
+
+כן. נוכל בדירוג להוסיף
+$3$
+פעמים את השורה/עמודה הרלוונטית כדי לקבל
+$3\cdot2 \equiv 1 \mod{5}$
+על האלכסון.
+
+\begin{align*}
+A &\mapsto \pmat{3 & 1 & 0 & 0 \\ 1 & 0 & 1 & 0 \\ 3 & 1 & 0 & 1 \\ 0 & 0 & 1 & 0} \mapsto
+\pmat{1 & 1 & 3 & 0 \\ 1 & 0 & 1 & 0 \\ 3 & 1 & 0 & 1 \\ 0 & 0 & 1 & 0}
+\\&\mapsto 
+\pmat{1 & 0 & 0 & 0 \\ 1 & 4 & 3 & 0 \\ 3 & 3 & 1 & 1 \\ 0 & 0 & 1 & 0} \mapsto
+\pmat{1 & 0 & 0 & 0 \\ 0 & 4 & 3 & 0 \\ 0 & 3 & 1 & 1 \\ 0 & 0 & 1 & 0}
+\\&\mapsto
+\pmat{1 & 0 & 0 & 0 \\ 0 & 3 & 4 & 0 \\ 0 & 1 & 3 & 1 \\ 0 & 1 & 0 & 0} \mapsto
+\pmat{1 & 0 & 0 & 0 \\ 0 & 1 & 3 & 1 \\ 0 & 3 & 4 & 0 \\ 0 & 1 & 0 & 0}
+\\&\mapsto
+\pmat{1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 3 & 0 & 2 \\ 0 & 1 & 2 & 4} \mapsto
+\pmat{1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 2 \\ 0 & 0 & 2 & 4} \\&\mapsto
+\ldots \mapsto
+\pmat{1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 4 & 2 \\ 0 & 0 & 2 & 0}  \\&\mapsto
+\ldots \mapsto \pmat{1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 4 & 0 \\ 0 & 0 & 0 & 4} \\\text{.}\hphantom{A}
+&= \pmat{1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & -1 & 0 \\ 0 & 0 & 0 & -1}
+\end{align*}
+
+\item
+לא.
+למשל
+$A = \pmat{3 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1}$
+כי
+$\det\prs{A} = 3$
+אבל אם
+$\det\prs{A} = 0$
+נקבל
+$3 = \det\prs{A} = a^2 \cdot 0 = 0$
+בסתירה, ואם
+$\det\prs{A} \in \set{\pm 1}$
+נקבל
+$3 = \det\prs{A} = \pm a^2$.
+לא יתכן
+$3 = a^2$
+כי
+$3$
+אינו ריבוע ב־%
+$\quot{\mbb{Z}}{5\mbb{Z}}$,
+ולא יתכן
+$3 = -a^2$
+כי אז
+$2 = -3 = a^2$
+ואילו גם
+$2$
+אינו ריבוע ב־%
+$\quot{\mbb{Z}}{5\mbb{Z}}$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+תהי
+\[\text{.} g\prs{x_1, x_2, x_3} = 2 x_1 x_2 + 2 x_1 x_3 - x_2^2 - i x_3^2 \in \mbb{C}\brs{x_1, x_2, x_3}\]
+
+\begin{enumerate}
+\item מצאו מטריצה
+$A$
+עבורה
+$g = g_A$.
+
+\item הראו כי
+$g$
+אינה מנוונת.
+
+\item מצאו בסיס
+$B$
+של
+$\mbb{C}^3$
+עבורו
+$\brs{g}_B = I_3$.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+\item כמו מקודם, נכתוב
+\[\text{.} A = \pmat{0 & 1 & 1 \\ 1 & -1 & 0 \\ 1 & 0 & -i}\]
+
+\item
+מתקיים
+\begin{align*}
+\text{.} \pmat{a,b,c} A \pmat{x\\y\\z} &= \pmat{a,b,c}\pmat{y+z\\x-y\\x-iz} = a\prs{y+z} + b\prs{x-y} + c\prs{x-iz}
+\end{align*}
+נניח כי
+$\pmat{a,b,c} A \pmat{x\\y\\z} = 0$
+לכל
+$\pmat{x\\y\\z} \in \mbb{C}^3$
+ונראה כי
+$\pmat{a,b,c} = \prs{0,0,0}$.
+
+אם ניקח
+$\prs{x\\y\\z} = \pmat{1\\1\\-i}$
+נקבל
+\[0 = a\prs{1-i} + b\prs{1-1} + c\prs{1+i^2} = a\prs{1-i}\]
+לכן
+$a = 0$.
+אם ניקח
+$\pmat{x\\y\\z} = \pmat{-i\\1\\-1}$
+נקבל
+\[0 = b\prs{-i-1}\]
+ולכן
+$b = 0$,
+ואם ניקח
+$\pmat{x\\y\\} = \pmat{1\\1\\-1}$
+נקבל
+\[0 = c\prs{1+i}\]
+ולכן
+$c = 0$.
+בסך הכל
+$\pmat{a,b,c} = \pmat{0,0,0}$,
+כנדרש.
+
+\item נבצע דירוג לפי שורה ועמודה על
+$A$
+
+\begin{align*}
+A &\mapsto \pmat{1 & 0 & 1 \\ -1 & 1 & 0 \\ 0 & 1 & - i} \mapsto
+\pmat{-1 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & - i}
+\\&\mapsto
+\pmat{-1 & 0 & 0 \\ 1 & 1 & 1 \\ 0 & 1 & - i} \mapsto
+\pmat{-1 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 1 & - i}
+\\&\mapsto
+\pmat{-1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 1 & -1 - i}
+\mapsto
+\pmat{-1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -1 - i}
+\\&\mapsto
+\pmat{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -1 - i}
+\\&\mapsto
+\pmat{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1}
+\end{align*}
+
+כאשר בשני השלבים האחרונים חילקנו ב־%
+$\sqrt{-1}$
+וב־%
+$\sqrt{-1-i}$
+בהתאמה, כל אחד מהם בשורה ובעמודה.
+נקבל כי עבור
+\[P = \pmat{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & \frac{1}{\sqrt{-1-i}}} \pmat{-i & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1} \pmat{1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & -1 & 1} \pmat{1 & 0 & 0 \\ 1 & 1 & 0 \\ 0 & 0 & 1} \pmat{0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 0} = \pmat{0 & -i & 0 \\ 1 & 1 & 0 \\ -\frac{1}{\sqrt{-i-1}} & -\frac{1}{\sqrt{-i-1}} & \frac{1}{\sqrt{-i-1}}}\]
+מתקיים
+$PAP^t = I_3$.
+נכתוב
+\[B = \prs{\pmat{0\\-i\\0}, \pmat{1\\1\\0}, \pmat{-\frac{1}{\sqrt{-i-1}}\\-\frac{1}{\sqrt{-i-1}}\\\frac{1}{\sqrt{-i-1}}}}\]
+כאשר הוקטורים ב־%
+$B$
+הם עמודות
+$P^t$.
+אז
+$P^t = P^B_E$
+ונקבל
+\[\text{.} I_3 = P A P^t = \prs{P^B_E}^t \brs{g}_E P^B_E = \brs{g}_B\]
+\end{enumerate}
+\end{solution}
+
+\end{document}
+
+\printbibliography
+\end{document}

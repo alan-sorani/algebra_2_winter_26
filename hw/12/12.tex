@@ -1,0 +1,99 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{1}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+%%%%%%%%%%
+% Title  %
+%%%%%%%%%%
+\title{
+אלגברה ב' - גיליון תרגילי בית 12 \\
+תבניות ריבועיות, וקריטריון סילבסטר\\
+\vspace{1cm}
+\large{תאריך הגשה: 1.2.2026}
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{exercise}
+קיבעו אילו מהמטריצות הממשיות הבאות מוגדרות חיובית לחלוטין ואילו מוגדרות שלילית לחלוטין.
+
+\begin{align*}
+    A &= \pmat{1 & 2 & 0 \\ 2 & 3 & 1 \\ 0 & 1 & 3} \\
+    B &= \pmat{1 & 0 & 1 & 1 \\ 0 & 1 & 1 & 0 \\ 1 & 1 & 3 & 1 \\ 1 & 0 & 1 & 3} \\
+    C &= \pmat{-1 & 0 & 1 & 1 \\ 0 & -1 & 1 & 1 \\ 1 & 1 & -3 & -1 \\ 1 & 1 & -1 & -4} \\
+    D &= \pmat{1 & 0 & 1 & 1 \\ 0 & 1 & 1 & 0 \\ 1 & 1 & 0 & 1 \\ 1 & 0 & 1 & -1}
+\end{align*}
+\end{exercise}
+
+\begin{exercise}
+יהי
+$V = \RR^4$
+ועבור כל
+$a \in \mbb{R}$
+תהי
+\begin{align*}
+    g_a\prs{\pmat{x_1 \\ x_2 \\ x_3 \\ x_4}} &= x_1^2 + a x_1 x_2 + 2 x_1 x_3 + 2 x_2^2 + 2 x_2 x_3 + x_3^2 + 2 x_3 x_4 
+\end{align*}
+תבנית ריבועית על
+$V$.
+
+\begin{enumerate}
+    \item 
+    לכל
+    $a \in \mbb{R}$,
+    מיצאו תבנית ריבועית
+    $f_a$
+    על
+    $V$
+    עבורה
+    $g_a\prs{x} = f_a\prs{x, x}$.
+    
+    \item מיצאו את כל ערכי
+    $a \in \mbb{R}$
+    עבורם
+    $g_a$
+    מוגדרת חיובית לחלוטין.
+    
+    \item
+    נניח כעת כי
+    $a = 2$.
+    מיצאו בסיס
+    $B$
+    של
+    $V$
+    עבורו
+    $\brs{g}_B$
+    מטריצה מהצורה
+    $\pmat{I_{n_+} & 0 & 0 \\ 0 & - I_{n_-} & 0 \\ 0 & 0 & 0_{n_0}}$.
+\end{enumerate}
+\end{exercise}
+
+\end{document}

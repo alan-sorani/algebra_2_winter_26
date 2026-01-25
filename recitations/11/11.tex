@@ -99,7 +99,6 @@ $u,v \in V$,
 $A = \brs{f}_B$.
 \end{proposition}
 
-\begin{comment}
 \begin{proof}
 נכתוב
 \begin{align*}
@@ -126,7 +125,6 @@ $u,v \in V$
 נקבל כי
 $A = \brs{f}_B$.
 \end{proof}
-\end{comment}
 
 \begin{corollary}\label{corollary:change-of-bases}
 יהיו
@@ -142,19 +140,6 @@ $V$.
 \text{.} \brs{f}_B = \prs{M^B_C}^t \brs{f}_C M^B_C
 \end{align*}
 \end{corollary}
-
-\begin{proof}
-לכל
-$u,v \in V$
-מתקיים
-\begin{align*}
-\brs{u}_B^t \prs{M^B_C}^t \brs{f}_C M^B_C \brs{v}_B &=
-\prs{M^B_C \brs{u}_B}^t \brs{f}_C M^B_C \brs{v}_B
-\\&= \brs{u}_C^t \brs{f}_C \brs{v}_C
-\\&= f\prs{u,v}
-\end{align*}
-לכן מהטענה נקבל שוויון.
-\end{proof}
 
 במקרה של אופרטור
 $T$
@@ -203,28 +188,6 @@ $f$
 $f\prs{u,v} = f\prs{v,u}$
 לכל
 $u,v \in V$.
-\end{definition}
-
-\begin{definition}
-יהי
-$V$
-מרחב מכפלה פנימית ותהי
-$f$
-תבנית בילינארית על
-$V$.
-נגיד כי
-$f$
-\emph{מוגדרת חיובית לחלוטין}
-אם
-$f\prs{u,u} > 0$
-לכל
-$u \in V$.
-
-נגדיר באופן דומה תבנית מוגדרת שלילית לחלוטין%
-\slash%
-אי־שלילית%
-\slash%
-אי־חיובית.
 \end{definition}
 
 \begin{exercise}
@@ -309,12 +272,12 @@ $1+1 \neq 0$),
 \item יהי
 $i = 1$.
 \item אם
-$\prs{A}_{1,1} \neq 0$,
+$\prs{A}_{i,i} = 0$,
 נחלק לשני מקרים.
 \begin{enumerate}[label=2.\arabic*]
 \item 
 אם
-$\prs{A}_{1,j} = 0$
+$\prs{A}_{i,j} = 0$
 לכל
 $j \in \brs{n}$,
 המטריצה מהצורה
@@ -595,7 +558,7 @@ $\pmat{0 & 1 \\ 1 & 0} \in \Mat_3\prs{\mbb{Z}/5\mbb{Z}}$
 \end{enumerate}
 \end{solution}
 
-\begin{exercise}
+\begin{exercise}[לא הספקנו בתרגול]
 יהי
 $V$
 מרחב וקטורי סוף־מימדי מעל
@@ -779,7 +742,7 @@ $\pmat{1 & 0 \\ 0 & -1}$
 \end{enumerate}
 \end{solution}
 
-\begin{exercise}
+\begin{exercise}[לא הספקנו בתרגול]
 מצאו את צורת סילבסטר של
 \[\text{.} A = \pmat{0 & 1 & 1 & \cdots & 1 \\ 1 & 0 & -1 & \cdots & -1 \\ 1 & -1 & 0 & \cdots & -1 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & -1 & -1 & \cdots & 0} \in \Mat_n\prs{\mbb{R}}\]
 \end{exercise}
@@ -800,7 +763,7 @@ $A = \prs{0}$.
 $\pmat{I_{n-1} & \\ & -1}$.
 \end{solution}
 
-\begin{algorithm}
+\begin{algorithm}[לא הספקנו בתרגול]
 כדי למצוא בסיס
 $C$
 עבורו
@@ -832,7 +795,7 @@ $C$
 \end{enumerate}
 \end{algorithm}
 
-\begin{exercise}
+\begin{exercise}[לא הספקנו בתרגול]
 תהי
 $A = \pmat{2 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & 2}$.
 מצאו מטריצה

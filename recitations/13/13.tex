@@ -1,0 +1,721 @@
+\documentclass[a4paper,10pt,twoside,openany]{article}
+
+\usepackage[lang=hebrew]{maths}
+\usepackage{polynom}
+\usepackage{hebrewdoc}
+\usepackage{stylish}
+\usepackage{lipsum}
+\let\bs\blacksquare
+
+\setlength{\parindent}{0pt}
+\newcommand{\Std}{\mrm{Std}}
+\DeclareMathOperator{\Char}{char}
+
+%%%%%%%%%%%%
+% Styling %
+%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%
+% Counters  %
+%%%%%%%%%%%%%
+
+\setcounter{section}{0}     
+            
+%BIBLIOGRAPHY
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{bibliography.bib} %Imports bibliography file
+
+\title{
+אלגברה ב' (01040168) - חורף 2026
+\\
+תרגול 13 - שאלות ממבחנים
+\\
+אלן סורני
+\\
+הרשימות עודכנו לאחרונה בתאריך ה־%
+\today
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{תרגילים ממבחנים}
+
+\begin{exercise}
+\begin{enumerate}
+\item הראו כי ל־%
+$A \ceq \pmat{0&1\\1&1}, B \ceq \pmat{1&1\\1&0} \in M_2\prs{\mbb{Z}_2}$
+אין צורת ז'ורדן ב־%
+$M_2\prs{\mbb{Z}_2}$.
+
+\item הראו כי כל מטריצה אחרת ב־%
+$M_2\prs{\mbb{Z}_2}$
+דומה למטריצת ז'ורדן.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+\item
+מתקיים
+\begin{align*}
+\det\prs{A}, \det\prs{B} &= -1 = 1 \\
+\text{.} \tr\prs{A}, \tr\prs{B} &=  1
+\end{align*}
+מהשוויון הראשון הערך העצמי היחיד של
+$A,B$
+הוא
+$1$.
+אז אם יש צורת ז'ורדן היא
+$\pmat{1 & 0 \\ 0 & 1}$
+או
+$\pmat{1 & 1 \\ 0 & 1}$,
+אך בשני המקרים האלו העקבה היא
+$2 = 0$,
+בסתירה.
+
+\item
+תהי
+$C \in M_2\prs{\mbb{Z}_2} \setminus \set{A,B}$.
+אם
+$\tr\prs{C} = 1$
+נקבל
+\[\text{.} C \in \set{\pmat{0 & 1 \\ 0 & 1}, \pmat{0 & 0 \\ 1 & 1}, \pmat{1 & 1 \\ 0 & 0}, \pmat{1 & 0 \\ 1 & 0}, \pmat{1 & 0 \\ 0 & 0}, \pmat{0 & 0 \\ 0 & 1}}\]
+אז
+\begin{enumerate}
+\item אם
+$C = \pmat{0 & 0 \\ 1 & 1}$
+נכתוב
+$B = \pmat{e_1 + e_2, e_2}$
+ואז
+\begin{align*}
+C \prs{e_1 + e_2} &= C e_1 + C e_2 = e_2 + e_2 = 0 \\
+C e_2 &= e_2
+\end{align*}
+לכן
+$B$
+בסיס ז'ורדן של
+$C$
+וצורת ז'ורדן לפיו היא
+$\pmat{0 & 0 \\ 0 & 1}$.
+
+\item אם
+$C = \pmat{0 & 1 \\ 0 & 1}$
+היא המטריצה המשוחלפת של
+המטריצה הקודמת, ולכן לפי תרגיל משיעורי הבית יש לה צורת ז'ורדן והיא זהה לזאת הקודמת.
+
+\item אם
+$C = \pmat{1 & 1 \\ 0 & 0}$
+נכתוב
+$B \ceq \pmat{e_1 + e_2, e_1}$
+ואז
+$B$
+בסיס ז'ורדן כמו במקרה הראשון.
+
+\item אם
+$C = \pmat{1 & 0 \\ 1 & 0}$
+היא המטריצה המשוחלפת של המטריצה הקודמת, ולכן לפי תרגיל משיעורי הבית יש לה צורת ז'ורדן והיא זהה לזאת הקודמת.
+
+\item שאר המטריצות כבר בצורת ז'ורדן.
+\end{enumerate}
+
+אם
+$\tr\prs{C} = 0$
+נקבל
+\[\text{.} C \in \set{\pmat{0 & 1 \\ 1 & 0}, \pmat{1 & 1 \\ 1 & 1}, \pmat{0 & 0 \\ 1 & 0}, \pmat{1 & 0 \\ 1 & 1}, \pmat{0 & 1 \\ 0 & 0}, \pmat{1 & 1 \\ 0 & 1}, \pmat{0 & 0 \\ 0 & 0}, \pmat{1 & 0 \\ 0 & 1}}\]
+אז
+\begin{enumerate}
+\item אם
+$C = \pmat{0 & 1 \\ 1 & 0}$
+נכתוב
+$B \ceq \prs{e_1 + e_2, e_1}$
+ואז
+\begin{align*}
+C\prs{e_1 + e_2} &= C e_1 + C e_2 = e_2 + e_1 = e_1 + e_2 \\
+C e_1 &= e_2 = e_1 + e_2 - e_1 = \prs{e_1 + e_2} + e_1
+\end{align*}
+ולכן
+$B$
+בסיס ז'ורדן וצורת ז'ורדן היא
+$\pmat{1 & 1 \\ 0 & 1}$.
+
+\item אם
+$C = \pmat{1 & 1 \\ 1 & 1}$
+נכתוב
+$B = \pmat{e_1 + e_2, e_1}$
+ואז
+\begin{align*}
+C \prs{e_1 + e_2} &= 2\prs{e_1 + e_2} = 0 \\
+C e_1 &= e_1 + e_2
+\end{align*}
+ולכן
+$B$
+בסיס ז'ורדן וצורת ז'ורדן היא
+$\pmat{1 & 1 \\ 0 & 1}$.
+
+\item אם
+$C = \pmat{0 & 0 \\ 1 & 0}$
+או
+$C = \pmat{1 & 0 \\ 1 & 1}$
+היא מטריצה משוכלפת של מטריצה ז'ורדן ולכן יש לה צורת ז'ורדן עם בסיס
+$B = \pmat{e_2, e_1}$.
+
+\item שאר האופציות כבר בצורת ז'ורדן.
+\end{enumerate}
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+יהי
+$V$
+מרחב מכפלה פנימית מרוכב ממימד סופי ותהיינה
+$S,T \in \endo_{\mbb{C}}\prs{V}$
+אוניטריות.
+הוכיחו או מצאו דוגמא נגדית עבור כל אחד מהסעיפים הבאים.
+
+\begin{enumerate}
+\item $S+T$
+נורמלית.
+\item $S \circ T$
+נורמלית.
+\item אם
+$S,T$
+מתחלפות אז
+$S+T$
+נורמלית.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+\item מתקיים
+\begin{align*}
+\prs{S+T}^* \circ \prs{S+T} &= \prs{S^* + T^*} \circ \prs{S+T}
+\\&=
+S^* \circ S + S^* \circ T + T^* \circ S + T^* \circ T
+\\&=
+2 \id_V + S^* \circ T + T^* \circ S
+\end{align*}
+וגם
+\begin{align*}
+\prs{S+T} \circ \prs{S+T}^* &= \prs{S + T} \circ \prs{S^* + T^*}
+\\&= S \circ S^* + S \circ T^* + T \circ S^* + T \circ T^*
+\\ \hphantom{\prs{S+T} \circ \prs{S+T}^*} &= 2\id_V + S \circ T^* + T \circ S^*
+\end{align*}
+לכן נרצה לדעת האם בהכרח
+\[\text{.} S^* \circ T + T^* \circ S = S \circ T^* + T \circ S^*\]
+
+כדי למצוא דוגמא נגדית, נצטרך שלפחות אחת מבין
+$S,T$
+לא תהיה צמודה לעצמה.
+ניקח
+\begin{align*}
+S \colon \mbb{C}^2 &\to \mbb{C}^2 \\
+\pmat{x \\ y} &\mapsto \pmat{y \\ x}
+\end{align*}
+וכן
+\begin{align*}
+T \colon \mbb{C}^2 &\to \mbb{C}^2 \\
+\text{.} \pmat{x \\ y} &\mapsto \pmat{\frac{x+y}{\sqrt{2}} \\ \frac{x-y}{\sqrt{2}}}
+\end{align*}
+$E$
+בסיס אורתונורמלי ולכן
+\begin{align*}
+\brs{S^*}_E &= \brs{S}_E^t = \pmat{0 & 1 \\ 1 & 0}^t = \pmat{0 & 1 \\ 1 & 0} = \brs{S}_E
+\end{align*}
+וגם
+\begin{align*}
+\text{.} \brs{T^*}_E &= \brs{T}_E^t = \pmat{1/\sqrt{2} & 1/\sqrt{2} \\ }^t = \pmat{ 0 & 1 \\ 0 & 1}
+\end{align*}
+כעת
+\begin{align*}
+\brs{S^* \circ T + T^* \circ S}_E &=
+\brs{S^*}_E \brs{T}_E + \brs{T^*}_E \brs{S}_E
+\\&=
+\pmat{0 & 1 \\ 1 & 0} \pmat{0 & 0 \\ 1 & 1} + \pmat{0 & 1 \\ 0 & 1} \pmat{0 & 1 \\ 1 & 0}
+\\&=
+\pmat{1 & 1 \\ 0 & 0} + \pmat{1 & 0 \\ 1 & 0}
+\end{align*}
+אבל
+\begin{align*}
+\pmat{S \circ T^* + T \circ S^*}_E &= \brs{S}_E \brs{T^*}_E + \brs{T}_E \brs{S^*}_E
+\\&= \pmat{0 & 1 \\ 1 & 0} \pmat{0 & 1 \\ 0 & 1} + \pmat{0 & 0 \\ 1 & 1} \pmat{0 & 1 \\ 1 & 0}
+\\&= \pmat{0 & 0 \\ 1 & 1} + \pmat{1 & 0 \\ 1 & 0}
+\end{align*}
+ואלו מטריצות שונות.
+
+\item מתקיים
+\begin{align*}
+\prs{S \circ T}^* \circ \prs{S \circ T} &= T^* \circ S^* \circ S \circ T
+\\&=
+T^* \circ S \circ S^* \circ T
+\\&=
+T ^* \circ T
+\\&=
+\id_V
+\end{align*}
+לכן
+$S \circ T$
+אוניטרית ובפרט נורמלית.
+
+\begin{remark}
+ראיתם בתרגול שהרכבה של העתקות אוניטריות היא אוניטרית, ולכן אין צורך בפירוט מעבר לכך כפי שהתרגיל מנוסח.
+\end{remark}
+
+\item 
+כמו מקודם,
+מתקיים
+\begin{align*}
+\prs{S+T}^* \circ \prs{S+T} &= \prs{S^* + T^*} \circ \prs{S+T}
+\\&=
+S^* \circ S + S^* \circ T + T^* \circ S + T^* \circ T
+\\&=
+2 \id_V + S^* \circ T + T^* \circ S
+\end{align*}
+וגם
+\begin{align*}
+\prs{S+T} \circ \prs{S+T}^* &= \prs{S + T} \circ \prs{S^* + T^*}
+\\&= S \circ S^* + S \circ T^* + T \circ S^* + T \circ T^*
+\\ \hphantom{\prs{S+T} \circ \prs{S+T}^*} &= 2\id_V + S \circ T^* + T \circ S^*
+\end{align*}
+כעת,
+$S,T$
+מתחלפות, לכן גם
+$S^*, T$
+מתחלפות וגם
+$S, T^*$
+מתחלפות, ונקבל שוויון.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+יהיו
+$v_1, \ldots, v_n \in \mbb{R}^n$.
+הראו כי
+$B \ceq \prs{v_1, \ldots, v_n}$
+בסיס של
+$\mbb{R}^n$
+אם ורק אם למטריצת
+\textenglish{Gram}
+של
+$B$
+\[\mrm{Gr}\prs{B} \ceq \pmat{\trs{v_1, v_1} & \cdots & \trs{v_1, v_n} \\ \vdots & \ddots & \vdots \\ \trs{v_n, v_1} & \cdots & \trs{v_n, v_n}} = \prs{\trs{v_i, v_j}}_{i,j \in \brs{n}}\]
+יש דטרמיננטה חיובית.
+\end{exercise}
+
+\begin{solution}
+נניח כי
+$B$
+בסיס.
+אז
+$\mrm{Gr}\prs{B}$
+המטריצה המייצגת של המכפלה הפנימית הסטנדרטית לפי
+$B$.
+לכן קיים
+$a \in \mbb{R}$
+עבורו
+\[\det\prs{\mrm{Gr}\prs{B}} = a^2 \det\prs{I_n} = a^2\]
+(כי
+$\mrm{Gr}\prs{B} = P^t I_n P$
+וכי הדטרמיננטה כפלית).
+כיוון ש־%
+$\mrm{Gr}\prs{B}$
+הפיכה, לא יתכן
+$a = 0$
+ולכן
+$\det\prs{\mrm{Gr}\prs{B}} = a^2 > 0$.
+
+בכיוון השני, נניח ש־%
+$B$
+אינו בסיס. אז יש סקלרים
+$\alpha_1, \ldots, \alpha_{n-1} \in \mbb{R}$
+עבורם
+\[\text{.} v_n = \sum_{i \in [n-1]} \alpha_i v_i\]
+נקבל
+\begin{align*}
+\text{.} \prs{\mrm{Gr}\prs{B}} &= \pmat{\trs{v_1, v_1} & \cdots & \trs{v_1, \sum_{i \in [n-1]} \alpha_i v_i} \\ \vdots & \ddots & \vdots \\ \trs{v_n, v_1} & \cdots & \trs{v_i, \sum_{i \in [n-1]} \alpha_i v_i}}
+=
+\pmat{\trs{v_1, v_1} & \cdots & \sum_{i \in [n-1]} \alpha_i \trs{v_1, v_i} \\ \vdots & \ddots & \vdots \\ \trs{v_n, v_1} & \cdots & \sum_{i \in [n-1]} \alpha_i \trs{v_i, v_i}}
+\end{align*}
+לכן, העמודה הימנית של
+$\mrm{Gr}\prs{B}$
+היא צירוף לינארי של שאר העמודות, ולכן
+$\det\prs{\mrm{Gr}\prs{B}} = 0$.
+\end{solution}
+
+\begin{exercise}
+יהי
+$V$
+מרחב וקטורי סוף־מימדי מעל
+$\mbb{R}$.
+תהי
+$g$
+מכפלה פנימית על
+$V$
+ותהי
+$h$
+תבנית בילינארית סימטרית על
+$V$.
+הוכיחו שקיים בסיס
+$B$
+של
+$V$
+עבורו
+$\brs{h}_B, \brs{g}_B$
+שתיהן אלכסוניות.
+\end{exercise}
+
+\begin{solution}
+נסמן
+$n \ceq \dim_{\mbb{R}}\prs{V}$.
+יהי
+$E$
+בסיס אורתונורמלי של
+$V$
+ביחס ל־%
+$g$.
+אז
+$\brs{g}_E = I_n$.
+כעת,
+$\brs{h}_E$
+סימטרית כי
+$h$
+סימטרית, ולכן יש מטריצה
+$Q \in M_n\prs{\mbb{R}}$
+אורתוגונלית עבורה
+$Q^t \brs{h}_E Q$
+אלכסונית.
+נרצה
+$Q = P^B_E$
+ולכן נגדיר
+$B \ceq \prs{Q^{-1} v_1, \ldots, Q^{-1} v_n}$
+עבור
+$E \ceq \prs{v_1, \ldots, v_n}$.
+אז
+\begin{align*}
+\brs{g}_B &= \prs{P^B_E}^t \brs{g}_E P^B_E = Q^t \brs{g}_E Q = Q^t I_n Q = Q^t Q = I_n \\
+\brs{h}_B &= \prs{P^B_E}^t \brs{h}_E P^B_E = Q^t \brs{h}_E Q
+\end{align*}
+שתיהן אלכסוניות, כנדרש.
+\end{solution}
+
+\begin{exercise}
+יהי
+$V$
+מרחב מכפלה פנימית ממימד
+$n \in \mbb{N}$
+מעל
+$\mbb{R}$.
+יהיו
+$U,W \leq V$
+עבורם
+$V = U \oplus W$.
+עבור
+$v = u + w$
+כאשר
+$u \in U, w \in W$
+נגדיר
+$T\prs{v} = u - w$.
+הניחו כי
+$T$
+לינארית והראו כי
+$T$
+צמודה לעצמה אם ורק אם
+$U \perp W$.
+\end{exercise}
+
+\begin{solution}
+נניח כי
+$U \perp W$.
+יהי
+$B$
+בסיס אורתונורמלי ל־%
+$U$
+ויהי
+$C$
+בסיס אורתונורמלי ל־%
+$W$.
+אז
+$D \ceq B * C$
+בסיס אורתונורמלי ל־%
+$V$.
+נקבל כי בבסיס זה
+\[\brs{T}_D = \pmat{\brs{\rest{T}{U}}_B & 0 \\ 0 & \brs{\rest{T}{W}}_C} = \pmat{I_k & 0 \\ 0 & - I_\ell}\]
+עבור
+$k \ceq \dim U, \ell \ceq \dim W$.
+כיוון ש־%
+$D$
+אורתונורמלי, מתקיים
+\begin{align*}
+\text{.} \brs{T^*}_D &= \brs{T}_D^t = \pmat{I_k & 0 \\ 0 & - I_{\ell}}^t = \pmat{I_k & 0 \\ 0 & - I_{\ell}} = \brs{T}_D
+\end{align*}
+לכן,
+$T^* = T$,
+כנדרש.
+
+נניח כעת כי
+$T^* = T$
+ויהיו
+$u \in U$
+ו־%
+$w \in W$.
+מתקיים
+\begin{align*}
+\trs{u,w} &= \trs{Tu, w}
+\\&= \trs{u, T^*  w}
+\\&= \trs{u, T w}
+\\&= \trs{u, -w}
+\\&= -\trs{u,w}
+\end{align*}
+לכן
+$\trs{u,w} = 0$
+ולכן
+$u \perp w$.
+נקבל כי
+$U \perp W$.
+\end{solution}
+
+\begin{exercise}
+תהי
+$A \in \Mat_n\prs{\CC}$
+בעלת פולינום מינימלי
+\begin{align*}
+\text{.} m_A\prs{x} = x^8 \prs{x^2 + 1}
+\end{align*}
+
+\begin{enumerate}
+\item מיצאו את הפולינום המינימלי של
+$A^3$.
+
+\item הוכיחו או הפריכו את כל אחת מהטענות הבאות:
+
+\begin{enumerate}
+\item קיימת חזקה של
+$A$
+שלכסינה מעל
+$\RR$.
+
+\item קיימת חזקה של
+$A$
+שלכסינה מעל
+$\CC$.
+\end{enumerate}
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+\item הערכים העצמיים של מטריצה הם שורשי הפולינום המינימלי, לכן ל־%
+$A$
+יש ערכים עצמיים
+$0, \pm i$.
+החזקה של
+$x - \lambda$
+בפולינום המינימלי היא הגודל המקסימלי של בלוק ז'ורדן עם ערך עצמי
+$\lambda$
+בצורת ז'ורדן של
+$A$.
+לכן, צורת ז'ורדן של
+$A$
+היא
+\begin{align*}
+J \coloneqq \diag\prs{J_8\prs{0}, N, i I_{r_{a,A}\prs{i}}, -i I_{r_{a,A}\prs{-i}}}
+\end{align*}
+עבור מטריצת ז'ורדן
+$N$
+עם ערך עצמי יחיד
+$0$
+ובלוקים מגודל לכל היותר
+$0$.
+נקבל כי
+\begin{align*}
+\text{.} J^3 = \diag\prs{J_8\prs{0}, N^3, -i I_{r_{a,A}\prs{i}}, i I_{r_{a,A}\prs{-i}}}
+\end{align*}
+אז
+$\pm i$
+ערך עצמי מריבוי אלגברי וגיאומטרי
+$r_{a,A}\prs{\mp i}$.
+כיוון שהריבוי הגיאומטרי שווה למספר בלוקי ז'ורדן בצורת ז'ורדן, והריבוי האלגברי שווה לסכום הגדלים שלהם, נקבל כי יש
+$r_{a,A}\prs{\pm}$
+בלוקים מגודל
+$1$
+עם ערך עצמי
+$\mp i$.
+
+עבור הערך העצמי
+$0$,
+ניזכר כי צורת ז'ורדן של
+$J_8\prs{0}^3$
+היא
+\begin{align*}
+\diag\prs{J_3\prs{0}, J_3\prs{0}, J_2\prs{0}}
+\end{align*}
+ושבאותו אופן צורת ז'ורדן של
+$J_m\prs{0}^3$
+מורכבת מבלוקים בגדלים בקבוצה
+\[\text{.} \set{\ceil{\frac{m}{3}}, \floor{\frac{m}{3}}}\]
+לכן, גודל הבלוק המקסימלי עם ערך עצמי
+$0$
+בצורת ז'ורדן של
+$J^3$
+הוא
+$3$.
+אך, אם
+$P^{-1} A P = J$
+נקבל כי
+\[P^{-1} A^3 P = \prs{P^{-1} A P}^3 = J^3\]
+ולכן זה גם הגודל של הבלוק המקסימלי עם ערך עצמי
+$0$
+בצורת ז'ורדן של
+$A^3$.
+נקבל כי
+\[\text{.} m_{A^3}\prs{x} = x^3 \prs{x^2 + 1}\]
+
+\item
+ניזכר כי הערכים העצמיים של
+$A^8$
+הם
+$\lambda^8$
+עבור
+$\lambda$
+ערך עצמי של
+$A$.
+לכן הערכים העצמיים של
+$A^8$
+הם
+$\set{0, \prs{\pm i}^8} = \set{0, 1}$.
+
+אם נתייחס ל־%
+$A$
+כמטריצה ממשית, נקבל כי סכום הריבויים האלגבריים של הערכים העצמיים שלה הוא
+$n$,
+ולכן יש לה צורת ז'ורדן.
+
+צורת ז'ורדן של
+$A^8$
+היא צורת ז'ורדן של
+\begin{align*}
+\text{,} J^8 &= \diag\prs{J_8\prs{0}^8, N^8, i^8 I_{r_{a,A}\prs{i}}, \prs{-i}^8 I_{r_{a,A}\prs{-i}}}
+\\&=
+\diag\prs{0_{r_{a,A}\prs{0}}, I_{r_{a,A}\prs{i} + r_{a,A}\prs{-i}}}
+\end{align*}
+שהיא כבר מטריצה אלכסונית, לכן
+$A^8$
+לכסינה גם מעל
+$\RR$
+וגם מעל
+$\CC$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+נתונה
+$T \in \End_\RR\prs{\RR^n}$
+המוגדרת על ידי
+\begin{align*}
+\text{.} T \pmat{a_1 \\ a_2 \\ \vdots \\ a
+_{n-1} \\ a_n} = \pmat{a_2 \\ a_3 \\ \vdots \\ a_n \\ a_1}
+\end{align*}
+
+\begin{enumerate}
+\item האם
+$T$
+איזומטריה ביחס למכפלה הפנימית הסטנדרטית על
+$\RR^n$?
+
+\item האם
+$T$
+צמודה לעצמה? אורתוגונלית?
+
+\item מיצאו את צורת ז'ורדן של
+$T$
+מעל
+$\RR$
+או הוכיחו שאינה קיימת.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}
+\item יהי
+$\mrm{St} = \prs{e_1, \ldots, e_n}$
+הבסיס הסטנדרטי של
+$\RR^n$.
+אז
+\begin{align*}
+\text{,} T\prs{e_i} &= \fcases{e_{i-1} & i > 1 \\ e_n & i = 1}
+\end{align*}
+ולכן
+$T$
+שולחת בסיס אורתונורמלי
+$\mrm{St}$
+לבסיס אורתונורמלי
+$\prs{e_n, e_1, \ldots, e_{n-1}}$.
+ראינו בכיתה שההעתקה ששולחת בסיס אורתונורמלי לבסיס אורתונורמלי היא אורתוגונלית, ושההעתקה אורתוגונלית היא איזומטריה, ולכן
+$T$
+איזומטריצה.
+
+\item הראינו בסעיף הקודם ש־%
+$T$
+אורתוגונלית. לכן
+$T^* = T^{-1}$.
+נשים לב כי
+$T \neq T^{-1}$
+כי
+$T^2 \neq \id_{\RR^2}$
+(למשל, כי
+$T^2\prs{e_3} = T\prs{e_2} = e1 \neq e_3$)
+ולכן
+$T^* = T^{-1} \neq T$
+ונקבל כי
+$T$
+אינה צמודה לעצמה.
+
+\item
+
+יהי
+$\mrm{St}$
+הבסיס הסטנדרטי של
+$\RR^n$.
+אז
+$T = L_A$
+עבור
+\begin{align*}
+\text{.} A \coloneqq \brs{T}_{\mrm{St}} =
+\pmat{
+0 & 1 & \cdots & 0 & 0 \\
+0 & \ddots & \ddots & \ddots & 0 \\
+0 & \ddots & \ddots & \ddots & \vdots \\
+\vdots & \ddots & \ddots & \ddots & 1 \\
+1 & \cdots & 0 & 0 & 0 \\
+}
+\end{align*}
+יהי
+$\xi = \mrm{cis}\prs{\frac{2 \pi}{n}}$,
+ואז
+\begin{align*}
+A \pmat{\xi^n \\ \xi^{n-1} \\ \vdots \\ \xi^2 \\ \xi} = \pmat{\xi^{n-1} \\ \xi^{n-2} \\ \vdots \\ \xi \\ \xi^n}
+\end{align*}
+כאשר
+$\xi^n = \mrm{cis}\prs{2 \pi} = 1$.
+נקבל שהוקטור
+$\pmat{\xi^n \\ \xi^{n-1} \\ \vdots \\ \xi^2 \\ \xi}$
+הוא וקטור עצמי של
+$A$
+עם ערך עצמי
+$\xi^{-1}$,
+שאינו ממשי, ולכן אין ל־%
+$T$
+צורת ז'ורדן מעל
+$\RR$.
+\end{enumerate}
+\end{solution}
+
+\printbibliography
+\end{document}
